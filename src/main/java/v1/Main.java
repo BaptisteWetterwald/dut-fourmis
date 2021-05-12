@@ -6,6 +6,11 @@ public class Main
     {
         Grid grid = new Grid(10, 10);
         grid.showGrid();
-        grid.showListObstacles();
+        //grid.showListObstacles();
+        System.out.println();
+        System.out.println();
+        for (Fourmi f : grid.getListFourmis())
+            f.deplacementHasard(grid);
+        grid.showGrid();
     }
 }
