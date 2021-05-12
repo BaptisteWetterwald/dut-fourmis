@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Fourmi
+{
+    +seDeplacer()
+    -posX:Integer
+    -posY:Integer
+}
+
+class Soldat extends Fourmi
+{
+    +seDeplacer()
+}
+
+class Grille
+{
+    +creerObstacles()
+    +creerFourmis()
+}
+
+class Main
+{
+    +lancerJeu(g:Grille)
+    +avancerTemps(g:Grille)
+}
+
+@enduml
