@@ -7,10 +7,15 @@ public class Main
         Grid grid = new Grid(10, 10);
         grid.showGrid();
         //grid.showListObstacles();
-        System.out.println();
-        System.out.println();
-        for (Fourmi f : grid.getListFourmis())
-            f.deplacementHasard(grid);
-        grid.showGrid();
+        int nbIterations = 20;
+        for (int i=0; i<nbIterations; i++)
+        {
+            System.out.println();
+            System.out.println();
+            for (Fourmi f : grid.getListFourmis())
+                f.deplacementHasard(grid);
+            grid.showGrid();
+        }
+
     }
 }

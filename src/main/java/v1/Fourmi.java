@@ -34,8 +34,8 @@ public class Fourmi extends Occupant
 
     public void deplacerVers(int x, int y, Grid grid)
     {
-        grid.getGrid()[this.getX()][this.getY()].remove(this); //On devra le changer pour la v2, en retirant la fourmi de la liste Occupant
         grid.getGrid()[x][y].add(this); //Déplacement de la fourmi dans la grille
+        grid.getGrid()[this.getX()][this.getY()].remove(this); //On devra le changer pour la v2, en retirant la fourmi de la liste Occupant
         this.setX(x);
         this.setY(y);
     }
@@ -43,7 +43,13 @@ public class Fourmi extends Occupant
     public boolean deplacementValide(int newX, int newY, Grid grid)
     {
         boolean valide = true;
-        if (newX<0 || newX>grid.getGrid()[0].length || newY<0 || newY>grid.getGrid().length)
+
+        //Si la case n'est pas dans la grille
+        if (newX<0 || newX>=grid.getGrid()[0].length || newY<0 || newY>=grid.getGrid().length)
+            valide = false;
+
+        //Si la case contient un obstacle
+        else
             for (int i=0; i<grid.getGrid()[newX][newY].size() && valide; i++)
                 if (grid.getGrid()[newX][newY].get(i) instanceof Obstacle)
                     valide = false;

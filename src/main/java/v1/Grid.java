@@ -13,12 +13,12 @@ public class Grid
 
     public Grid(int width, int height)
     {
-        this.grid = new ArrayList<Occupant>[][];
+        this.grid = new ArrayList[height][width];
+        this.fill();
         this.listObstacles = new ArrayList<Obstacle>();
         this.listFourmis = new ArrayList<Fourmi>();
         this.putObstacles(this.grid, 5);
         this.putFourmis(this.grid, 10);
-        this.fill();
     }
 
     public ArrayList<Fourmi> getListFourmis()
@@ -28,15 +28,17 @@ public class Grid
 
     private void putFourmis(ArrayList<Occupant>[][] grid, int nbFourmis)
     {
-        for (int i=0; i<nbFourmis; i++)
+        int fourmisPlacees = 0;
+        while (fourmisPlacees < nbFourmis)
         {
             int rdmX = rdm.nextInt(grid.length);
             int rdmY = rdm.nextInt(grid[0].length);
-            if ( !this.contientObstacle(rdmX, rdmY) && grid[rdmX][rdmY]==null )
+            if (!this.contientObstacle(rdmX, rdmY))
             {
                 Fourmi fourmi = new Fourmi(rdmX, rdmY);
                 this.grid[rdmX][rdmY].add(fourmi);
                 listFourmis.add(fourmi);
+                fourmisPlacees++;
             }
         }
     }
@@ -46,9 +48,10 @@ public class Grid
         return this.grid;
     }
 
-    private void putObstacles(ArrayList<Occupant>[][] grid, int nbOstacles)
+    private void putObstacles(ArrayList<Occupant>[][] grid, int nbObstacles)
     {
-        for (int i=0; i<nbOstacles; i++)
+        int obstaclesPlaces = 0;
+        while (obstaclesPlaces < nbObstacles)
         {
             int rdmX = rdm.nextInt(grid.length);
             int rdmY = rdm.nextInt(grid[0].length);
@@ -57,6 +60,7 @@ public class Grid
                 Obstacle obstacle = new Obstacle(rdmX, rdmY);
                 this.grid[rdmX][rdmY].add(obstacle);
                 this.listObstacles.add(obstacle);
+                obstaclesPlaces++;
             }
         }
     }
@@ -76,10 +80,24 @@ public class Grid
         {
             for (int j=0; j<grid[0].length; j++)
             {
-                System.out.print("  " + this.grid[i][j].toString());
+                System.out.print("  ");
+                if (this.grid[i][j].size()==0)
+                    System.out.print(".");
+                else
+                    System.out.print(stringList(this.grid[i][j]));
             }
             System.out.println();
         }
+    }
+
+    private String stringList(ArrayList<Occupant> occupants)
+    {
+        String s = "";
+        for (Occupant occ : occupants)
+        {
+            s += occ.toString();
+        }
+        return s;
     }
 
     private void fill()
@@ -88,8 +106,7 @@ public class Grid
         {
             for (int j=0; j<grid[0].length; j++)
             {
-                if (grid[i][j].size() == 0)
-                    grid[i][j].add(new Occupant(i, j));
+                grid[i][j] = new ArrayList<Occupant>();
             }
         }
     }

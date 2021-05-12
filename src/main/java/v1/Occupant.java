@@ -21,12 +21,6 @@ public class Occupant
         return this.y;
     }
 
-    @Override
-    public String toString()
-    {
-        return ".";
-    }
-
     public void setX(int x)
     {
         this.x = x;
