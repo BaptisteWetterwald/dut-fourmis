@@ -3,38 +3,76 @@
 
 class Fourmi
 {
-    + deplacementHasard(g:Grid)
-    + deplacerVers(x,y,g:Grid)
-    + deplacementValide(newX, newY, g:Grid): Boolean
+    + Fourmi(x,y,g:grid)
+
+    + deplacementHasard(g:grid)
+    + deplacerVers(x,y,g:grid)
+    + deplacementValide(newX, newY, g:grid): Boolean
+    + toString():String
 }
 
-class Soldat extends Fourmi
+class Reine extends Fourmi
 {
+    + Reine(x,y,grid)
+    + donnerVie()
+    + toString() : String
+}
+
+class Fourmiliere
+{
+    + Fourmiliere(rdmX, rdmY, grid)
+
+    + toString() : String
+    + getReine() : Reine
 }
 
 class Grid
 {
-    + getListFourmis()
-    - putFourmis(<Occupant> grid, nbFourmis)
-    + getGrid()
-    + putObstacle(<Occupant> grid, nbObstacles)
+    Random rdm
+
+    - tabGrid : ArrayList<Occupant>[][]
+    - listObstacles : ArrayList<Obstacle>
+    - listFourmis : ArrayList<Fourmi>
+
+    + Grid(width, height) : void
+    - getFourmiliere() : Fourmiliere
+    - putFourmiliere(grid)
+    + getListFourmis() : ArrayList<Fourmi>
+    - putFourmis(reine, nbFourmis)
+    + getTabGrid() : ArrayList<Occupant>[][]
+    + putObstacles(<Occupant> grid, nbObstacles)
+    - contientFourmiliere(x,y): Boolean
     - contientObstacle(x,y): Boolean
     + showGrid()
+    - stringList(occupants) : String
     - fill()
-    + getListObstacles()
+    + getListObstacles() : ArrayList<Obstacle>
     + showListObstacle()
 }
 
 class Main
 {
-    +lancerJeu(g:Grid)
-    +avancerTemps(g:Grid)
+    +(static) main
 }
+
+
+class Soldat extends Fourmi
+{
++ Soldat(x,y,grid)
++ deplacementHasard(grid)
++ toString() : String
+}
+
+
+
 
 class Occupant
 {
-    - x
-    - y
+    - x : int
+    - y : int
+    - grid : Grid
+    + Occupant(x,y,grid)
+    + getGrid() : Grid
     + getX(): int
     + getY(): int
     + toString()
@@ -42,8 +80,18 @@ class Occupant
     + setY()
 
 }
-class Obstacle
+class Obstacle extends Occupant
 {
+    + Obstacle(x,y,grid)
     + toString()
 }
+
+
+Main -> Grid : Utilise
+Grid -> Occupant : possède
+Reine -> Fourmi : crée
+Fourmiliere --> Reine : contient
+Grid --> Fourmiliere : contient
+Grid -> Obstacle : contient
+
 @enduml
