@@ -7,13 +7,13 @@ public class Main
         Grid grid = new Grid(10, 10);
         grid.showGrid();
         //grid.showListObstacles();
-        int nbIterations = 20;
+        int nbIterations = 200;
         for (int i=0; i<nbIterations; i++)
         {
             System.out.println();
             System.out.println();
             for (Fourmi f : grid.getListFourmis())
-                f.deplacementHasard(grid);
+                ((Soldat)f).deplacementHasard(grid);
             grid.showGrid();
         }
 
