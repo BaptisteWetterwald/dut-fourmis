@@ -13,7 +13,7 @@ public class MyOwnTest {
 
         controller.createSoldiers( 10 );
 
-        controller.play(1, false);
+        //controller.play(1, false);
         Display w = new Display( 10, 10, 10 );
         /*for( int i = 0; i < 100; i++)
         {

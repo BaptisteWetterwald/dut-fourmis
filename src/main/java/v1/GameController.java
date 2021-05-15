@@ -2,7 +2,7 @@ package v1;
 
 import java.util.BitSet;
 
-public class Jeu implements AntFacadeController
+public class GameController implements AntFacadeController
 {
     Grid grid;
 
@@ -35,7 +35,7 @@ public class Jeu implements AntFacadeController
     @Override
     public void createColony(int row, int column)
     {
-        grid.getTabGrid()[row][column].add(new Fourmiliere(row, column, grid));
+        grid.getTabGrid()[row][column].add(new Colony(row, column, grid));
     }
 
     @Override
@@ -63,9 +63,9 @@ public class Jeu implements AntFacadeController
 
         for (int i=0; i<duration; i++)
         {
-            for (Fourmi f : grid.getListFourmis())
-                if (f instanceof Soldat)
-                    ((Soldat) f).deplacementHasard(grid);
+            for (Ant f : grid.getListFourmis())
+                if (f instanceof Soldier)
+                    ((Soldier) f).deplacementHasard(grid);
         }
         refreshBitSet(bs);
 

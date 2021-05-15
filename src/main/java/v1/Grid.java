@@ -9,49 +9,49 @@ public class Grid
 
     private ArrayList<Occupant>[][] tabGrid;
     //private ArrayList<Obstacle> listObstacles;
-    private ArrayList<Fourmi> listFourmis;
+    private ArrayList<Ant> listAnts;
 
     public Grid(int width, int height)
     {
         this.tabGrid = new ArrayList[height][width];
         this.fill();
         //this.listObstacles = new ArrayList<Obstacle>();
-        this.listFourmis = new ArrayList<Fourmi>();
+        this.listAnts = new ArrayList<Ant>();
         //this.putFourmiliere(this.tabGrid);
         //this.putObstacles(this.tabGrid, 5);
         //this.putFourmis(this.getFourmiliere().getReine(), 10);
     }
 
-    public Fourmiliere getFourmiliere()
+    public Colony getFourmiliere()
     {
-        Fourmiliere fourmiliere = null;
+        Colony colony = null;
         boolean found = false;
         for (int i=0; i<this.tabGrid.length && !found; i++)
             for (int j=0; j<this.tabGrid[0].length && !found; j++)
             {
                 for (Occupant occ : this.tabGrid[i][j])
-                    if (occ instanceof Fourmiliere)
+                    if (occ instanceof Colony)
                     {
                         found = true;
-                        fourmiliere = (Fourmiliere) occ;
+                        colony = (Colony) occ;
                     }
             }
-        return fourmiliere;
+        return colony;
     }
 
     private void putFourmiliere(ArrayList<Occupant>[][] grid)
     {
         int rdmX = rdm.nextInt(grid.length);
         int rdmY = rdm.nextInt(grid[0].length);
-        this.tabGrid[rdmX][rdmY].add(new Fourmiliere(rdmX, rdmY, this));
+        this.tabGrid[rdmX][rdmY].add(new Colony(rdmX, rdmY, this));
     }
 
-    public ArrayList<Fourmi> getListFourmis()
+    public ArrayList<Ant> getListFourmis()
     {
-        return this.listFourmis;
+        return this.listAnts;
     }
 
-    private void putFourmis(Reine reine, int nbFourmis)
+    private void putFourmis(Queen queen, int nbFourmis)
     {
         /*int fourmisPlacees = 0;
         while (fourmisPlacees < nbFourmis)
@@ -67,7 +67,7 @@ public class Grid
             }
         }*/
         for (int i=0; i<nbFourmis; i++)
-            reine.donnerVie();
+            queen.donnerVie();
     }
 
     public ArrayList<Occupant>[][] getTabGrid()
@@ -96,7 +96,7 @@ public class Grid
     {
         boolean contains = false;
         for (int i=0; i<this.tabGrid[x][y].size() && !contains; i++)
-            if (this.tabGrid[x][y].get(i) instanceof Fourmiliere)
+            if (this.tabGrid[x][y].get(i) instanceof Colony)
                 contains = true;
         return contains;
     }
@@ -114,7 +114,7 @@ public class Grid
     {
         boolean contains = false;
         for (int i = 0; i<this.tabGrid[x][y].size() && !contains; i++)
-            if (this.tabGrid[x][y].get(i) instanceof Soldat)
+            if (this.tabGrid[x][y].get(i) instanceof Soldier)
                 contains = true;
         return contains;
     }

@@ -17,7 +17,7 @@ public class FourmiSoldatTest
 
     @BeforeEach
     void setUp() {
-        appli = new Jeu();
+        appli = new GameController();
         appli.createGrid(WIDTH, HEIGHT);
         appli.createColony(0, 0);
 

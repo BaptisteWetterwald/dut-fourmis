@@ -4,7 +4,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        new MyOwnTest().run( new Jeu() );
+        new MyOwnTest().run( new GameController() );
 
         /*Grid grid = new Grid(10, 10);
         grid.showGrid();

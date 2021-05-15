@@ -1,9 +1,9 @@
 package v1;
 
-public abstract class Fourmi extends Occupant
+public abstract class Ant extends Occupant
 {
 
-    public Fourmi(int x, int y, Grid grid)
+    public Ant(int x, int y, Grid grid)
     {
         super(x, y, grid);
     }

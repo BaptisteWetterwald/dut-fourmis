@@ -3,9 +3,9 @@ package v1;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Soldat extends Fourmi
+public class Soldier extends Ant
 {
-    public Soldat(int x, int y, Grid grid)
+    public Soldier(int x, int y, Grid grid)
     {
         super(x, y, grid);
     }
