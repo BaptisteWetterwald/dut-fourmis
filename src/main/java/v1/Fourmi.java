@@ -21,7 +21,7 @@ public abstract class Fourmi extends Occupant
         boolean valide = true;
 
         //Si la case n'est pas dans la grille
-        if (newX<0 || newX>=grid.getTabGrid()[0].length || newY<0 || newY>=grid.getTabGrid().length)
+        if (newX<0 || newX>=grid.getTabGrid().length || newY<0 || newY>=grid.getTabGrid()[0].length)
             valide = false;
 
         //Si la case contient un obstacle

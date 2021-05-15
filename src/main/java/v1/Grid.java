@@ -8,21 +8,21 @@ public class Grid
     Random rdm = new Random();
 
     private ArrayList<Occupant>[][] tabGrid;
-    private ArrayList<Obstacle> listObstacles;
+    //private ArrayList<Obstacle> listObstacles;
     private ArrayList<Fourmi> listFourmis;
 
     public Grid(int width, int height)
     {
         this.tabGrid = new ArrayList[height][width];
         this.fill();
-        this.listObstacles = new ArrayList<Obstacle>();
+        //this.listObstacles = new ArrayList<Obstacle>();
         this.listFourmis = new ArrayList<Fourmi>();
-        this.putFourmiliere(this.tabGrid);
-        this.putObstacles(this.tabGrid, 5);
-        this.putFourmis(this.getFourmiliere().getReine(), 10);
+        //this.putFourmiliere(this.tabGrid);
+        //this.putObstacles(this.tabGrid, 5);
+        //this.putFourmis(this.getFourmiliere().getReine(), 10);
     }
 
-    private Fourmiliere getFourmiliere()
+    public Fourmiliere getFourmiliere()
     {
         Fourmiliere fourmiliere = null;
         boolean found = false;
@@ -86,26 +86,35 @@ public class Grid
             {
                 Obstacle obstacle = new Obstacle(rdmX, rdmY, this);
                 this.tabGrid[rdmX][rdmY].add(obstacle);
-                this.listObstacles.add(obstacle);
+                //this.listObstacles.add(obstacle);
                 obstaclesPlaces++;
             }
         }
     }
 
-    private boolean contientFourmiliere(int x, int y)
+    public boolean contientFourmiliere(int x, int y)
     {
         boolean contains = false;
-        for (int i = 0; i<this.tabGrid[x][y].size() && !contains; i++)
+        for (int i=0; i<this.tabGrid[x][y].size() && !contains; i++)
             if (this.tabGrid[x][y].get(i) instanceof Fourmiliere)
                 contains = true;
         return contains;
     }
 
-    private boolean contientObstacle(int x, int y)
+    public boolean contientObstacle(int x, int y)
     {
         boolean contains = false;
         for (int i = 0; i<this.tabGrid[x][y].size() && !contains; i++)
             if (this.tabGrid[x][y].get(i) instanceof Obstacle)
+                contains = true;
+        return contains;
+    }
+
+    public boolean contientSoldat(int x, int y)
+    {
+        boolean contains = false;
+        for (int i = 0; i<this.tabGrid[x][y].size() && !contains; i++)
+            if (this.tabGrid[x][y].get(i) instanceof Soldat)
                 contains = true;
         return contains;
     }
@@ -147,12 +156,12 @@ public class Grid
         }
     }
 
-    public ArrayList<Obstacle> getListObstacles()
+    /*public ArrayList<Obstacle> getListObstacles()
     {
         return this.listObstacles;
-    }
+    }*/
 
-    public void showListObstacles()
+    /*public void showListObstacles()
     {
         for (Obstacle ob : listObstacles)
         {
@@ -160,5 +169,5 @@ public class Grid
             System.out.println("Y=" + ob.getY());
             System.out.println();
         }
-    }
+    }*/
 }
