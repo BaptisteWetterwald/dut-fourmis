@@ -1,6 +1,5 @@
 package v2;
 
-import java.io.IOException;
 import java.util.BitSet;
 
 public interface AntFacadeController {
@@ -75,7 +74,5 @@ public interface AntFacadeController {
      *  - le bit n° 6 vaut true s'il y a des phéromones sur le noeud.
      */
     BitSet[][] play( int duration, boolean record );
-
-
 
 }

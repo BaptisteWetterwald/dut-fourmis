@@ -2,14 +2,21 @@ package v2;
 
 public class Occupant
 {
-    public Occupant(int x, int y)
+    private int x;
+    private int y;
+    private Grid grid;
+
+    public Occupant(int x, int y, Grid grid)
     {
         this.x = x;
         this.y = y;
+        this.grid = grid;
     }
 
-    private int x;
-    private int y;
+    public Grid getGrid()
+    {
+        return this.grid;
+    }
 
     public int getX()
     {
@@ -19,5 +26,15 @@ public class Occupant
     public int getY()
     {
         return this.y;
+    }
+
+    public void setX(int x)
+    {
+        this.x = x;
+    }
+
+    public void setY(int y)
+    {
+        this.y = y;
     }
 }

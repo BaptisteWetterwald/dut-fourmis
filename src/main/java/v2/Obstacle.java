@@ -2,17 +2,16 @@ package v2;
 
 public class Obstacle extends Occupant
 {
-    public Obstacle(int x, int y) {
-        super(x, y);
+
+    public Obstacle(int x, int y, Grid grid)
+    {
+        super(x, y, grid);
     }
 
     @Override
-    public int getX() {
-        return 0;
+    public String toString()
+    {
+        return "X";
     }
 
-    @Override
-    public int getY() {
-        return 0;
-    }
 }
