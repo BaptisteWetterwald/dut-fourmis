@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+Participant Main
+Participant Grid
+Participant Reine
+
+Main -> Grid : créergrid()
+Main -> Reine : donnervie()
+@enduml

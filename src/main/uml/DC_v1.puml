@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class Fourmi
+class Fourmi extends Occupant
 {
     + Fourmi(x,y,g:grid)
 
@@ -18,7 +18,7 @@ class Reine extends Fourmi
     + toString() : String
 }
 
-class Fourmiliere
+class Fourmiliere extends Occupant
 {
     + Fourmiliere(rdmX, rdmY, grid)
 
@@ -87,7 +87,7 @@ class Obstacle extends Occupant
 }
 
 
-Main -> Grid : Utilise
+Main -> Grid : crée
 Grid -> Occupant : possède
 Reine -> Fourmi : crée
 Fourmiliere --> Reine : contient
