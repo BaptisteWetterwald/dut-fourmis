@@ -4,21 +4,28 @@ import java.util.ArrayList;
 
 public class Colony extends Occupant
 {
-    public Colony(int rdmX, int rdmY, Grid grid)
+    /**
+     * Constructeur classe Colony
+     *
+     * @param x abscisse d'apparition sur la grille
+     * @param y ordonnée d'apparition sur la grille
+     * @param graphe graphe concerné
+     */
+    public Colony(int x, int y, Graphe graphe)
     {
-        super(rdmX, rdmY, grid);
-        grid.getTabGrid()[rdmX][rdmY].add(new Queen(rdmX, rdmY, grid));
+        super(x, y, graphe);
+        graphe.getTabGrid()[x][y].add(new Queen(x, y, graphe));
     }
 
-    @Override
-    public String toString()
-    {
-        return "F";
-    }
-
+    /**
+     * Retourne la reine de la colonie
+     *
+     * @return reine de la colonie
+     */
     public Queen getReine()
     {
-        ArrayList<Occupant> list = this.getGrid().getTabGrid()[this.getX()][this.getY()];
+        ArrayList<Occupant> list = this.getGraphe().getTabGrid()[this.getX()][this.getY()];
+
         int i=0;
         boolean found = false;
         while (!found && i<list.size())

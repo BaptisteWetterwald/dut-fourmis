@@ -4,7 +4,7 @@ import java.util.BitSet;
 
 public class GameController implements AntFacadeController
 {
-    Grid grid;
+    private Graphe graphe;
 
     @Override
     public void setParameters(int evaporationParam, int foodParam, int pheromoneParam)
@@ -15,14 +15,14 @@ public class GameController implements AntFacadeController
     @Override
     public void createGrid(int width, int height)
     {
-        grid = new Grid(width, height);
+        graphe = new Graphe(width, height);
     }
 
     @Override
     public void putObstacle(int row, int column)
     {
-        if (!grid.contientFourmiliere(row, column))
-            grid.getTabGrid()[row][column].add(new Obstacle(row, column, grid));
+        if (!graphe.contientFourmiliere(row, column))
+            graphe.getTabGrid()[row][column].add(new Obstacle(row, column, graphe));
         else
             throw new IllegalArgumentException("Impossible de placer un obstacle sur une fourmilière.");
     }
@@ -35,14 +35,14 @@ public class GameController implements AntFacadeController
     @Override
     public void createColony(int row, int column)
     {
-        grid.getTabGrid()[row][column].add(new Colony(row, column, grid));
+        graphe.getTabGrid()[row][column].add(new Colony(row, column, graphe));
     }
 
     @Override
     public void createSoldiers(int amount)
     {
         for (int i=0; i<amount; i++)
-            grid.getFourmiliere().getReine().donnerVie();
+            graphe.getFourmiliere().getReine().donnerVie();
     }
 
     @Override
@@ -58,31 +58,35 @@ public class GameController implements AntFacadeController
     @Override
     public BitSet[][] play(int duration, boolean record)
     {
-        BitSet[][] bs = new BitSet[grid.getTabGrid().length][grid.getTabGrid()[0].length];
-        refreshBitSet(bs);
+        BitSet[][] bs = new BitSet[graphe.getTabGrid().length][graphe.getTabGrid()[0].length];
+        refreshBitSet(bs, graphe);
 
         for (int i=0; i<duration; i++)
         {
-            for (Ant f : grid.getListFourmis())
+            for (Ant f : graphe.getListFourmis())
                 if (f instanceof Soldier)
-                    ((Soldier) f).deplacementHasard(grid);
+                    ((Soldier) f).deplacementHasard();
         }
-        refreshBitSet(bs);
+        refreshBitSet(bs, graphe);
 
         return bs;
     }
 
-    private void refreshBitSet(BitSet[][] bs)
+    /**
+     * @param bs BitSet à actualiser
+     * @param graphe Graphe utilisé pour l'actualisation
+     */
+    private void refreshBitSet(BitSet[][] bs, Graphe graphe)
     {
-        for (int i=0; i<grid.getTabGrid().length; i++)
-            for (int j=0; j<grid.getTabGrid()[0].length; j++)
+        for (int i = 0; i< graphe.getTabGrid().length; i++)
+            for (int j = 0; j< graphe.getTabGrid()[0].length; j++)
             {
                 bs[i][j] = new BitSet(7);
-                if (grid.contientFourmiliere(i, j))
+                if (graphe.contientFourmiliere(i, j))
                     bs[i][j].set(0, true);
-                if (grid.contientObstacle(i, j))
+                if (graphe.contientObstacle(i, j))
                     bs[i][j].set(1, true);
-                if (grid.contientSoldat(i, j))
+                if (graphe.contientSoldat(i, j))
                     bs[i][j].set(2, true);
             }
     }

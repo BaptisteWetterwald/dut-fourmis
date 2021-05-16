@@ -3,38 +3,53 @@ package v1;
 public abstract class Ant extends Occupant
 {
 
-    public Ant(int x, int y, Grid grid)
+    /**
+     * Constructeur classe Ant
+     *
+     * @param x abscisse d'apparition sur la graphe
+     * @param y ordonnée d'apparition sur la graphe
+     * @param graphe graphe concerné
+     */
+    public Ant(int x, int y, Graphe graphe)
     {
-        super(x, y, grid);
+        super(x, y, graphe);
     }
 
-    public void deplacerVers(int x, int y, Grid grid)
+    /**
+     * Déplace la fourmi vers la nouvelle position
+     *
+     * @param x abscisse après déplacement
+     * @param y ordonnée après déplacement
+     */
+    public void deplacerVers(int x, int y)
     {
-        grid.getTabGrid()[x][y].add(this); //Déplacement de la fourmi dans la grille
-        grid.getTabGrid()[this.getX()][this.getY()].remove(this); //On devra le changer pour la v2, en retirant la fourmi de la liste Occupant
+        this.getGraphe().getTabGrid()[x][y].add(this);
+        this.getGraphe().getTabGrid()[this.getX()][this.getY()].remove(this);
         this.setX(x);
         this.setY(y);
     }
 
-    public boolean deplacementValide(int newX, int newY, Grid grid)
+    /**
+     * Définit la validité d'un déplacement selon son occupation
+     *
+     * @param x abscisse de la nouvelle position à tester
+     * @param y ordonnée de la nouvelle position à tester
+     * @return true si le déplacement est valide, false sinon
+     */
+    public boolean deplacementValide(int x, int y)
     {
         boolean valide = true;
 
         //Si la case n'est pas dans la grille
-        if (newX<0 || newX>=grid.getTabGrid().length || newY<0 || newY>=grid.getTabGrid()[0].length)
+        if (x<0 || x>=this.getGraphe().getTabGrid().length || y<0 || y>=this.getGraphe().getTabGrid()[0].length)
             valide = false;
 
         //Si la case contient un obstacle
         else
-            for (int i = 0; i<grid.getTabGrid()[newX][newY].size() && valide; i++)
-                if (grid.getTabGrid()[newX][newY].get(i) instanceof Obstacle)
+            for (int i = 0; i<this.getGraphe().getTabGrid()[x][y].size() && valide; i++)
+                if (this.getGraphe().getTabGrid()[x][y].get(i) instanceof Obstacle)
                     valide = false;
         return valide;
     }
 
-    @Override
-    public String toString()
-    {
-        return "o";
-    }
 }

@@ -4,12 +4,11 @@ public class MyOwnTest {
 
     void run(AntFacadeController controller)
     {
-
         controller.createGrid( 10,10 );
         controller.createColony( 5,4 );
 
         controller.putObstacle( 2,4 );
-        controller.putObstacle( 7,2 );
+        //controller.putObstacle( 7,2 );
 
         controller.createSoldiers( 10 );
 
