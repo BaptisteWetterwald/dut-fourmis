@@ -72,15 +72,14 @@ namespace v1 {
         - listAnts : Ant[*]
         - tabGrid : Occupant[*]
         + Graphe()
-        + contientFourmiliere() : boolean
-        + contientObstacle() : boolean
-        + contientSoldat() : boolean
+        + contientFourmiliere(x:int, y:int) : boolean
+        + contientObstacle(x:int, y:int) : boolean
+        + contientSoldat(x:int, y:int) : boolean
         + getFourmiliere() : Colony
         + getListFourmis() : Ant[*]
         + getTabGrid() : Occupant[*]
         - fill() : void
     }
-  
 
     class Main
     {
@@ -109,20 +108,17 @@ namespace v1 {
         + setY() : void
     }
   
-
     class Queen extends Ant
     {
         + Queen()
         + donnerVie() : void
     }
-  
 
     class Soldier extends Ant
     {
         + Soldier()
         + deplacementHasard() : void
     }
-  
 
     Main -> MyOwnTest : démarre une partie
     MyOwnTest -up-> Display : affiche les déplacements
@@ -130,6 +126,5 @@ namespace v1 {
     FourmiSoldatTest *-- AntFacadeController : utilise
     GameController "1" --> "n" Graphe : gère le déroulement >
     Occupant "n" -* "1" Graphe : occupe >
-    Ant -> Graphe : se déplace sur
 }
 @enduml
