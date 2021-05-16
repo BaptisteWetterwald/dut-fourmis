@@ -4,9 +4,21 @@
 autonumber
 
 Participant Main
+Participant MyOwnTest
+Participant Controller
 Participant Grid
-Participant Reine
+Participant Queen
 
-Main -> Grid : créergrid()
-Main -> Reine : donnervie()
+
+
+Main -> MyOwnTest : run()
+MyOwnTest -> Controller : createGrid
+MyOwnTest -> Controller : createColony
+MyOwnTest -> Controller : putObstacle
+MyOwnTest -> Controller : createSoldiers
+MyOwnTest -> Controller : play
+
+
+Controller -> Grid
+
 @enduml
