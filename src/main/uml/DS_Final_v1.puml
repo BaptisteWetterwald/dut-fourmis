@@ -1,0 +1,93 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant Main
+participant MyOwnTest
+participant AntFacadeController
+participant GameController
+participant Graphe
+participant Occupant
+participant Colony
+participant Ant
+participant Obstacle
+participant Queen
+participant Soldier
+participant Display
+participant BitSet
+
+Main -> MyOwnTest ++ : run()
+    MyOwnTest -> AntFacadeController ++ : createGrid()
+        AntFacadeController -> GameController ++ : createGrid()
+            GameController -> Graphe : this()
+                Graphe -> Graphe ++ : fill()
+                return
+            Graphe --> GameController : graphe:Graphe
+        return
+    return
+
+    MyOwnTest -> AntFacadeController ++ : createColony()
+        AntFacadeController -> GameController ++ : createColony()
+            GameController -> Colony : this()
+                Colony -> Queen : this()
+                Queen --> Colony
+            Colony --> GameController
+        return
+    return
+
+    MyOwnTest -> AntFacadeController ++ : putObstacle()
+        AntFacadeController -> GameController ++ : putObstacle()
+            GameController -> Graphe ++ : contientFourmiliere()
+            return b:Boolean
+            alt NOT b
+                GameController -> Obstacle : this()
+                Obstacle --> GameController
+            end
+        return
+    return
+
+    MyOwnTest -> AntFacadeController ++ : createSoldiers()
+        AntFacadeController -> GameController ++ : createSoldiers()
+            GameController -> Graphe ++ : getFourmiliere()
+            return c:Colony
+            GameController -> Colony ++ : c.getReine()
+            return q:Queen
+            GameController -> Queen ++: q.donnerVie()
+                Queen -> Queen ++ : getX()
+                return x:Integer
+                Queen -> Queen ++ : getY()
+                return y:Integer
+                Queen -> Queen ++ : getGraphe()
+                return g:Graphe
+                Queen -> Soldier : this(x, y)
+                Soldier --> Queen : soldier:Soldier
+                Queen -> Graphe ++ : g.getTabGrid()
+                return tabGrid:Occupant[][]
+                Queen -> Graphe ++ : tabGrid[x, y].getListFourmis()
+                return listF:Ant[*]
+                Queen -> Queen : listF.add(soldier)
+            return
+        return
+    return
+
+    MyOwnTest -> AntFacadeController ++ : play()
+        AntFacadeController -> GameController ++ : play()
+            GameController -> BitSet ++ : this()
+            return bs:BitSet[][]
+            GameController -> GameController ++ : refreshBitSet(bs, graphe)
+                GameController -> Graphe ++ : getListFourmis()
+                return listF:Ant[*]
+                loop f : listF
+                    alt f instanceof Soldier
+                        GameController -> Soldier ++ : f.deplacementHasard()
+                        return
+                    end
+                end
+                return
+            GameController -> Display ++ : update()
+            return
+        return
+    return
+
+MyOwnTest --> Main
+
+@enduml
