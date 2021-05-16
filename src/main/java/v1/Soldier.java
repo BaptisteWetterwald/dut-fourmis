@@ -1,16 +1,26 @@
-package v2;
+package v1;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Soldier extends Ant
 {
-    public Soldier(int x, int y, Grid grid)
+    /**
+     * Constructeur classe Soldier
+     *
+     * @param x abscisse d'apparition sur le tableau
+     * @param y ordonnée d'apparition sur le tableau
+     * @param graphe grille concernée par le placement
+     */
+    public Soldier(int x, int y, Graphe graphe)
     {
-        super(x, y, grid);
+        super(x, y, graphe);
     }
 
-    public void deplacementHasard(Grid grid)
+    /**
+     * Fait se déplacer au hasard la fourmi-soldat
+     */
+    public void deplacementHasard()
     {
         int x = this.getX();
         int y = this.getY();
@@ -20,21 +30,15 @@ public class Soldier extends Ant
         listeVoisins.add(new int[]{x, y-1});
         listeVoisins.add(new int[]{x, y+1});
         for (int i=listeVoisins.size()-1; i>=0; i--)
-            if ( !deplacementValide(listeVoisins.get(i)[0], listeVoisins.get(i)[1], grid) )
+            if ( !deplacementValide( listeVoisins.get(i)[0], listeVoisins.get(i)[1] ) )
                 listeVoisins.remove(i);
 
-        //Liste triée, déplacements valides
+        //Liste triée, tous les déplacements sont valides
         if (listeVoisins.size() > 0)
         {
             Random rdm = new Random();
             int rdmIndex = rdm.nextInt(listeVoisins.size());
-            deplacerVers(listeVoisins.get(rdmIndex)[0], listeVoisins.get(rdmIndex)[1], grid);
+            deplacerVers(listeVoisins.get(rdmIndex)[0], listeVoisins.get(rdmIndex)[1]);
         }
-    }
-
-    @Override
-    public String toString()
-    {
-        return "s";
     }
 }

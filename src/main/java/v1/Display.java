@@ -1,4 +1,4 @@
-package v2;
+package v1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,9 +6,9 @@ import java.util.BitSet;
 
 public class Display extends JFrame {
 
-    private int cellSize;
-    private int width;
-    private int height;
+    private final int cellSize;
+    private final int width;
+    private final int height;
 
     public Display(int width, int height, int cellSize){
         this.width = width;
