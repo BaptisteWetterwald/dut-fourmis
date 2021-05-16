@@ -10,7 +10,8 @@ class AntTest {
 
     @BeforeEach
     void setUp() {
-
+        Grid g = new Grid( 5, 10);
+    Ant a = new Ant(2,4,g)
 
     }
 

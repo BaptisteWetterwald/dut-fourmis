@@ -7,10 +7,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ColonyTest {
-
+    Grid g;
     @BeforeEach
     void setUp() {
-
+        g = new Grid( 5, 10);
+        Colony c = new Colony(2,4,g);
 
     }
 
@@ -25,6 +26,7 @@ class ColonyTest {
     void colony()
     {
 
+        assertEquals(g.getFourmiliere());
     }
 
     @Test

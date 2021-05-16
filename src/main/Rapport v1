@@ -1,0 +1,37 @@
+Principes Solid
+•	Single Responsability : Partiellement utilisé car la classe Grid regroupe un grand nombre de méthodes.
+
+•	Open Closed : Il est respecté, on peut par exemple rajouter d'autre types d'occupants comme de la nourriture
+
+•	Liskov Substitution : Il est respecté, grace à l'héritage, nous utilisons les méthodes des superclasses pour les sous classes sans les modifier, exemple Occupant - Obstacle
+ public Obstacle(int x, int y, Graphe graphe)
+    {
+        super(x, y, graphe);
+    }
+
+•	Interface Segregation : Sera respecté dans la v2 car l'interface donnée ne doit pas etre modifiée et contient des éléments inutiles à la v1 mais essentiel à la v2
+
+•	Dependency Inversion : Non respecté mais peut le devenir sur la v2 avec des modifications du code
+
+Patron Grasp
+•	Expert en Information : Il est utilisé, le graphe sait si la case contient une fourmilière car il est constitué de case.
+
+•	Protection des Variations : non utilisé, sera peut etre utilisé dans la v2
+
+•	Faible couplage : Partiellement utilisé, utilisation majoritaire de "généralisation"
+
+•	Forte cohésion : Pas utilisé mais peut l'etre lors de la v2
+
+•	Créateur : Il est utilisé, la classe GameController peut instancier un grand nombre d'objet du projet
+
+•	Contrôleur : Non utilisé mais peut l'etre sur la v2
+
+•	Polymorphisme : Utilisé
+for (Ant f : graphe.getListFourmis())
+                if (f instanceof Soldier)
+                    ((Soldier) f).deplacementHasard();
+
+•	Indirection : Non utilisé car il n'y en a pas besoin
+
+•	Invention Pure : Il n'est pas utilisé dans la v1 mais le sera dans la v2 pour enregistrer les déplacements des fourmis notamment
+
