@@ -10,6 +10,7 @@ class SoldierTest {
 
     @BeforeEach
     void setUp() {
+
     }
 
     @AfterEach
@@ -17,6 +18,14 @@ class SoldierTest {
     }
 
     @Test
+        //crée un soldat et verifie que le x y et grid sont bien ceux que tu as mis
+    void ant()
+    {
+
+    }
+    @Test
+    //crée un soldat et verifie qu'en faisant un deplacementhasard elle se trouve dans une des 4 cases autour
     void deplacementHasard() {
+
     }
 }

@@ -10,13 +10,26 @@ class ColonyTest {
 
     @BeforeEach
     void setUp() {
+
+
     }
 
     @AfterEach
     void tearDown() {
+
+
     }
 
     @Test
+        //crée une colony et verifie que le x y et grid sont bien ceux que tu as mis
+    void colony()
+    {
+
+    }
+
+    @Test
+    // tu crée une reine et tu fais un assert equal entre la position que tu as donnée et celle que te renvoie le programme
     void getReine() {
+
     }
 }
