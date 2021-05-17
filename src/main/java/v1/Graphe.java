@@ -13,7 +13,7 @@ public class Graphe
      * @param width largeur du tableau
      * @param height hauteur du tableau
      */
-    public Graphe(int width, int height)
+    public Graphe(int height, int width)
     {
         this.tabGrid = new ArrayList[height][width];
         this.fill();

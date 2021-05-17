@@ -15,7 +15,7 @@ public class GameController implements AntFacadeController
     @Override
     public void createGrid(int width, int height)
     {
-        graphe = new Graphe(width, height);
+        graphe = new Graphe(height, width);
     }
 
     @Override
