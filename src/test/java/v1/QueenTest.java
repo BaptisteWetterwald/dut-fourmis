@@ -6,26 +6,24 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class QueenTest {
+class QueenTest
+{
+    Graphe g;
 
     @BeforeEach
-    void setUp() {
-    }
-
-
-    @AfterEach
-    void tearDown() {
-    }
-
-    @Test
-        //crée une reine et verifie que le x y et grid sont bien ceux que tu as mis
-    void queen()
+    void setUp()
     {
-
+        g = new Graphe(10, 23);
     }
 
     @Test
-    // tu crée un graphe et des fourmis via la methode donnerVie et tu verifie qu'il y ai bien le nombre de fourmis crés
-    void donnerVie() {
+    void donnerVie()
+    {
+        Queen q = new Queen(4, 4, g);
+        g.getTabGrid()[4][4].add(q);
+        int sizeBefore = g.getListFourmis().size();
+        for (int i=0; i<10; i++)
+            q.donnerVie();
+        assertEquals(sizeBefore + 10, g.getListFourmis().size());
     }
 }
