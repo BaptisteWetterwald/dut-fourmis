@@ -47,7 +47,6 @@ class GrapheTest
     }
 
     @Test
-    // crée une fourmilière à des coordonnés x et y et verifie si sur ton graphe aux coordonnées x et y il y a une fourmilière si le contientFourmilière return true
     void contientFourmiliere()
     {
         g.getTabGrid()[4][4].add(new Colony(4, 4, g));
@@ -56,16 +55,28 @@ class GrapheTest
     }
 
     @Test
-    // crée un obstacle à des coordonnés x et y et verifie si sur ton graphe aux coordonnées x et y il y a un obstacle si le contientObstacle return true
     void contientObstacle()
     {
+        g.getTabGrid()[4][4].add(new Obstacle(4, 4, g));
+        assertTrue(g.contientObstacle(4, 4));
+        assertFalse(g.contientObstacle(4, 5));
     }
 
     @Test
     // crée un soldat à des coordonnés x et y et verifie si sur ton graphe aux coordonnées x et y il y a un soldat si le contientsoldat return true
     void contientSoldat()
     {
+        g.getTabGrid()[4][4].add(new Soldier(4, 4, g));
+        assertTrue(g.contientSoldat(4, 4));
+        assertFalse(g.contientSoldat(4, 5));
     }
 
-    // il y aurait fill mais je sais pas si c'est nécessaire de test celle la
+    @Test
+    void fill()
+    {
+        for (int i=0; i<g.getTabGrid().length; i++)
+            for (int j=0; j<g.getTabGrid()[0].length; j++)
+                assertNotNull(g.getTabGrid()[i][j]);
+    }
+
 }
