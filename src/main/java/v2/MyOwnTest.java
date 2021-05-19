@@ -4,8 +4,8 @@ public class MyOwnTest {
 
     void run(AntFacadeController controller)
     {
-        int width = 4;
-        int height = 8;
+        int width = 10;
+        int height = 10;
         controller.createGrid(width, height);
         controller.createColony( 6,0 );
 

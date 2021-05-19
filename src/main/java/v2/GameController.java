@@ -5,11 +5,16 @@ import java.util.BitSet;
 public class GameController implements AntFacadeController
 {
     private Graphe graphe;
+    private int evaporationParam;
+    private int foodParam;
+    private int pheromoneParam;
 
     @Override
     public void setParameters(int evaporationParam, int foodParam, int pheromoneParam)
     {
-
+        this.evaporationParam = evaporationParam;
+        this.foodParam = foodParam;
+        this.pheromoneParam = pheromoneParam;
     }
 
     @Override

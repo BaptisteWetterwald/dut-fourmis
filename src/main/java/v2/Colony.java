@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class Colony extends Occupant
 {
+
+    private int foodQuantity;
+
     /**
      * Constructeur classe Colony
      *
@@ -11,10 +14,11 @@ public class Colony extends Occupant
      * @param y ordonnée d'apparition sur la grille
      * @param graphe graphe concerné
      */
-    public Colony(int x, int y, Graphe graphe)
+    public Colony(int x, int y, Graphe graphe, int foodQuantity)
     {
         super(x, y, graphe);
-        graphe.getTabGrid()[x][y].add(new Queen(x, y, graphe));
+        graphe.getTabGrid()[x][y].add(new Queen(x, y, graphe, this));
+        this.foodQuantity = foodQuantity;
     }
 
     /**

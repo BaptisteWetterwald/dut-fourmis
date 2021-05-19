@@ -12,9 +12,9 @@ public class Soldier extends Ant
      * @param y ordonnée d'apparition sur le tableau
      * @param graphe grille concernée par le placement
      */
-    public Soldier(int x, int y, Graphe graphe)
+    public Soldier(int x, int y, Graphe graphe, Colony colony)
     {
-        super(x, y, graphe);
+        super(x, y, graphe, colony);
     }
 
     /**

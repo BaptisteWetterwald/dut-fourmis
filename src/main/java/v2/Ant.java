@@ -2,6 +2,7 @@ package v2;
 
 public abstract class Ant extends Occupant
 {
+    private Colony colony;
 
     /**
      * Constructeur classe Ant
@@ -10,9 +11,10 @@ public abstract class Ant extends Occupant
      * @param y ordonnée d'apparition sur la graphe
      * @param graphe graphe concerné
      */
-    public Ant(int x, int y, Graphe graphe)
+    public Ant(int x, int y, Graphe graphe, Colony colony)
     {
         super(x, y, graphe);
+        this.colony = colony;
     }
 
     /**
@@ -50,6 +52,11 @@ public abstract class Ant extends Occupant
                 if (this.getGraphe().getTabGrid()[x][y].get(i) instanceof Obstacle)
                     valide = false;
         return valide;
+    }
+
+    public Colony getColony()
+    {
+        return this.colony;
     }
 
 }
