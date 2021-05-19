@@ -5,7 +5,9 @@ import java.util.ArrayList;
 public class Colony extends Occupant
 {
 
-    private int foodQuantity;
+    private final int foodDeposit;
+    private final int foodWithdrawal;
+
 
     /**
      * Constructeur classe Colony
@@ -14,11 +16,12 @@ public class Colony extends Occupant
      * @param y ordonnée d'apparition sur la grille
      * @param graphe graphe concerné
      */
-    public Colony(int x, int y, Graphe graphe, int foodQuantity)
+    public Colony(int x, int y, Graphe graphe, int foodDeposit, int foodWithdrawal)
     {
         super(x, y, graphe);
         graphe.getTabGrid()[x][y].add(new Queen(x, y, graphe, this));
-        this.foodQuantity = foodQuantity;
+        this.foodDeposit = foodDeposit;
+        this.foodWithdrawal = foodWithdrawal;
     }
 
     /**
@@ -42,5 +45,15 @@ public class Colony extends Occupant
                 i++;
         }
         return (Queen)list.get(i);
+    }
+
+    public int getFoodWithdrawal()
+    {
+        return this.foodWithdrawal;
+    }
+
+    public int getFoodDeposit()
+    {
+        return this.foodDeposit;
     }
 }

@@ -17,11 +17,15 @@ public class Queen extends Ant
     /**
      * Donne vie à une nouvelle fourmi-soldat
      */
-    public void donnerVie()
+    public void donnerVie(Class c)
     {
-        Soldier soldier = new Soldier(this.getX(), this.getY(), this.getGraphe(), this.getColony());
-        this.getGraphe().getTabGrid()[this.getX()][this.getY()].add(soldier);
-        this.getGraphe().getListFourmis().add(soldier);
+        Ant ant;
+        if (c == Soldier.class)
+            ant = new Soldier(this.getX(), this.getY(), this.getGraphe(), this.getColony());
+        else
+            ant = new Worker(this.getX(), this.getY(), this.getGraphe(), this.getColony());
+        this.getGraphe().getTabGrid()[this.getX()][this.getY()].add(ant);
+        this.getGraphe().getListFourmis().add(ant);
     }
 
 }

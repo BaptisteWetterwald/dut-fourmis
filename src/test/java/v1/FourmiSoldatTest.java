@@ -1,8 +1,10 @@
-package v2;
+package v1;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import v2.AntFacadeController;
+import v2.GameController;
 
 import java.util.BitSet;
 
