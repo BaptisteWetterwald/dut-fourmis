@@ -123,4 +123,21 @@ public class Graphe
             }
         }
     }
+
+    public Pheromone getPheromoneAt(int x, int y)
+    {
+        Pheromone phero = null;
+        boolean found = false;
+        ArrayList<Occupant> occupants = this.tabGrid[x][y];
+        for (int i=0; i<occupants.size() && !found; i++)
+        {
+            if (occupants.get(i) instanceof Pheromone)
+            {
+                found = true;
+                phero = (Pheromone) occupants.get(i);
+            }
+        }
+        return phero;
+    }
+
 }

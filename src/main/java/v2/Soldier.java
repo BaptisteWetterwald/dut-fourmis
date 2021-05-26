@@ -41,4 +41,10 @@ public class Soldier extends Ant
             deplacerVers(listeVoisins.get(rdmIndex)[0], listeVoisins.get(rdmIndex)[1]);
         }
     }
+
+    @Override
+    public void seDeplacer()
+    {
+        this.deplacementHasard();
+    }
 }
