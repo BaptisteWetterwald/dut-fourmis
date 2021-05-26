@@ -5,6 +5,9 @@ import java.util.Random;
 
 public class Soldier extends Ant
 {
+
+    private final Random rdm = new Random();
+
     /**
      * Constructeur classe Soldier
      *
@@ -36,7 +39,6 @@ public class Soldier extends Ant
         //Liste triée, tous les déplacements sont valides
         if (listeVoisins.size() > 0)
         {
-            Random rdm = new Random();
             int rdmIndex = rdm.nextInt(listeVoisins.size());
             deplacerVers(listeVoisins.get(rdmIndex)[0], listeVoisins.get(rdmIndex)[1]);
         }
