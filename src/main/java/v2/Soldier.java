@@ -17,6 +17,9 @@ public class Soldier extends Ant
         super(x, y, graphe, colony);
     }
 
+    private final Random rdm = new Random();
+
+
     /**
      * Fait se déplacer au hasard la fourmi-soldat
      */
@@ -36,7 +39,6 @@ public class Soldier extends Ant
         //Liste triée, tous les déplacements sont valides
         if (listeVoisins.size() > 0)
         {
-            Random rdm = new Random();
             int rdmIndex = rdm.nextInt(listeVoisins.size());
             deplacerVers(listeVoisins.get(rdmIndex)[0], listeVoisins.get(rdmIndex)[1]);
         }
