@@ -8,20 +8,20 @@ namespace v1 {
     {
         + Ant()
         + deplacementValide():boolean
-        + deplacerVers():void
+        + deplacerVers()
     }
 
     interface AntFacadeController
     {
-        {abstract} + createColony() : void
-        {abstract} + createGrid() : void
-        {abstract} + createSoldiers() : void
-        {abstract} + createWorkers() : void
+        {abstract} + createColony()
+        {abstract} + createGrid()
+        {abstract} + createSoldiers()
+        {abstract} + createWorkers()
         {abstract} + play() : BitSet[][]
-        {abstract} + putFood() : void
-        {abstract} + putObstacle() : void
-        {abstract} + setAntFile() : void
-        {abstract} + setParameters() : void
+        {abstract} + putFood()
+        {abstract} + putObstacle()
+        {abstract} + setAntFile()
+        {abstract} + setParameters()
     }
 
     class Colony extends Occupant
@@ -37,34 +37,34 @@ namespace v1 {
         - height : int
         - width : int
         + Display()
-        + update() : void
+        + update()
     }
 
     class FourmiSoldatTest
     {
         {static} ~ HEIGHT : int
         {static} ~ WIDTH : int
-        ~ setUp() : void
-        ~ test0() : void
-        ~ test1() : void
-        ~ test2() : void
-        ~ test3() : void
-        ~ test4() : void
-        ~ testPutObstacle() : void
+        ~ setUp()
+        ~ test0()
+        ~ test1()
+        ~ test2()
+        ~ test3()
+        ~ test4()
+        ~ testPutObstacle()
     }
 
     class GameController implements AntFacadeController
     {
-        + createColony() : void
-        + createGrid() : void
-        + createSoldiers() : void
-        + createWorkers() : void
-        + play() : void
-        + putFood() : void
-        + putObstacle() : void
-        + setAntFile() : void
-        + setParameters() : void
-        - refreshBitSet() : void
+        + createColony()
+        + createGrid()
+        + createSoldiers()
+        + createWorkers()
+        + play()
+        + putFood()
+        + putObstacle()
+        + setAntFile()
+        + setParameters()
+        - refreshBitSet()
     }
 
     class Graphe
@@ -78,17 +78,17 @@ namespace v1 {
         + getFourmiliere() : Colony
         + getListFourmis() : Ant[*]
         + getTabGrid() : Occupant[*]
-        - fill() : void
+        - fill()
     }
 
     class Main
     {
-        {static} + main() : void
+        {static} + main()
     }
 
     class MyOwnTest
     {
-        ~ run() : void
+        ~ run()
     }
 
     class Obstacle extends Occupant
@@ -104,20 +104,20 @@ namespace v1 {
         + getGraphe() : Graphe
         + getX() : int
         + getY() : int
-        + setX() : void
-        + setY() : void
+        + setX()
+        + setY()
     }
 
     class Queen extends Ant
     {
         + Queen()
-        + donnerVie() : void
+        + donnerVie()
     }
 
     class Soldier extends Ant
     {
         + Soldier()
-        + deplacementHasard() : void
+        + deplacementHasard()
     }
 
     class Food extends Occupant
@@ -127,15 +127,17 @@ namespace v1 {
 
     class Pheromone extends Occupant
     {
-        + evap() : void
+        + getQuantity() : int
+        + evap()
+        + setQuantity()
     }
 
     class Worker extends Ant
     {
         + Worker()
-        + Deplacement(): void
+        + Deplacement()
         + FindFood() : Boolean
-        + TakeFood() : void
+        + TakeFood()
     }
 
     abstract class Parameters
