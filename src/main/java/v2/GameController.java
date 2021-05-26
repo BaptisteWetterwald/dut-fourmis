@@ -40,7 +40,7 @@ public class GameController implements AntFacadeController
     @Override
     public void createColony(int row, int column)
     {
-        graphe.getTabGrid()[row][column].add(new Colony(row, column, graphe));
+       // graphe.getTabGrid()[row][column].add(new Colony(row, column, graphe));
     }
 
     @Override
