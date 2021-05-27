@@ -17,29 +17,17 @@ public class Soldier extends Ant
         super(x, y, graphe, colony);
     }
 
-    private final Random rdm = new Random();
-
-
     /**
      * Fait se déplacer au hasard la fourmi-soldat
      */
     public void deplacementHasard()
     {
-        int x = this.getX();
-        int y = this.getY();
-        ArrayList<int[]> listeVoisins = new ArrayList<int[]>();
-        listeVoisins.add(new int[]{x-1, y});
-        listeVoisins.add(new int[]{x+1, y});
-        listeVoisins.add(new int[]{x, y-1});
-        listeVoisins.add(new int[]{x, y+1});
-        for (int i=listeVoisins.size()-1; i>=0; i--)
-            if ( !deplacementValide( listeVoisins.get(i)[0], listeVoisins.get(i)[1] ) )
-                listeVoisins.remove(i);
+        ArrayList<int[]> listeVoisins = getListeVoisins();
 
         //Liste triée, tous les déplacements sont valides
         if (listeVoisins.size() > 0)
         {
-            int rdmIndex = rdm.nextInt(listeVoisins.size());
+            int rdmIndex = GameController.rdm.nextInt(listeVoisins.size());
             deplacerVers(listeVoisins.get(rdmIndex)[0], listeVoisins.get(rdmIndex)[1]);
         }
     }

@@ -36,14 +36,10 @@ public class Colony extends Occupant
         int i=0;
         boolean found = false;
         while (!found && i<list.size())
-        {
             if (list.get(i) instanceof Queen)
-            {
                 found = true;
-            }
             else
                 i++;
-        }
         return (Queen)list.get(i);
     }
 

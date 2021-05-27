@@ -1,9 +1,11 @@
 package v2;
 
 import java.util.BitSet;
+import java.util.Random;
 
 public class GameController implements AntFacadeController
 {
+    public final static Random rdm = new Random();
     private Graphe graphe;
     private int evaporationParam;
     private int foodParam;

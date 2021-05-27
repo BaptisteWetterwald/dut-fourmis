@@ -1,5 +1,7 @@
 package v2;
 
+import java.util.ArrayList;
+
 public abstract class Ant extends Occupant
 {
     private Colony colony;
@@ -59,6 +61,21 @@ public abstract class Ant extends Occupant
     public Colony getColony()
     {
         return this.colony;
+    }
+
+    public ArrayList<int[]> getListeVoisins()
+    {
+        int x = this.getX();
+        int y = this.getY();
+        ArrayList<int[]> listeVoisins = new ArrayList<int[]>();
+        listeVoisins.add(new int[]{x-1, y});
+        listeVoisins.add(new int[]{x+1, y});
+        listeVoisins.add(new int[]{x, y-1});
+        listeVoisins.add(new int[]{x, y+1});
+        for (int i=listeVoisins.size()-1; i>=0; i--)
+            if ( !deplacementValide( listeVoisins.get(i)[0], listeVoisins.get(i)[1] ) )
+                listeVoisins.remove(i);
+        return listeVoisins;
     }
 
 }
