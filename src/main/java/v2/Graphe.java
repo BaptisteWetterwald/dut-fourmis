@@ -110,6 +110,14 @@ public class Graphe
         return contains;
     }
 
+    public boolean contientPheromone(int x, int y)
+    {
+        boolean contains = true;
+        if (getPheromoneAt(x, y) == null)
+            contains = false;
+        return contains;
+    }
+
     /**
      *  Remplit le tableau de la grille avec des listes vides d'occupants
      */

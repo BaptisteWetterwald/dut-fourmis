@@ -85,7 +85,29 @@ public class Worker extends Ant
             //Liste propre avec au moins 1 voisin pas parcouru
             if (listeVoisinsNonParcourus.size() > 0)
             {
+                ArrayList<int[]> list = listeVoisinsNonParcourus;
+
                 //Trier avec comparator pour check les phéromones en pos x y
+                while (!isSorted(list))
+                {
+                    for (int i=list.size()-1; i>=1; i--)
+                        if (this.getGraphe().getPheromoneAt(list.get(i)[0], list.get(i)[1]).getQuantity() < this.getGraphe().getPheromoneAt(list.get(i-1)[0], list.get(i-1)[1]).getQuantity())
+                        {
+                            list.add(i-1, list.get(i));
+                            list.remove(i+1); //Inversion avec celui d'avant
+                        }
+                }
+
+                //Génération de la liste avec proba
+                listeVoisinsNonParcourus = new ArrayList<>();
+                for (int i=0; i<list.size(); i++)
+                {
+                    for (int j=0; j<i; j++) //Ou i+1 faut voir
+                    {
+                        listeVoisinsNonParcourus.add(list.get(i));
+                    }
+                }
+                loc = listeVoisinsNonParcourus.get(GameController.rdm.nextInt(listeVoisinsNonParcourus.size()));
             }
             else if (listeVoisins.size() > 0) //Tous les voisins parcourus
             {
@@ -99,6 +121,15 @@ public class Worker extends Ant
         return loc;
     }
 
+    private boolean isSorted(ArrayList<int[]> list)
+    {
+        boolean sorted = true;
+        if (list.size() > 1)
+            for (int i=list.size()-1; i>=1 && sorted; i--)
+                if (this.getGraphe().getPheromoneAt(list.get(i)[0], list.get(i)[1]).getQuantity() < this.getGraphe().getPheromoneAt(list.get(i-1)[0], list.get(i-1)[1]).getQuantity())
+                    sorted = false;
+        return sorted;
+    }
 
     public ArrayList<int[]> getListeCasesParcourues()
     {
