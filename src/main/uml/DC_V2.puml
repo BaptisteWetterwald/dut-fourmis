@@ -1,0 +1,156 @@
+@startuml
+
+title __DC v1__\n
+
+namespace v1 {
+
+    abstract class Ant extends Occupant
+    {
+        + Ant()
+        + deplacementValide():boolean
+        + deplacerVers()
+    }
+
+    interface AntFacadeController
+    {
+        {abstract} + createColony()
+        {abstract} + createGrid()
+        {abstract} + createSoldiers()
+        {abstract} + createWorkers()
+        {abstract} + play() : BitSet[][]
+        {abstract} + putFood()
+        {abstract} + putObstacle()
+        {abstract} + setAntFile()
+        {abstract} + setParameters()
+    }
+
+    class Colony extends Occupant
+    {
+        + Colony()
+        + getReine():Reine
+    }
+
+
+    class Display extends javax.swing.JFrame
+    {
+        - cellSize : int
+        - height : int
+        - width : int
+        + Display()
+        + update()
+    }
+
+    class FourmiSoldatTest
+    {
+        {static} ~ HEIGHT : int
+        {static} ~ WIDTH : int
+        ~ setUp()
+        ~ test0()
+        ~ test1()
+        ~ test2()
+        ~ test3()
+        ~ test4()
+        ~ testPutObstacle()
+    }
+
+    class GameController implements AntFacadeController
+    {
+        + createColony()
+        + createGrid()
+        + createSoldiers()
+        + createWorkers()
+        + play()
+        + putFood()
+        + putObstacle()
+        + setAntFile()
+        + setParameters()
+        - refreshBitSet()
+    }
+
+    class Graphe
+    {
+        - listAnts : Ant[*]
+        - tabGrid : Occupant[*]
+        + Graphe()
+        + contientFourmiliere(x:int, y:int) : boolean
+        + contientObstacle(x:int, y:int) : boolean
+        + contientSoldat(x:int, y:int) : boolean
+        + getFourmiliere() : Colony
+        + getListFourmis() : Ant[*]
+        + getTabGrid() : Occupant[*]
+        - fill()
+    }
+
+    class Main
+    {
+        {static} + main()
+    }
+
+    class MyOwnTest
+    {
+        ~ run()
+    }
+
+    class Obstacle extends Occupant
+    {
+        + Obstacle()
+    }
+
+    class Occupant
+    {
+        - x : int
+        - y : int
+        + Occupant()
+        + getGraphe() : Graphe
+        + getX() : int
+        + getY() : int
+        + setX()
+        + setY()
+    }
+
+    class Queen extends Ant
+    {
+        + Queen()
+        + donnerVie()
+    }
+
+    class Soldier extends Ant
+    {
+        + Soldier()
+        + deplacementHasard()
+    }
+
+    class Food extends Occupant
+    {
+
+    }
+
+    class Pheromone extends Occupant
+    {
+        + getQuantity() : int
+        + evap()
+        + setQuantity()
+    }
+
+    class Worker extends Ant
+    {
+        + Worker()
+        + Deplacement()
+        + FindFood() : Boolean
+        + TakeFood()
+    }
+
+    abstract class Parameters
+    {
+        - evaporationQty : int
+        - foodParam : int
+        - pheromoneParam : int
+    }
+    Main -> MyOwnTest : démarre une partie
+    MyOwnTest -up-> Display : affiche les déplacements
+    MyOwnTest --> GameController : gère la partie
+    FourmiSoldatTest *-- AntFacadeController : utilise
+    GameController "1" --> "n" Graphe : gère le déroulement >
+    Occupant "n" -* "1" Graphe : occupe >
+}
+@enduml
