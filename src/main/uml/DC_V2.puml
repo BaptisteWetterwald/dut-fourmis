@@ -6,9 +6,14 @@ namespace v1 {
 
     abstract class Ant extends Occupant
     {
-        + Ant()
-        + deplacementValide():boolean
-        + deplacerVers()
+        - colony : Colony
+
+        + deplacementValide( x : int, y : int):boolean
+        + deplacerVers( x : int, y : int)
+        + seDeplacer()
+        + getColony() : Colony
+        + getListeVoisins() : ArrayList<int[]>
+
     }
 
     interface AntFacadeController
@@ -26,8 +31,13 @@ namespace v1 {
 
     class Colony extends Occupant
     {
-        + Colony()
-        + getReine():Reine
+        - foodDeposit : int
+        - foodWithdrawal : int
+
+        + getFoodWithdrawal : int
+        + getFoodDeposit() : int
+
+        + getReine() : Reine
     }
 
 
@@ -36,8 +46,16 @@ namespace v1 {
         - cellSize : int
         - height : int
         - width : int
-        + Display()
-        + update()
+
+        + update(cells : BitSet[][])
+    }
+
+    class Food extends Occupant
+    {
+        - quantity : int
+
+        + getQuantity(): int
+        + setQuantity(newQty : int)
     }
 
     class FourmiSoldatTest
@@ -55,52 +73,67 @@ namespace v1 {
 
     class GameController implements AntFacadeController
     {
-        + createColony()
-        + createGrid()
-        + createSoldiers()
-        + createWorkers()
-        + play()
-        + putFood()
-        + putObstacle()
-        + setAntFile()
-        + setParameters()
-        - refreshBitSet()
+        + rdm : Random
+        - graphe : Graphe
+        - evaporationParam : int
+        - foodParam : int
+        - pheromoneParam : int
+
+        + setParameters(evaporationParam : int, foodParam : int, pheromoneParam : int)
+        + createGrid(width : int, height : int)
+        + putObstacle(row : int, column : int)
+        + putFood(row : int, column : int, quantity : int)
+        + createColony(width : int, height : int)
+        + createSoldiers(amount : int)
+        + createWorkers(amount : int)
+        + setAntFile(antLogFile : String)
+        + play(duration : int, record : boolean) : BitSet[][]
+        - refreshBitSet(bs : BitSet[][], graphe : Graphe)
     }
 
     class Graphe
     {
-        - listAnts : Ant[*]
-        - tabGrid : Occupant[*]
-        + Graphe()
+        - tabGrid final : ArrayList<Occupant>[][]
+        - listAnts final : ArrayList<Ant>
+
+        + getFourmiliere() : Colony
+        + getListFourmis() : ArrayList<Ant>
+        + getTabGrid() : ArrayList<Occupant>[][]
         + contientFourmiliere(x:int, y:int) : boolean
         + contientObstacle(x:int, y:int) : boolean
         + contientSoldat(x:int, y:int) : boolean
-        + getFourmiliere() : Colony
-        + getListFourmis() : Ant[*]
-        + getTabGrid() : Occupant[*]
+        + contientPheromone( x : int, y : int) : boolean
+        + getListFourmis() : ArrayList<Ant>
         - fill()
+        + getPheromoneAt( x : int, y : int) : Pheromone
+        + getFoodAt( x : int, y : int) : Food
+        + contientOuvriereVide( x : int, y : int) : boolean
+        contientOuvrierePorteuse( x : int, y : int) : boolean
+        contientNourriture( x : int, y : int) : boolean
+        putFood( x : int, y : int, quantity : int)
     }
 
     class Main
     {
-        {static} + main()
+        {static} + main(args : String[])
     }
 
     class MyOwnTest
     {
-        ~ run()
+        ~ run(controller : AntFacadeController)
     }
 
     class Obstacle extends Occupant
     {
-        + Obstacle()
+
     }
 
     class Occupant
     {
         - x : int
         - y : int
-        + Occupant()
+        - final graphe : Graphe
+
         + getGraphe() : Graphe
         + getX() : int
         + getY() : int
@@ -108,37 +141,40 @@ namespace v1 {
         + setY()
     }
 
+    class Pheromone extends Occupant
+    {
+        - quantity : int
+
+        + getQuantity() : int
+        + setQuantity(newQty : int)
+        + evaporate(evapQty : int)
+
+    }
     class Queen extends Ant
     {
-        + Queen()
-        + donnerVie()
+        + donnerVie(c : Colony)
     }
 
     class Soldier extends Ant
     {
-        + Soldier()
         + deplacementHasard()
-    }
-
-    class Food extends Occupant
-    {
-
-    }
-
-    class Pheromone extends Occupant
-    {
-        + getQuantity() : int
-        + evap()
-        + setQuantity()
+        + seDeplacer()
     }
 
     class Worker extends Ant
     {
-        + Worker()
-        + Deplacement()
-        + FindFood() : Boolean
-        + TakeFood()
-    }
+        - carried : int
+        - listeCasesParcourues : ArrayList<int[]>
+
+        + depositPheromone()
+        + takeFood()
+        + seDeplacer()
+        - getBestLocation() : int[]
+        - isSorted(list : ArrayList<int[]> ) : Boolean
+        + getListeCasesParcourues() : ArrayList<int[]>
+        + getCarried() : int
+        //+ withdrawPheromone()
+   }
 
     abstract class Parameters
     {
@@ -146,6 +182,7 @@ namespace v1 {
         - foodParam : int
         - pheromoneParam : int
     }
+
     Main -> MyOwnTest : démarre une partie
     MyOwnTest -up-> Display : affiche les déplacements
     MyOwnTest --> GameController : gère la partie
