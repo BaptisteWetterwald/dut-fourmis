@@ -151,16 +151,10 @@ public class Graphe
     public Food getFoodAt(int x, int y)
     {
         Food food = null;
-        boolean found = false;
         ArrayList<Occupant> occupants = this.tabGrid[x][y];
-        for (int i=0; i<occupants.size() && !found; i++)
-        {
+        for (int i=0; i<occupants.size() && food==null; i++)
             if (occupants.get(i) instanceof Food)
-            {
-                found = true;
                 food = (Food) occupants.get(i);
-            }
-        }
         return food;
     }
 
@@ -186,11 +180,7 @@ public class Graphe
 
     public boolean contientNourriture(int x, int y)
     {
-        boolean contains = false;
-        for (int i = 0; i<this.tabGrid[x][y].size() && !contains; i++)
-            if (this.tabGrid[x][y].get(i) instanceof Food)
-                contains = true;
-        return contains;
+        return (this.getFoodAt(x, y) != null);
     }
 
     public void putFood(int x, int y, int quantity)

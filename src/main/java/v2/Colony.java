@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Colony extends Occupant
 {
 
-    private final int foodDeposit;
+    private final int pheromoneDeposit;
     private final int foodWithdrawal;
 
 
@@ -20,7 +20,7 @@ public class Colony extends Occupant
     {
         super(x, y, graphe);
         graphe.getTabGrid()[x][y].add(new Queen(x, y, graphe, this));
-        this.foodDeposit = foodDeposit;
+        this.pheromoneDeposit = foodDeposit;
         this.foodWithdrawal = foodWithdrawal;
     }
 
@@ -48,8 +48,8 @@ public class Colony extends Occupant
         return this.foodWithdrawal;
     }
 
-    public int getFoodDeposit()
+    public int getPheromoneDeposit()
     {
-        return this.foodDeposit;
+        return this.pheromoneDeposit;
     }
 }
