@@ -36,25 +36,26 @@ public class GameController implements AntFacadeController
 
     @Override
     public void putFood(int row, int column, int quantity) {
-
+        graphe.putFood(row, column, quantity);
     }
 
     @Override
     public void createColony(int row, int column)
     {
-        graphe.getTabGrid()[row][column].add(new Colony(row, column, graphe));
+        graphe.getTabGrid()[row][column].add(new Colony(row, column, graphe, 5, 5));
     }
 
     @Override
     public void createSoldiers(int amount)
     {
         for (int i=0; i<amount; i++)
-            graphe.getFourmiliere().getReine().donnerVie();
+            graphe.getFourmiliere().getReine().donnerVie(Soldier.class);
     }
 
     @Override
     public void createWorkers(int amount) {
-
+        for (int i=0; i<amount; i++)
+            graphe.getFourmiliere().getReine().donnerVie(Worker.class);
     }
 
     @Override
@@ -71,8 +72,7 @@ public class GameController implements AntFacadeController
         for (int i=0; i<duration; i++)
         {
             for (Ant f : graphe.getListFourmis())
-                if (f instanceof Soldier)
-                    ((Soldier) f).deplacementHasard();
+                f.seDeplacer();
         }
         refreshBitSet(bs, graphe);
 
@@ -95,6 +95,14 @@ public class GameController implements AntFacadeController
                     bs[i][j].set(1, true);
                 if (graphe.contientSoldat(i, j))
                     bs[i][j].set(2, true);
+                if (graphe.contientOuvriereVide(i, j))
+                    bs[i][j].set(3, true);
+                if (graphe.contientOuvrierePorteuse(i, j))
+                    bs[i][j].set(4, true);
+                if (graphe.contientNourriture(i, j))
+                    bs[i][j].set(5, true);
+                if (graphe.contientPheromone(i, j))
+                    bs[i][j].set(6, true);
             }
     }
 

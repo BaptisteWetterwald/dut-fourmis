@@ -37,24 +37,24 @@ public class Worker extends Ant
         }
     }
 
-    public void withdrawPheromone()
+    public void takeFood()
     {
         Colony col = this.getColony();
         int qty = col.getFoodWithdrawal();
 
-        Pheromone phero = this.getGraphe().getPheromoneAt(this.getX(), this.getY());
-        if (phero == null)
-            phero = new Pheromone(this.getX(), this.getY(), this.getGraphe());
+        Food food = this.getGraphe().getFoodAt(this.getX(), this.getY());
+        if (food == null)
+            food = new Food(this.getX(), this.getY(), this.getGraphe());
 
-        if (phero.getQuantity() >= qty)
+        if (food.getQuantity() >= qty)
         {
             this.carried += qty;
-            phero.setQuantity(phero.getQuantity() - qty);
+            food.setQuantity(food.getQuantity() - qty);
         }
         else
         {
-            this.carried = phero.getQuantity();
-            phero.setQuantity(0);
+            this.carried = food.getQuantity();
+            food.setQuantity(0);
         }
     }
 
@@ -134,5 +134,10 @@ public class Worker extends Ant
     public ArrayList<int[]> getListeCasesParcourues()
     {
         return this.listeCasesParcourues;
+    }
+
+    public int getCarried()
+    {
+        return this.carried;
     }
 }

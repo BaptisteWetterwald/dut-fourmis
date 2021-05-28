@@ -148,4 +148,66 @@ public class Graphe
         return phero;
     }
 
+    public Food getFoodAt(int x, int y)
+    {
+        Food food = null;
+        boolean found = false;
+        ArrayList<Occupant> occupants = this.tabGrid[x][y];
+        for (int i=0; i<occupants.size() && !found; i++)
+        {
+            if (occupants.get(i) instanceof Food)
+            {
+                found = true;
+                food = (Food) occupants.get(i);
+            }
+        }
+        return food;
+    }
+
+    public boolean contientOuvriereVide(int x, int y)
+    {
+        boolean contains = false;
+        for (int i = 0; i<this.tabGrid[x][y].size() && !contains; i++)
+            if (this.tabGrid[x][y].get(i) instanceof Worker)
+                if (( (Worker)this.tabGrid[x][y].get(i) ).getCarried() == 0)
+                    contains = true;
+        return contains;
+    }
+
+    public boolean contientOuvrierePorteuse(int x, int y)
+    {
+        boolean contains = false;
+        for (int i = 0; i<this.tabGrid[x][y].size() && !contains; i++)
+            if (this.tabGrid[x][y].get(i) instanceof Worker)
+                if (( (Worker)this.tabGrid[x][y].get(i) ).getCarried() > 0)
+                    contains = true;
+        return contains;
+    }
+
+    public boolean contientNourriture(int x, int y)
+    {
+        boolean contains = false;
+        for (int i = 0; i<this.tabGrid[x][y].size() && !contains; i++)
+            if (this.tabGrid[x][y].get(i) instanceof Food)
+                contains = true;
+        return contains;
+    }
+
+    public void putFood(int x, int y, int quantity)
+    {
+        Food food = null;
+        if (!contientNourriture(x, y))
+        {
+            food = new Food(x, y, this);
+            this.tabGrid[x][y].add(food);
+        }
+        else
+        {
+            for (int i = 0; i<this.tabGrid[x][y].size() && food==null; i++)
+                if (this.tabGrid[x][y].get(i) instanceof Food)
+                    food = (Food)this.tabGrid[x][y].get(i);
+        }
+        assert food != null;
+        food.setQuantity(food.getQuantity() + quantity);
+    }
 }
