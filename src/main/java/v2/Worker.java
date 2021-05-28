@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Worker extends Ant
 {
 
+    //TAKE FOOD ET EVAP pour reset les listes phero et food + kill les instances, + chercher les instanciations pour les ajouter à la liste
+
     private int carried;
     private ArrayList<int[]> listeCasesParcourues;
 
@@ -44,7 +46,7 @@ public class Worker extends Ant
         else
         {
             this.carried = food.getQuantity();
-            food.setQuantity(0);
+            food = null;
         }
     }
 

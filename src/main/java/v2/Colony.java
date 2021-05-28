@@ -16,11 +16,11 @@ public class Colony extends Occupant
      * @param y ordonnée d'apparition sur la grille
      * @param graphe graphe concerné
      */
-    public Colony(int x, int y, Graphe graphe, int foodDeposit, int foodWithdrawal)
+    public Colony(int x, int y, Graphe graphe, int pheromoneDeposit, int foodWithdrawal)
     {
         super(x, y, graphe);
         graphe.getTabGrid()[x][y].add(new Queen(x, y, graphe, this));
-        this.pheromoneDeposit = foodDeposit;
+        this.pheromoneDeposit = pheromoneDeposit;
         this.foodWithdrawal = foodWithdrawal;
     }
 

@@ -6,6 +6,8 @@ public class MyOwnTest {
     {
         int width = 10;
         int height = 10;
+        controller.setParameters(1, 5, 5);
+
         controller.createGrid(width, height);
         controller.createColony( 6,0 );
 
@@ -13,6 +15,7 @@ public class MyOwnTest {
         //controller.putObstacle( 7,2 );
 
         controller.createSoldiers( 10 );
+        controller.createSoldiers(10);
 
         //controller.play(1, false);
         //Display w = new Display( width, height, 10 );

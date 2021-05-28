@@ -6,6 +6,7 @@ public class Graphe
 {
     private final ArrayList<Occupant>[][] tabGrid;
     private final ArrayList<Ant> listAnts;
+    private final ArrayList<Pheromone> listPheromones;
 
     /**
      * Constructeur classe Graphe
@@ -17,7 +18,8 @@ public class Graphe
     {
         this.tabGrid = new ArrayList[height][width];
         this.fill();
-        this.listAnts = new ArrayList<Ant>();
+        this.listAnts = new ArrayList<>();
+        this.listPheromones = new ArrayList<>();
     }
 
     /**
@@ -199,5 +201,10 @@ public class Graphe
         }
         assert food != null;
         food.setQuantity(food.getQuantity() + quantity);
+    }
+
+    public ArrayList<Pheromone> getListPheromones()
+    {
+        return this.listPheromones;
     }
 }

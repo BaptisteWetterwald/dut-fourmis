@@ -42,7 +42,7 @@ public class GameController implements AntFacadeController
     @Override
     public void createColony(int row, int column)
     {
-        graphe.getTabGrid()[row][column].add(new Colony(row, column, graphe, 5, 5));
+        graphe.getTabGrid()[row][column].add(new Colony(row, column, graphe, this.pheromoneParam, this.foodParam));
     }
 
     @Override
@@ -73,6 +73,8 @@ public class GameController implements AntFacadeController
         {
             for (Ant f : graphe.getListFourmis())
                 f.seDeplacer();
+            for (Pheromone p : graphe.getListPheromones())
+                p.evaporate(this.evaporationParam);
         }
         refreshBitSet(bs, graphe);
 
