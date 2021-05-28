@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Worker extends Ant
 {
 
-    //TAKE FOOD ET EVAP pour reset les listes phero et food + kill les instances, + chercher les instanciations pour les ajouter à la liste
+    //TAKE FOOD ET EVAP pour reset la liste phero + kill les instances, + chercher les instanciations pour les ajouter à la liste
 
     private int carried;
     private ArrayList<int[]> listeCasesParcourues;
@@ -24,7 +24,10 @@ public class Worker extends Ant
 
         Pheromone phero = this.getGraphe().getPheromoneAt(this.getX(), this.getY());
         if (phero == null)
+        {
             phero = new Pheromone(this.getX(), this.getY(), this.getGraphe());
+            this.getGraphe().getListPheromones().add(phero);
+        }
 
         phero.setQuantity(phero.getQuantity() + qty);
     }

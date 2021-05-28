@@ -30,9 +30,6 @@ public class Pheromone extends Occupant
 
     public void evaporate(int evapQty)
     {
-        int qty = evapQty;
-        if (this.quantity < evapQty)
-            qty = this.quantity;
-        this.quantity -= qty;
+        this.quantity -= evapQty;
     }
 }

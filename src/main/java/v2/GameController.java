@@ -74,7 +74,10 @@ public class GameController implements AntFacadeController
             for (Ant f : graphe.getListFourmis())
                 f.seDeplacer();
             for (Pheromone p : graphe.getListPheromones())
-                p.evaporate(this.evaporationParam);
+                if (p.getQuantity() <= this.pheromoneParam)
+                    p = null;
+                else
+                    p.evaporate(this.evaporationParam);
         }
         refreshBitSet(bs, graphe);
 
