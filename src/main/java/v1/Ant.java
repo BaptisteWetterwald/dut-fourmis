@@ -1,6 +1,6 @@
 package v1;
 
-public abstract class Ant extends Occupant
+public  class Ant extends Occupant
 {
 
     /**
