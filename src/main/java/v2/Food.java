@@ -15,7 +15,7 @@ public class Food extends Occupant
     public Food(int x, int y, Graphe graphe) 
     {
         super(x, y, graphe);
-        this.quantity = 0;
+        this.quantity = 9;
     }
     
     public int getQuantity()

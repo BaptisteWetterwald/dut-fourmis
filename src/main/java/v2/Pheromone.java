@@ -15,7 +15,7 @@ public class Pheromone extends Occupant
     public Pheromone(int x, int y, Graphe graphe)
     {
         super(x, y, graphe);
-        this.quantity = 0;
+        this.quantity = 5;
     }
 
     public int getQuantity()
