@@ -31,11 +31,11 @@ namespace v1 {
 
     class Colony extends Occupant
     {
-        - foodDeposit : int
+        - pheromoneDeposit : int
         - foodWithdrawal : int
 
-        + getFoodWithdrawal : int
-        + getFoodDeposit() : int
+        + getFoodWithdrawal() : int
+        + getPheromoneDeposit() : int
 
         + getReine() : Reine
     }
@@ -95,6 +95,7 @@ namespace v1 {
     {
         - tabGrid final : ArrayList<Occupant>[][]
         - listAnts final : ArrayList<Ant>
+        - listPheromone final : ArrayList<Pheromone>
 
         + getFourmiliere() : Colony
         + getListFourmis() : ArrayList<Ant>
@@ -108,9 +109,10 @@ namespace v1 {
         + getPheromoneAt( x : int, y : int) : Pheromone
         + getFoodAt( x : int, y : int) : Food
         + contientOuvriereVide( x : int, y : int) : boolean
-        contientOuvrierePorteuse( x : int, y : int) : boolean
-        contientNourriture( x : int, y : int) : boolean
-        putFood( x : int, y : int, quantity : int)
+        + contientOuvrierePorteuse( x : int, y : int) : boolean
+        + contientNourriture( x : int, y : int) : boolean
+        + putFood( x : int, y : int, quantity : int)
+        + getListPheromones() : ArrayList<Pheromone>
     }
 
     class Main
