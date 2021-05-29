@@ -2,7 +2,7 @@ package v2;
 
 import java.util.ArrayList;
 
-public abstract class Ant extends Occupant
+public /*abstract*/ class Ant extends Occupant
 {
     private Colony colony;
 
@@ -67,7 +67,7 @@ public abstract class Ant extends Occupant
     {
         int x = this.getX();
         int y = this.getY();
-        ArrayList<int[]> listeVoisins = new ArrayList<int[]>();
+        ArrayList<int[]> listeVoisins = new ArrayList<>();
         listeVoisins.add(new int[]{x-1, y});
         listeVoisins.add(new int[]{x+1, y});
         listeVoisins.add(new int[]{x, y-1});
