@@ -19,13 +19,13 @@ public class Worker extends Ant
 
     public void depositPheromone()
     {
-        Colony col = this.getColony();
-        int qty = col.getPheromoneDeposit();
+        int qty = this.getColony().getPheromoneDeposit();
 
         Pheromone phero = this.getGraphe().getPheromoneAt(this.getX(), this.getY());
         if (phero == null)
         {
             phero = new Pheromone(this.getX(), this.getY(), this.getGraphe());
+            this.getGraphe().getTabGrid()[this.getX()][this.getY()].add(phero);
             this.getGraphe().getListPheromones().add(phero);
         }
 
@@ -59,7 +59,7 @@ public class Worker extends Ant
         if (this.carried == 0)
         {
             ArrayList<int[]> listeVoisins = this.getListeVoisins();
-            listeVoisins.removeIf(tab -> this.getGraphe().contientNourriture(tab[0], tab[1])); //Enlève les voisins qui ne contiennent pas de nourriture
+            //listeVoisins.removeIf(tab -> this.getGraphe().contientNourriture(tab[0], tab[1])); //Enlève les voisins qui ne contiennent pas de nourriture
             int[] newLoc = new int[2];
             if (listeVoisins.size() > 1)
                 newLoc = this.getBestLocation();
@@ -114,67 +114,70 @@ public class Worker extends Ant
         int[] loc = new int[2]; //{x,y}
 
         ArrayList<int[]> listeVoisins = this.getListeVoisins();
-        ArrayList<int[]> listeVoisinsNonParcourus = new ArrayList<>(listeVoisins);
-        if (listeVoisinsNonParcourus.size() > 0)
+        //ArrayList<int[]> listeVoisinsNonParcourus = new ArrayList<>(listeVoisins);
+        if (listeVoisins.size() > 0)
         {
-            for (int i=listeVoisinsNonParcourus.size()-1; i>=0; i--)
+
+            //On enlève les positions parcourues
+            for (int i=listeVoisins.size()-1; i>=0; i--)
             {
                 boolean found = false;
-                for (int j=listeCasesParcourues.size()-1; j>=0 && !found; j--)
-                    if (listeVoisinsNonParcourus.get(i)[0] == listeCasesParcourues.get(j)[0] && listeVoisinsNonParcourus.get(i)[1] == listeCasesParcourues.get(j)[1])
+                for (int j=this.listeCasesParcourues.size()-1; j>=0 && !found; j--)
+                    if (listeVoisins.get(i)[0] == listeCasesParcourues.get(j)[0] && listeVoisins.get(i)[1] == listeCasesParcourues.get(j)[1])
                     {
                         found = true;
-                        listeVoisinsNonParcourus.remove(i);
+                        listeVoisins.remove(i);
                     }
             }
+
             //Liste propre avec au moins 1 voisin pas parcouru
-            if (listeVoisinsNonParcourus.size() > 0)
+            if (listeVoisins.size() > 0)
             {
-                ArrayList<int[]> list = listeVoisinsNonParcourus;
+                //ArrayList<int[]> list = listeVoisins;
                 ArrayList<int[]> voisinsSansPhero = new ArrayList<>();
 
-                for (int i=list.size()-1; i>=0; i--)
+                //Retrait de la listeVoisins ceux n'ayant pas de phéromone
+                for (int i=listeVoisins.size()-1; i>=0; i--)
                 {
-                    if (!this.getGraphe().contientPheromone(list.get(i)[0], list.get(i)[1]))
+                    if (!this.getGraphe().contientPheromone(listeVoisins.get(i)[0], listeVoisins.get(i)[1]))
                     {
-                        voisinsSansPhero.add(list.get(i));
-                        list.remove(i);
+                        voisinsSansPhero.add(listeVoisins.get(i));
+                        listeVoisins.remove(i);
                     }
                 }
 
                 //Tri de la liste selon quantité phéromone
-                while (!isSorted(list))
+                while (!isSorted(listeVoisins))
                 {
-                    for (int i=list.size()-1; i>=1; i--)
-                        if (this.getGraphe().getPheromoneAt(list.get(i)[0], list.get(i)[1]).getQuantity() < this.getGraphe().getPheromoneAt(list.get(i-1)[0], list.get(i-1)[1]).getQuantity())
+                    for (int i=listeVoisins.size()-1; i>=1; i--)
+                        if (this.getGraphe().getPheromoneAt(listeVoisins.get(i)[0], listeVoisins.get(i)[1]).getQuantity() < this.getGraphe().getPheromoneAt(listeVoisins.get(i-1)[0], listeVoisins.get(i-1)[1]).getQuantity())
                         {
-                            list.add(i-1, list.get(i));
-                            list.remove(i+1); //Inversion avec celui d'avant
+                            listeVoisins.add(i-1, listeVoisins.get(i)); //Inversion avec celui d'avant
+                            listeVoisins.remove(i+1); //Suppression de l'élément mal rangé
                         }
                 }
 
                 //On remet les voisins sans phéro en les insérant à l'indice 0
                 for (int[] voisin : voisinsSansPhero)
-                    list.add(0, voisin);
+                    listeVoisins.add(0, voisin);
 
                 //Génération de la liste avec proba
-                listeVoisinsNonParcourus = new ArrayList<>();
-                for (int i=0; i<list.size(); i++)
+                ArrayList<int[]> listeVoisinsAvecProba = new ArrayList<>();
+                for (int i=0; i<listeVoisins.size(); i++)
                 {
                     for (int j=0; j<i+1; j++) //Ou i+1 faut voir
                     {
-                        listeVoisinsNonParcourus.add(list.get(i));
+                        listeVoisinsAvecProba.add(listeVoisins.get(i));
                     }
                 }
-                loc = listeVoisinsNonParcourus.get(GameController.rdm.nextInt(listeVoisinsNonParcourus.size()));
+                loc = listeVoisinsAvecProba.get(GameController.rdm.nextInt(listeVoisinsAvecProba.size()));
             }
-            else if (listeVoisins.size() > 0) //Tous les voisins parcourus
+            else if (listeVoisins.size() == 0) //Tous les voisins parcourus
             {
+                listeVoisins = this.getListeVoisins();
                 int index = GameController.rdm.nextInt(listeVoisins.size());
                 this.deplacerVers(listeVoisins.get(index)[0], listeVoisins.get(index)[1]); //Déplacement random
             }
-            else
-                loc = null;
         }
 
         return loc;
