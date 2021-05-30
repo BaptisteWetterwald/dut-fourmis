@@ -63,9 +63,7 @@ class WorkerTest
         for (int i=0; i<4; i++)
         {
             w.seDeplacer();
-
             System.out.println("Parcourues : " + toString(w.getListeCasesParcourues()));
-
         }
         System.out.println("Carried = " + w.getCarried());
 

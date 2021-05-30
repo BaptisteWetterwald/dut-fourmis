@@ -1,11 +1,10 @@
 package v2;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Worker extends Ant
 {
-
-    //TAKE FOOD ET EVAP pour reset la liste phero + kill les instances, + chercher les instanciations pour les ajouter à la liste
 
     private int carried;
     private ArrayList<int[]> listeCasesParcourues;
@@ -156,20 +155,20 @@ public class Worker extends Ant
                             listeVoisins.remove(i+1); //Suppression de l'élément mal rangé
                         }
                 }
-
-                //On remet les voisins sans phéro en les insérant à l'indice 0
-                for (int[] voisin : voisinsSansPhero)
-                    listeVoisins.add(0, voisin);
-
                 //Génération de la liste avec proba
                 ArrayList<int[]> listeVoisinsAvecProba = new ArrayList<>();
                 for (int i=0; i<listeVoisins.size(); i++)
                 {
-                    for (int j=0; j<i+1; j++) //Ou i+1 faut voir
+                    for (int j=0; j<i+1; j++)
                     {
                         listeVoisinsAvecProba.add(listeVoisins.get(i));
                     }
                 }
+
+                //On remet les voisins sans phéro en les insérant à l'indice 0
+                for (int[] voisin : voisinsSansPhero)
+                    listeVoisinsAvecProba.add(0, voisin);
+
                 loc = listeVoisinsAvecProba.get(GameController.rdm.nextInt(listeVoisinsAvecProba.size()));
             }
             else if (listeVoisins.size() == 0) //Tous les voisins parcourus
@@ -206,5 +205,21 @@ public class Worker extends Ant
     public void setCarried(int newQty)
     {
         this.carried = newQty;
+    }
+
+    /**
+     * Simule la loi de probabilité décrite dans le sujet.
+     *
+     * @param n cardinal de l'ensemble E
+     * @param r instance de la classe Random à utiliser pour la simulation
+     * @return l'indice du voisin à visiter (un entier entre 0 et n-1)
+     */
+    private int probabilityLaw(int n, Random r)
+    {
+        int k = 1 + r.nextInt( n*(n+1)/2 );
+        for( int i=1;  i <= n; i++ )
+            if( k <= i*(i+1)/2 )
+                return i-1;
+        return 0;
     }
 }
