@@ -5,24 +5,30 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FoodTest {
+class FoodTest
+{
+
     Graphe g;
-    Food f;
+
     @BeforeEach
-    void setUp() {
-        g = new Graphe(10,20);
-        g.putFood(2,3,5);
-        f = new Food(7,8,g);
+    void setUp()
+    {
+        g = new Graphe(10,10);
+        g.putFood(2, 3, 10);
     }
 
     @Test
-    void getQuantity() {
-        assertEquals(9,f.getQuantity());
+    void getQuantity()
+    {
+        Food f = g.getFoodAt(2, 3);
+        assertEquals(10, f.getQuantity());
     }
 
     @Test
-    void setQuantity() {
-        f.setQuantity(93);
-        assertEquals(93,f.getQuantity());
+    void setQuantity()
+    {
+        int q1 = g.getFoodAt(2, 3).getQuantity();
+        g.getFoodAt(2, 3).setQuantity(q1 + 1);
+        assertEquals(q1 + 1, g.getFoodAt(2, 3).getQuantity());
     }
 }

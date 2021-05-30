@@ -2,7 +2,7 @@ package v2;
 
 import java.util.ArrayList;
 
-public /*abstract*/ class Ant extends Occupant
+public abstract class Ant extends Occupant
 {
     private Colony colony;
 
@@ -35,29 +35,6 @@ public /*abstract*/ class Ant extends Occupant
         this.setY(y);
     }
 
-    /**
-     * Définit la validité d'un déplacement selon son occupation
-     *
-     * @param x abscisse de la nouvelle position à tester
-     * @param y ordonnée de la nouvelle position à tester
-     * @return true si le déplacement est valide, false sinon
-     */
-    public boolean deplacementValide(int x, int y)
-    {
-        boolean valide = true;
-
-        //Si la case n'est pas dans la grille
-        if (x<0 || x>=this.getGraphe().getTabGrid().length || y<0 || y>=this.getGraphe().getTabGrid()[0].length)
-            valide = false;
-
-        //Si la case contient un obstacle
-        else
-            for (int i = 0; i<this.getGraphe().getTabGrid()[x][y].size() && valide; i++)
-                if (this.getGraphe().getTabGrid()[x][y].get(i) instanceof Obstacle)
-                    valide = false;
-        return valide;
-    }
-
     public Colony getColony()
     {
         return this.colony;
@@ -73,7 +50,7 @@ public /*abstract*/ class Ant extends Occupant
         listeVoisins.add(new int[]{x, y-1});
         listeVoisins.add(new int[]{x, y+1});
         for (int i=listeVoisins.size()-1; i>=0; i--)
-            if ( !deplacementValide( listeVoisins.get(i)[0], listeVoisins.get(i)[1] ) )
+            if ( !this.getGraphe().deplacementValide( listeVoisins.get(i)[0], listeVoisins.get(i)[1] ) )
                 listeVoisins.remove(i);
         return listeVoisins;
     }

@@ -9,13 +9,16 @@ public class MyOwnTest {
         controller.setParameters(1, 5, 5);
 
         controller.createGrid(width, height);
-        controller.createColony( 6,0 );
 
         controller.putObstacle( 2, 3);
-        //controller.putObstacle( 7,2 );
+        controller.putObstacle( 7,2 );
 
-        controller.createSoldiers( 10 );
-        controller.createSoldiers(10);
+        controller.putFood(1, 4, 20);
+
+        controller.createColony( 6, 6);
+
+        controller.createSoldiers( 3 );
+        controller.createWorkers(3);
 
         //controller.play(1, false);
         //Display w = new Display( width, height, 10 );
@@ -29,7 +32,7 @@ public class MyOwnTest {
         {
             w.update( controller.play( 1, false ) );
             try {
-                Thread.sleep(400);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

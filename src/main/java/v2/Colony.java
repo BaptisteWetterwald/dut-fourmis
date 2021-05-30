@@ -19,7 +19,9 @@ public class Colony extends Occupant
     public Colony(int x, int y, Graphe graphe, int pheromoneDeposit, int foodWithdrawal)
     {
         super(x, y, graphe);
-        graphe.getTabGrid()[x][y].add(new Queen(x, y, graphe, this));
+        Queen q = new Queen(x, y, graphe, this);
+        graphe.getTabGrid()[x][y].add(q);
+        this.getGraphe().getListFourmis().add(q);
         this.pheromoneDeposit = pheromoneDeposit;
         this.foodWithdrawal = foodWithdrawal;
     }

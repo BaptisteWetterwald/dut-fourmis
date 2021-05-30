@@ -40,9 +40,6 @@ class GrapheTest
                         listAntsTab.add( (Ant) o);
                 }
             }
-        /*System.out.println(listAntsTab);
-        System.out.println();
-        System.out.println(g.getListFourmis());*/
         assertEquals(listAntsTab, g.getListFourmis());
     }
 
@@ -63,7 +60,6 @@ class GrapheTest
     }
 
     @Test
-    // crée un soldat à des coordonnés x et y et verifie si sur ton graphe aux coordonnées x et y il y a un soldat si le contientsoldat return true
     void contientSoldat()
     {
         g.getTabGrid()[4][4].add(new Soldier(4, 4, g));

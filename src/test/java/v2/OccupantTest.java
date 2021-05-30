@@ -5,10 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class OccupantTest {
+class OccupantTest
+{
+
+    Graphe g;
 
     @BeforeEach
-    void setUp() {
+    void setUp()
+    {
+        g = new Graphe(10, 10);
     }
 
     @Test

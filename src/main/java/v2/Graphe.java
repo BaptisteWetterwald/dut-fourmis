@@ -23,6 +23,29 @@ public class Graphe
     }
 
     /**
+     * Définit la validité d'un déplacement selon son occupation par un obstacle
+     *
+     * @param x abscisse de la nouvelle position à tester
+     * @param y ordonnée de la nouvelle position à tester
+     * @return true si le déplacement est valide, false sinon
+     */
+    public boolean deplacementValide(int x, int y)
+    {
+        boolean valide = true;
+
+        //Si la case n'est pas dans la grille
+        if (x<0 || x>=this.getTabGrid().length || y<0 || y>=this.getTabGrid()[0].length)
+            valide = false;
+
+            //Si la case contient un obstacle
+        else
+            for (int i = 0; i<this.getTabGrid()[x][y].size() && valide; i++)
+                if (this.getTabGrid()[x][y].get(i) instanceof Obstacle)
+                    valide = false;
+        return valide;
+    }
+
+    /**
      * Retourne la colonie associée au graphe
      *
      * @return colonie associée au graphe

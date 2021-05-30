@@ -54,8 +54,7 @@ public class Display extends JFrame {
                     if ( cells[i][j].get( 2 ) ) // soldat
                     {
                         //Par défaut : b = 0; // jaune
-                        r = 183;
-                        g = 0;
+                        b = 0;
                     }
                     if ( cells[i][j].get( 3 ) ) // ouvrier aller
                         g = 0; // magenta

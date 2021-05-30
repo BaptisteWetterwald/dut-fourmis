@@ -96,6 +96,7 @@ public class Worker extends Ant
             if (this.listeCasesParcourues.size() > 0)
             {
                 this.deplacerVers(this.listeCasesParcourues.get(this.listeCasesParcourues.size()-1)[0], this.listeCasesParcourues.get(this.listeCasesParcourues.size()-1)[1]);
+                this.listeCasesParcourues.remove(this.listeCasesParcourues.size()-1);
             }
 
         }
@@ -130,6 +131,16 @@ public class Worker extends Ant
             if (listeVoisinsNonParcourus.size() > 0)
             {
                 ArrayList<int[]> list = listeVoisinsNonParcourus;
+                ArrayList<int[]> voisinsSansPhero = new ArrayList<>();
+
+                for (int i=list.size()-1; i>=0; i--)
+                {
+                    if (!this.getGraphe().contientPheromone(list.get(i)[0], list.get(i)[1]))
+                    {
+                        voisinsSansPhero.add(list.get(i));
+                        list.remove(i);
+                    }
+                }
 
                 //Tri de la liste selon quantité phéromone
                 while (!isSorted(list))
@@ -142,11 +153,15 @@ public class Worker extends Ant
                         }
                 }
 
+                //On remet les voisins sans phéro en les insérant à l'indice 0
+                for (int[] voisin : voisinsSansPhero)
+                    list.add(0, voisin);
+
                 //Génération de la liste avec proba
                 listeVoisinsNonParcourus = new ArrayList<>();
                 for (int i=0; i<list.size(); i++)
                 {
-                    for (int j=0; j<i; j++) //Ou i+1 faut voir
+                    for (int j=0; j<i+1; j++) //Ou i+1 faut voir
                     {
                         listeVoisinsNonParcourus.add(list.get(i));
                     }
@@ -170,7 +185,7 @@ public class Worker extends Ant
         boolean sorted = true;
         if (list.size() > 1)
             for (int i=list.size()-1; i>=1 && sorted; i--)
-                if (this.getGraphe().getPheromoneAt(list.get(i)[0], list.get(i)[1]).getQuantity() < this.getGraphe().getPheromoneAt(list.get(i-1)[0], list.get(i-1)[1]).getQuantity())
+                if (this.getGraphe().getPheromoneAt(list.get(i)[0], list.get(i)[1]).getQuantity() < this.getGraphe().getPheromoneAt(list.get(i-1)[0], list.get(i-1)[1]).getQuantity()) //Mettre i-1
                     sorted = false;
         return sorted;
     }
@@ -183,5 +198,10 @@ public class Worker extends Ant
     public int getCarried()
     {
         return this.carried;
+    }
+
+    public void setCarried(int newQty)
+    {
+        this.carried = newQty;
     }
 }

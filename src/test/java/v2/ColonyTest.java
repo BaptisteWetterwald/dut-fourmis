@@ -5,32 +5,35 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ColonyTest {
+class ColonyTest
+{
+
     Graphe g;
     Colony c;
-    Queen q;
+
     @BeforeEach
-    void setUp() {
-        g=new Graphe(10,20);
-        c= new Colony(2,4,g,7,3);
-        q = new Queen(2,4,g,c);
+    void setUp()
+    {
+        g = new Graphe(10, 10);
+        c = new Colony(5, 5, g, 1, 5);
+        g.getTabGrid()[5][5].add(c);
     }
 
     @Test
-    void getReine() {
-        assertEquals(2,q.getX());
-        assertEquals(4,q.getY());
-        assertEquals(g,q.getGraphe());
-        assertEquals(c,q.getColony());
+    void getReine()
+    {
+        assertEquals(g.getTabGrid()[5][5].get(0), c.getReine());
     }
 
     @Test
-    void getFoodWithdrawal() {
-        assertEquals(3,c.getFoodWithdrawal());
+    void getFoodWithdrawal()
+    {
+        assertEquals(5, c.getFoodWithdrawal());
     }
 
     @Test
-    void getPheromoneDeposit() {
-        assertEquals(7,c.getPheromoneDeposit());
+    void getPheromoneDeposit()
+    {
+        assertEquals(1, c.getPheromoneDeposit());
     }
 }

@@ -5,15 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ColonyTest {
+class ColonyTest
+{
     Graphe g;
-    Colony a;
     Queen q;
     @BeforeEach
-    void setUp() {
+    void setUp()
+    {
         g= new Graphe(5,10);
         q = new Queen(4,5,g);
-
     }
 
     @Test
