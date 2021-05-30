@@ -62,7 +62,7 @@ class GrapheTest
     @Test
     void getTabGrid()
     {
-        //Simple accesseur
+        //Simple accesseur pour récupérer la grille
     }
 
     @Test
@@ -161,7 +161,25 @@ class GrapheTest
     @Test
     void getListPheromones()
     {
-        //accesseur difficile à tester puisqu'on ajoute les phéromones dans la liste lors d'un déplacement retour d'une fourmi Worker
+        Worker w = new Worker(4, 4, g, c);
+        g.getTabGrid()[4][4].add(w);
+        w.depositPheromone();
+        w.deplacerVers(4, 5);
+        w.depositPheromone();
+        w.deplacerVers(4, 6);
+        w.depositPheromone();
+
+        ArrayList<Pheromone> listPheroTab = new ArrayList<>();
+        for (int i=0; i<g.getTabGrid().length; i++)
+            for (int j=0; j<g.getTabGrid()[0].length; j++)
+            {
+                for (Occupant o : g.getTabGrid()[i][j])
+                {
+                    if (o instanceof Pheromone)
+                        listPheroTab.add( (Pheromone) o);
+                }
+            }
+        assertEquals(listPheroTab, g.getListPheromones());
     }
 
     @Test
