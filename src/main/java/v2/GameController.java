@@ -75,19 +75,17 @@ public class GameController implements AntFacadeController
             for (Ant f : graphe.getListFourmis())
             {
                 f.seDeplacer();
-                if (f instanceof Worker)
+                /*if (f instanceof Worker)
                 {
                     System.out.println(toString(((Worker)f).getListeCasesParcourues()));
-                }
+                }*/
             }
             ArrayList<Pheromone> listePheroASuppr = new ArrayList<>();
             for (Pheromone p : graphe.getListPheromones())
             {
                 //System.out.println("LISTE PHEROS : " + graphe.getListPheromones().toString());
                 if (p.getQuantity() <= this.evaporationParam)
-                {
                     listePheroASuppr.add(p);
-                }
                 else
                     p.evaporate(this.evaporationParam);
 
