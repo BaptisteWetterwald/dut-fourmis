@@ -51,7 +51,6 @@ public class Worker extends Ant
             this.carried = food.getQuantity();
             this.getGraphe().getTabGrid()[this.getX()][this.getY()].remove(this.getGraphe().getFoodAt(this.getX(), this.getY()));
         }
-        System.out.println("APRES TAKEFOOD, contientNourriture() : " + this.getGraphe().contientNourriture(this.getX(), this.getY()));
     }
 
     @Override
@@ -112,8 +111,6 @@ public class Worker extends Ant
     {
         this.getGraphe().putFood(this.getX(), this.getY(), this.carried);
         this.carried = 0;
-        System.out.println("Maintenant elle est vide !");
-        System.out.println("Quantité food fourmilière : " + this.getGraphe().getFoodAt(this.getColony().getX(), this.getColony().getY()).getQuantity());
     }
 
     private int[] getBestLocation(ArrayList<int[]> listeVoisins)

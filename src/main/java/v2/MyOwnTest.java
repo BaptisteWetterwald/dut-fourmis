@@ -11,7 +11,7 @@ public class MyOwnTest {
         controller.createGrid(width, height);
         controller.createColony(0, 0);
         controller.createWorkers(1);
-        controller.putFood(18, 0, 1);
+        controller.putFood(18, 0, 9);
 
         int j;
         boolean decalage = false;
@@ -36,11 +36,11 @@ public class MyOwnTest {
         while(true)
         {
             w.update( controller.play( 1, false ) );
-            /*try {
-                Thread.sleep(0);
+            try {
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }*/
+            }
         }
 
          /* A remettre après
