@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+participant GameController
+
+participant Ant
+participant Colony
+participant Display
+participant Food
+participant Graphe
+
+participant Obstacle
+participant Occupant
+participant Pheromone
+participant Queen
+participant Soldier
+participant Worker
+
+
+
+@enduml
