@@ -23,7 +23,10 @@ public class Queen extends Ant
         if (c == Soldier.class)
             ant = new Soldier(this.getX(), this.getY(), this.getGraphe(), this.getColony());
         else
+        {
             ant = new Worker(this.getX(), this.getY(), this.getGraphe(), this.getColony());
+            ((Worker) ant).getListeCasesParcourues().add(new int[]{ant.getX(), ant.getY()});
+        }
         this.getGraphe().getTabGrid()[this.getX()][this.getY()].add(ant);
         this.getGraphe().getListFourmis().add(ant);
     }

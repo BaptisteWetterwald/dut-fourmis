@@ -4,12 +4,39 @@ public class MyOwnTest {
 
     void run(AntFacadeController controller)
     {
-        int width = 10;
-        int height = 10;
+        int width = 13;
+        int height = 19;
         controller.setParameters(1, 5, 5);
 
         controller.createGrid(width, height);
+        controller.createColony(0, 0);
+        controller.createWorkers(1);
 
+
+        int j = 0;
+        boolean decalage = false;
+
+        for (int i=0; i<19; i++)
+        {
+            if (i%2 != 0)
+            {
+                if (decalage)
+                    j = 1;
+                else
+                    j = 0;
+
+                decalage = !decalage;
+
+                for (int k=j; k<12+j; k++)
+                {
+                    controller.putObstacle(i, k);
+                }
+            }
+
+        }
+
+
+        /* A remettre après
         controller.putObstacle( 2, 3);
         controller.putObstacle( 7,2 );
 
@@ -20,6 +47,8 @@ public class MyOwnTest {
         controller.createSoldiers( 3 );
         controller.createWorkers(3);
 
+        */
+
         //controller.play(1, false);
         //Display w = new Display( width, height, 10 );
         Display w = new Display( width, height, 100 );
@@ -28,15 +57,20 @@ public class MyOwnTest {
             w.update( controller.play( 1, false ) );
         }*/
 
-        while (true)
+        w.update( controller.play( 141, false ) );
+
+
+        /*while (true)
         {
             w.update( controller.play( 1, false ) );
             try {
-                Thread.sleep(1000);
+                Thread.sleep(600);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
+
+
 
     }
 }

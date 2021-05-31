@@ -1,11 +1,9 @@
 package v2;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.BitSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -56,11 +54,14 @@ class WorkerTest
     @Test
     void getListeCasesParcourues()
     {
-        g = new Graphe(1, 5);
+        g = new Graphe(1, 9);
         c = new Colony(0, 0, g, 1, 5);
         g.getTabGrid()[0][0].add(c);
-        Worker w = new Worker(0, 0, g, c);
-        for (int i=0; i<4; i++)
+        w = new Worker(0, 0, g, c);
+        g.getTabGrid()[0][0].add(w);
+        w.getListeCasesParcourues().add(new int[]{w.getX(), w.getY()});
+
+        for (int i=0; i<8; i++)
         {
             w.seDeplacer();
             System.out.println("Parcourues : " + toString(w.getListeCasesParcourues()));
@@ -68,15 +69,23 @@ class WorkerTest
         System.out.println("Carried = " + w.getCarried());
 
         ArrayList<int[]> listeTheorie = new ArrayList<>();
+        listeTheorie.add(new int[]{0, 0});
         listeTheorie.add(new int[]{0, 1});
         listeTheorie.add(new int[]{0, 2});
         listeTheorie.add(new int[]{0, 3});
         listeTheorie.add(new int[]{0, 4});
+        listeTheorie.add(new int[]{0, 5});
+        listeTheorie.add(new int[]{0, 6});
+        listeTheorie.add(new int[]{0, 7});
+        listeTheorie.add(new int[]{0, 8});
 
         boolean same = true;
         int biggerSize = listeTheorie.size();
         if (w.getListeCasesParcourues().size() > biggerSize)
+        {
             biggerSize = w.getListeCasesParcourues().size();
+            System.out.println("pas la mm taille");
+        }
 
         for (int i=0; i<biggerSize && same; i++)
         {
@@ -108,6 +117,45 @@ class WorkerTest
         w.deplacerVers(w.getColony().getX(), w.getColony().getY());
         w.takeFood();
         assertEquals(w.getColony().getFoodWithdrawal(), w.getCarried());
+    }
+
+    @Test
+    void testChemin()
+    {
+        GameController controller = new GameController();
+
+        int width = 13;
+        int height = 19;
+        controller.setParameters(1, 5, 5);
+
+        controller.createGrid(width, height);
+        controller.createColony(0, 0);
+        controller.createWorkers(1);
+
+
+        int j = 0;
+        boolean decalage = false;
+
+        for (int i=0; i<19; i++)
+        {
+            if (i%2 != 0)
+            {
+                if (decalage)
+                    j = 1;
+                else
+                    j = 0;
+
+                decalage = !decalage;
+
+                for (int k=j; k<12+j; k++)
+                {
+                    controller.putObstacle(i, k);
+                }
+            }
+        }
+
+
+        assertTrue(controller.play(138, false)[18][0].get(3));
     }
 
 }
