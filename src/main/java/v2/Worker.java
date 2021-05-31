@@ -33,14 +33,15 @@ public class Worker extends Ant
 
     public void takeFood()
     {
-        Colony col = this.getColony();
-        int qty = col.getFoodWithdrawal();
+        int qty = this.getColony().getFoodWithdrawal();
 
         Food food = this.getGraphe().getFoodAt(this.getX(), this.getY());
         if (food == null)
+        {
             food = new Food(this.getX(), this.getY(), this.getGraphe());
-
-        if (food.getQuantity() >= qty)
+            this.getGraphe().getTabGrid()[this.getX()][this.getY()].add(food);
+        }
+        if (food.getQuantity() > qty)
         {
             this.carried += qty;
             food.setQuantity(food.getQuantity() - qty);
@@ -48,8 +49,9 @@ public class Worker extends Ant
         else
         {
             this.carried = food.getQuantity();
-            food = null;
+            this.getGraphe().getTabGrid()[this.getX()][this.getY()].remove(this.getGraphe().getFoodAt(this.getX(), this.getY()));
         }
+        System.out.println("APRES TAKEFOOD, contientNourriture() : " + this.getGraphe().contientNourriture(this.getX(), this.getY()));
     }
 
     @Override
@@ -74,28 +76,32 @@ public class Worker extends Ant
                 this.deplacerVers(newLoc[0], newLoc[1]);
 
                 //Gestion nourriture + cases parcourues
-                if (!getGraphe().contientNourriture(this.getX(), this.getY()))
+                if ( !this.getGraphe().contientNourriture(this.getX(), this.getY()) )
                     this.listeCasesParcourues.add(new int[]{this.getX(), this.getY()});
-                else
+                else if ( !this.getGraphe().contientFourmiliere(this.getX(), this.getY()) )
                     this.takeFood();
             }
         }
         else
         {
-            if (this.getX()==this.getColony().getX() && this.getY()==this.getColony().getY())
-            {
-                this.listeCasesParcourues = new ArrayList<>();
-                this.listeCasesParcourues.add(new int[]{this.getX(), this.getY()});
-                this.depositAllFood();
-            }
-
-            else
-                this.depositPheromone();
 
             if (this.listeCasesParcourues.size() > 0)
             {
+                //On déplace avant pour éviter qu'elle ne pose des phéromones sur la case contenant la nourriture ou sur la fourmilière
                 this.deplacerVers(this.listeCasesParcourues.get(this.listeCasesParcourues.size()-1)[0], this.listeCasesParcourues.get(this.listeCasesParcourues.size()-1)[1]);
                 this.listeCasesParcourues.remove(this.listeCasesParcourues.size()-1);
+
+                //Si pas fourmilière ni case avec nourriture
+                if ( !(this.getX()==this.getColony().getX() && this.getY()==this.getColony().getY())
+                    && !this.getGraphe().contientNourriture(this.getX(), this.getY()) )
+                    this.depositPheromone();
+
+                else
+                {
+                    this.listeCasesParcourues = new ArrayList<>();
+                    this.listeCasesParcourues.add(new int[]{this.getX(), this.getY()});
+                    this.depositAllFood();
+                }
             }
 
         }
@@ -106,6 +112,8 @@ public class Worker extends Ant
     {
         this.getGraphe().putFood(this.getX(), this.getY(), this.carried);
         this.carried = 0;
+        System.out.println("Maintenant elle est vide !");
+        System.out.println("Quantité food fourmilière : " + this.getGraphe().getFoodAt(this.getColony().getX(), this.getColony().getY()).getQuantity());
     }
 
     private int[] getBestLocation(ArrayList<int[]> listeVoisins)
@@ -117,7 +125,8 @@ public class Worker extends Ant
         {
             boolean containsFood = false;
             for (int i=0; i<listeVoisins.size() && !containsFood; i++)
-                if (this.getGraphe().contientNourriture(listeVoisins.get(i)[0], listeVoisins.get(i)[1]))
+                if (this.getGraphe().contientNourriture(listeVoisins.get(i)[0], listeVoisins.get(i)[1])
+                        && !(this.getColony().getX()==listeVoisins.get(i)[0] && this.getColony().getY()==listeVoisins.get(i)[1]) )
                 {
                     containsFood = true;
                     loc = listeVoisins.get(i);
@@ -183,11 +192,8 @@ public class Worker extends Ant
                 else if (listeVoisins.size() == 0) //Tous les voisins parcourus
                 {
                     listeVoisins = this.getListeVoisins();
-                    System.out.println("DEBUG ICI : " + listeVoisins.toString());
                     int index = GameController.rdm.nextInt(listeVoisins.size());
                     loc = listeVoisins.get(index);
-                    //System.out.println("ATTENTION Déplacement random : " + listeVoisins.get(index)[0] + ", " + listeVoisins.get(index)[1]);
-                    //this.deplacerVers(listeVoisins.get(index)[0], listeVoisins.get(index)[1]); //Déplacement random
                 }
             }
         }

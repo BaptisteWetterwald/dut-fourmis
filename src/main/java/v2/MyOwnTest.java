@@ -1,21 +1,19 @@
 package v2;
 
-import javax.swing.*;
-
 public class MyOwnTest {
 
     void run(AntFacadeController controller)
     {
         int width = 13;
         int height = 19;
-        controller.setParameters(1, 5, 1);
+        controller.setParameters(1, 5, 5);
 
         controller.createGrid(width, height);
         controller.createColony(0, 0);
         controller.createWorkers(1);
-        controller.putFood(18, 0, 20);
+        controller.putFood(18, 0, 9);
 
-        int j = 0;
+        int j;
         boolean decalage = false;
 
         for (int i=0; i<19; i++)
@@ -39,7 +37,7 @@ public class MyOwnTest {
         {
             w.update( controller.play( 1, false ) );
             try {
-                Thread.sleep(500);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

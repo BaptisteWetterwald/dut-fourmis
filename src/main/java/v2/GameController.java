@@ -80,11 +80,24 @@ public class GameController implements AntFacadeController
                     System.out.println(toString(((Worker)f).getListeCasesParcourues()));
                 }
             }
+            ArrayList<Pheromone> listePheroASuppr = new ArrayList<>();
             for (Pheromone p : graphe.getListPheromones())
-                if (p.getQuantity() <= this.pheromoneParam)
-                    p = null;
+            {
+                //System.out.println("LISTE PHEROS : " + graphe.getListPheromones().toString());
+                if (p.getQuantity() <= this.evaporationParam)
+                {
+                    listePheroASuppr.add(p);
+                }
                 else
                     p.evaporate(this.evaporationParam);
+
+            }
+            for (int j=listePheroASuppr.size()-1; j>=0; j--)
+            {
+                graphe.getListPheromones().remove(listePheroASuppr.get(j));
+                graphe.getTabGrid()[listePheroASuppr.get(j).getX()][listePheroASuppr.get(j).getY()].remove(listePheroASuppr.get(j));
+            }
+
         }
         refreshBitSet(bs, graphe);
 
