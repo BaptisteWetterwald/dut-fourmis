@@ -48,7 +48,41 @@ class WorkerTest
     @Test
     void seDeplacer()
     {
+        g = new Graphe(1, 9);
+        c = new Colony(0, 0, g, 1, 5);
+        g.getTabGrid()[0][0].add(c);
+        w = new Worker(0, 0, g, c);
+        g.getTabGrid()[0][0].add(w);
+        w.getListeCasesParcourues().add(new int[]{w.getX(), w.getY()});
 
+        for (int i=0; i<8; i++)
+        {
+            w.seDeplacer();
+            System.out.println("Parcourues : " + toString(w.getListeCasesParcourues()));
+        }
+        System.out.println("Carried = " + w.getCarried());
+
+        ArrayList<int[]> listeTheorie = new ArrayList<>();
+
+        for (int i=0; i<=8; i++)
+            listeTheorie.add(new int[]{0, i});
+
+        boolean same = true;
+        int biggerSize = listeTheorie.size();
+        if (w.getListeCasesParcourues().size() > biggerSize)
+        {
+            biggerSize = w.getListeCasesParcourues().size();
+            System.out.println("pas la mm taille");
+        }
+
+        for (int i=0; i<biggerSize && same; i++)
+        {
+            System.out.println("Théorie : [" + listeTheorie.get(i)[0] + ", " + listeTheorie.get(i)[1] + "]");
+            System.out.println("Pratique : [" + w.getListeCasesParcourues().get(i)[0] + ", " + w.getListeCasesParcourues().get(i)[1] + "]");
+            if (listeTheorie.get(i)[0]!=w.getListeCasesParcourues().get(i)[0] || listeTheorie.get(i)[1]!=w.getListeCasesParcourues().get(i)[1])
+                same = false;
+        }
+        assertTrue(same);
     }
 
     @Test
@@ -69,15 +103,9 @@ class WorkerTest
         System.out.println("Carried = " + w.getCarried());
 
         ArrayList<int[]> listeTheorie = new ArrayList<>();
-        listeTheorie.add(new int[]{0, 0});
-        listeTheorie.add(new int[]{0, 1});
-        listeTheorie.add(new int[]{0, 2});
-        listeTheorie.add(new int[]{0, 3});
-        listeTheorie.add(new int[]{0, 4});
-        listeTheorie.add(new int[]{0, 5});
-        listeTheorie.add(new int[]{0, 6});
-        listeTheorie.add(new int[]{0, 7});
-        listeTheorie.add(new int[]{0, 8});
+
+        for (int i=0; i<=8; i++)
+            listeTheorie.add(new int[]{0, i});
 
         boolean same = true;
         int biggerSize = listeTheorie.size();
@@ -120,7 +148,7 @@ class WorkerTest
     }
 
     @Test
-    void testChemin()
+    void testCheminZigzag() //Ce n'est pas une méthode que l'on a utilisée mais on a voulu retester avec le parcours de la V1
     {
         GameController controller = new GameController();
 

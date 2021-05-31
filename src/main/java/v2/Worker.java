@@ -183,8 +183,11 @@ public class Worker extends Ant
                 else if (listeVoisins.size() == 0) //Tous les voisins parcourus
                 {
                     listeVoisins = this.getListeVoisins();
+                    System.out.println("DEBUG ICI : " + listeVoisins.toString());
                     int index = GameController.rdm.nextInt(listeVoisins.size());
-                    this.deplacerVers(listeVoisins.get(index)[0], listeVoisins.get(index)[1]); //Déplacement random
+                    loc = listeVoisins.get(index);
+                    //System.out.println("ATTENTION Déplacement random : " + listeVoisins.get(index)[0] + ", " + listeVoisins.get(index)[1]);
+                    //this.deplacerVers(listeVoisins.get(index)[0], listeVoisins.get(index)[1]); //Déplacement random
                 }
             }
         }

@@ -99,8 +99,12 @@ public class GameController implements AntFacadeController
         {
             res += "[" + listeCasesParcourues.get(i)[0] + ", " + listeCasesParcourues.get(i)[1] + "], ";
         }
-        res = res.substring(0, res.length()-2);
-        res += "}";
+        if (listeCasesParcourues.size() > 0)
+        {
+            res = res.substring(0, res.length()-2);
+            res += "}";
+        }
+
         return res;
     }
 

@@ -43,27 +43,27 @@ public class Display extends JFrame {
                 if ( cells[i][j].get( 0 ) ) // fourmilière
                     ( (JLabel) grid.getComponent( k ) ).setText( "F" );
 
-                else if ( cells[i][j].get( 1 ) ) // obstacle
+                /*else*/ if ( cells[i][j].get( 1 ) ) // obstacle
                     ( (JLabel) grid.getComponent( k ) ).setText( "O" );
 
-                else if ( cells[i][j].get( 5 ) ) // nourriture
+                /*else*/ if ( cells[i][j].get( 5 ) ) // nourriture
                     ( (JLabel) grid.getComponent( k ) ).setText( "N" );
 
-                else {
-                    int r = 255, g = 255, b = 255;
-                    if ( cells[i][j].get( 2 ) ) // soldat
-                    {
-                        //Par défaut : b = 0; // jaune
-                        b = 0;
-                    }
-                    if ( cells[i][j].get( 3 ) ) // ouvrier aller
-                        g = 0; // magenta
-                    if ( cells[i][j].get( 4 ) ) // ouvrier retour
-                        r -= 128; // (cyan avec phéromones)
-                    if ( cells[i][j].get( 6 ) ) // phéromones
-                        r -= 127;
-                    grid.getComponent( k ).setBackground( new Color( r, g, b ) );
+                //else {
+                int r = 255, g = 255, b = 255;
+                if ( cells[i][j].get( 2 ) ) // soldat
+                {
+                    //Par défaut : b = 0; // jaune
+                    b = 0;
                 }
+                if ( cells[i][j].get( 3 ) ) // ouvrier aller
+                    g = 0; // magenta
+                if ( cells[i][j].get( 4 ) ) // ouvrier retour
+                    r -= 128; // (cyan avec phéromones)
+                if ( cells[i][j].get( 6 ) ) // phéromones
+                    r -= 127;
+                grid.getComponent( k ).setBackground( new Color( r, g, b ) );
+                //}
                 k++;
             }
 

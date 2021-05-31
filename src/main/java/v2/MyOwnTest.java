@@ -1,23 +1,24 @@
 package v2;
 
+import javax.swing.*;
+
 public class MyOwnTest {
 
     void run(AntFacadeController controller)
     {
         int width = 13;
         int height = 19;
-        controller.setParameters(1, 5, 5);
+        controller.setParameters(1, 5, 1);
 
         controller.createGrid(width, height);
         controller.createColony(0, 0);
         controller.createWorkers(1);
-
+        controller.putFood(18, 0, 20);
 
         int j = 0;
         boolean decalage = false;
 
         for (int i=0; i<19; i++)
-        {
             if (i%2 != 0)
             {
                 if (decalage)
@@ -28,15 +29,23 @@ public class MyOwnTest {
                 decalage = !decalage;
 
                 for (int k=j; k<12+j; k++)
-                {
                     controller.putObstacle(i, k);
-                }
             }
 
+
+        Display w = new Display( width, height, 100 );
+
+        while(true)
+        {
+            w.update( controller.play( 1, false ) );
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
-
-        /* A remettre après
+         /* A remettre après
         controller.putObstacle( 2, 3);
         controller.putObstacle( 7,2 );
 
@@ -51,26 +60,12 @@ public class MyOwnTest {
 
         //controller.play(1, false);
         //Display w = new Display( width, height, 10 );
-        Display w = new Display( width, height, 100 );
         /*for( int i = 0; i < 100; i++)
         {
             w.update( controller.play( 1, false ) );
         }*/
 
-        w.update( controller.play( 141, false ) );
-
-
-        /*while (true)
-        {
-            w.update( controller.play( 1, false ) );
-            try {
-                Thread.sleep(600);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }*/
-
-
+        //w.update( controller.play( 141, false ) );
 
     }
 }
