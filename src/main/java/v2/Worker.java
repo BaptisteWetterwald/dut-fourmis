@@ -61,7 +61,7 @@ public class Worker extends Ant
             //listeVoisins.removeIf(tab -> this.getGraphe().contientNourriture(tab[0], tab[1])); //Enlève les voisins qui ne contiennent pas de nourriture
             int[] newLoc = new int[2];
             if (listeVoisins.size() > 1)
-                newLoc = this.getBestLocation(listeVoisins);
+                newLoc = this.getBestLocation(new ArrayList<int[]>(listeVoisins));
 
             else if (listeVoisins.size() == 1)
             {

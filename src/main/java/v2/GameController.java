@@ -73,7 +73,13 @@ public class GameController implements AntFacadeController
         for (int i=0; i<duration; i++)
         {
             for (Ant f : graphe.getListFourmis())
+            {
                 f.seDeplacer();
+                if (f instanceof Worker)
+                {
+                    System.out.println(toString(((Worker)f).getListeCasesParcourues()));
+                }
+            }
             for (Pheromone p : graphe.getListPheromones())
                 if (p.getQuantity() <= this.pheromoneParam)
                     p = null;
@@ -84,6 +90,20 @@ public class GameController implements AntFacadeController
 
         return bs;
     }
+
+
+    private String toString(ArrayList<int[]> listeCasesParcourues)
+    {
+        String res = "{";
+        for (int i=0; i<listeCasesParcourues.size(); i++)
+        {
+            res += "[" + listeCasesParcourues.get(i)[0] + ", " + listeCasesParcourues.get(i)[1] + "], ";
+        }
+        res = res.substring(0, res.length()-2);
+        res += "}";
+        return res;
+    }
+
 
     /**
      * @param bs BitSet à actualiser
