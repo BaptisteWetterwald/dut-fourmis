@@ -4,6 +4,43 @@ public class MyOwnTest {
 
     void run(AntFacadeController controller)
     {
+        testConditionsNormales(controller);
+    }
+
+    private void testConditionsNormales(AntFacadeController controller)
+    {
+        int width = 10;
+        int height = 10;
+        controller.setParameters(10, 5, 200);
+
+        controller.createGrid(width, height);
+        controller.createColony(6, 6);
+
+
+        controller.putObstacle(2, 3);
+        controller.putObstacle(7, 2 );
+
+        controller.putFood(1, 4, 25);
+
+
+        //controller.createSoldiers(3);
+        controller.createWorkers(1);
+
+        Display w = new Display( width, height, 50);
+
+        while(true)
+        {
+            w.update( controller.play( 1, false ) );
+            try {
+                Thread.sleep(400);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void testZigZag(AntFacadeController controller)
+    {
         int width = 13;
         int height = 19;
         controller.setParameters(1, 5, 5);
@@ -31,39 +68,16 @@ public class MyOwnTest {
             }
 
 
-        Display w = new Display( width, height, 100 );
+        Display w = new Display( width, height, 50);
 
         while(true)
         {
             w.update( controller.play( 1, false ) );
             try {
-                Thread.sleep(50);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-
-         /* A remettre après
-        controller.putObstacle( 2, 3);
-        controller.putObstacle( 7,2 );
-
-        controller.putFood(1, 4, 20);
-
-        controller.createColony( 6, 6);
-
-        controller.createSoldiers( 3 );
-        controller.createWorkers(3);
-
-        */
-
-        //controller.play(1, false);
-        //Display w = new Display( width, height, 10 );
-        /*for( int i = 0; i < 100; i++)
-        {
-            w.update( controller.play( 1, false ) );
-        }*/
-
-        //w.update( controller.play( 141, false ) );
-
     }
 }
