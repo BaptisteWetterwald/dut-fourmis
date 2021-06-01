@@ -138,7 +138,7 @@ public class Graphe
     public boolean contientPheromone(int x, int y)
     {
         boolean contains = true;
-        if (getPheromoneAt(x, y) == null)
+        if (this.getPheromoneAt(x, y) == null)
             contains = false;
         return contains;
     }
@@ -211,7 +211,7 @@ public class Graphe
     public void putFood(int x, int y, int quantity)
     {
         Food food = null;
-        if (!contientNourriture(x, y))
+        if (!this.contientNourriture(x, y))
         {
             food = new Food(x, y, this);
             this.tabGrid[x][y].add(food);
