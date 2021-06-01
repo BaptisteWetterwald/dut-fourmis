@@ -14,6 +14,9 @@ public class Queen extends Ant
         super(x, y, graphe, colony);
     }
 
+    @Override
+    void seDeplacer(){}
+
     /**
      * Donne vie à une nouvelle fourmi-soldat
      */

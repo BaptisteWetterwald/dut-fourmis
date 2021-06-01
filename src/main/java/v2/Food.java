@@ -12,7 +12,7 @@ public class Food extends Occupant
      * @param y      ordonnée d'apparition sur la grille
      * @param graphe graphe concerné
      */
-    public Food(int x, int y, Graphe graphe) 
+    public Food(int x, int y, Graphe graphe)
     {
         super(x, y, graphe);
         this.quantity = 0;

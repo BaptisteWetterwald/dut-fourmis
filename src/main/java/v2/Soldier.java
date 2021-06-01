@@ -1,7 +1,6 @@
 package v2;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Soldier extends Ant
 {
@@ -28,7 +27,7 @@ public class Soldier extends Ant
         if (listeVoisins.size() > 0)
         {
             int rdmIndex = GameController.rdm.nextInt(listeVoisins.size());
-            deplacerVers(listeVoisins.get(rdmIndex)[0], listeVoisins.get(rdmIndex)[1]);
+            this.deplacerVers(listeVoisins.get(rdmIndex)[0], listeVoisins.get(rdmIndex)[1]);
         }
     }
 
