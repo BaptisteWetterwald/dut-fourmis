@@ -19,7 +19,7 @@ public abstract class Ant extends Occupant
         this.colony = colony;
     }
 
-    public void seDeplacer(){}
+    abstract void seDeplacer();
 
     /**
      * Déplace la fourmi vers la nouvelle position
