@@ -9,6 +9,14 @@ public class Worker extends Ant
     private int carried;
     private ArrayList<int[]> listeCasesParcourues;
 
+    /**
+     * Constructeur classe Worker
+     *
+     * @param x abscisse d'apparition sur le tableau
+     * @param y ordonnée d'apparition sur le tableau
+     * @param graphe graphe concerné par le placement
+     * @param colony colony à laquelle appartient la fourmi
+     */
     public Worker(int x, int y, Graphe graphe, Colony colony)
     {
         super(x, y, graphe, colony);
@@ -16,6 +24,9 @@ public class Worker extends Ant
         this.listeCasesParcourues = new ArrayList<>();
     }
 
+    /**
+     * Simule un dépôt de phéromone sur le noeud où se situe la fourmi
+     */
     public void depositPheromone()
     {
         int qty = this.getColony().getPheromoneDeposit();
@@ -31,6 +42,9 @@ public class Worker extends Ant
         phero.setQuantity(phero.getQuantity() + qty);
     }
 
+    /**
+     * Simule le retrait de nourriture par la fourmi au noeud sur lequel elle se tient
+     */
     public void takeFood()
     {
         int qty = this.getColony().getFoodWithdrawal();
@@ -53,6 +67,9 @@ public class Worker extends Ant
         }
     }
 
+    /**
+     * Redéfinition de la méthode seDeplacer() présente dans Ant
+     */
     @Override
     public void seDeplacer()
     {
@@ -86,33 +103,57 @@ public class Worker extends Ant
 
             if (this.listeCasesParcourues.size() > 0)
             {
-                //On déplace avant pour éviter qu'elle ne pose des phéromones sur la case contenant la nourriture ou sur la fourmilière
-                this.deplacerVers(this.listeCasesParcourues.get(this.listeCasesParcourues.size()-1)[0], this.listeCasesParcourues.get(this.listeCasesParcourues.size()-1)[1]);
-                this.listeCasesParcourues.remove(this.listeCasesParcourues.size()-1);
+                if (this.getGraphe().deplacementValide(this.listeCasesParcourues.get(this.listeCasesParcourues.size()-1)[0], this.listeCasesParcourues.get(this.listeCasesParcourues.size()-1)[1]))
+                {
+                    //On déplace avant pour éviter qu'elle ne pose des phéromones sur la case contenant la nourriture ou sur la fourmilière
+                    this.deplacerVers(this.listeCasesParcourues.get(this.listeCasesParcourues.size()-1)[0], this.listeCasesParcourues.get(this.listeCasesParcourues.size()-1)[1]);
+                    this.listeCasesParcourues.remove(this.listeCasesParcourues.size()-1);
 
-                //Si pas fourmilière ni case avec nourriture
-                if ( !(this.getX()==this.getColony().getX() && this.getY()==this.getColony().getY())
-                    && !this.getGraphe().contientNourriture(this.getX(), this.getY()) )
-                    this.depositPheromone();
+                    //Si pas fourmilière ni case avec nourriture
+                    if ( !(this.getX()==this.getColony().getX() && this.getY()==this.getColony().getY())
+                            && !this.getGraphe().contientNourriture(this.getX(), this.getY()) )
+                        this.depositPheromone();
 
+                    else
+                    {
+                        this.listeCasesParcourues = new ArrayList<>();
+                        this.listeCasesParcourues.add(new int[]{this.getX(), this.getY()});
+                        this.depositAllFood();
+                    }
+                }
                 else
                 {
-                    this.listeCasesParcourues = new ArrayList<>();
-                    this.listeCasesParcourues.add(new int[]{this.getX(), this.getY()});
-                    this.depositAllFood();
+                    this.deplacementHasard();
+                    if (this.getX()==this.getColony().getX() && this.getY()==this.getColony().getY()) //Si elle a retrouvé la fourmilière par hasard
+                    {
+                        this.listeCasesParcourues = new ArrayList<>();
+                        this.listeCasesParcourues.add(new int[]{this.getX(), this.getY()});
+                        this.depositAllFood();
+                    }
                 }
+
             }
 
         }
 
     }
 
+    /**
+     * Simule le dépôt de toute la nourriture portée par la fourmi dans la fourmilière
+     */
     private void depositAllFood()
     {
         this.getGraphe().putFood(this.getX(), this.getY(), this.carried);
         this.carried = 0;
     }
 
+
+    /**
+     * Retourne la position du meilleur voisin pour le déplacement de la fourmi ouvrière
+     *
+     * @param listeVoisins liste des positions des voisins
+     * @return position optimale sous la forme {x, y}, ou null si aucun voisin disponible
+     */
     private int[] getBestLocation(ArrayList<int[]> listeVoisins)
     {
         int[] loc = new int[2]; //{x,y}
@@ -199,6 +240,12 @@ public class Worker extends Ant
         return loc;
     }
 
+    /**
+     * Définit si la liste des voisins possédant des phéromones est triée par ordre croissant ou non
+     *
+     * @param list liste à vérifier
+     * @return true si la liste est triée, false sinon
+     */
     private boolean isSorted(ArrayList<int[]> list)
     {
         boolean sorted = true;
@@ -209,34 +256,34 @@ public class Worker extends Ant
         return sorted;
     }
 
+    /**
+     * Simple accesseur
+     *
+     * @return la liste des positions {x, y} parcourues à l'aller par la fourmi
+     */
     public ArrayList<int[]> getListeCasesParcourues()
     {
         return this.listeCasesParcourues;
     }
 
+
+    /**
+     * Simple accesseur
+     *
+     * @return la quantité de nourriture portée par la fourmi
+     */
     public int getCarried()
     {
         return this.carried;
     }
 
+    /**
+     * Simple mutateur
+     * Définit la nouvelle quantité de nourriture portée par la fourmi
+     */
     public void setCarried(int newQty)
     {
         this.carried = newQty;
     }
 
-    /**
-     * Simule la loi de probabilité décrite dans le sujet.
-     *
-     * @param n cardinal de l'ensemble E
-     * @param r instance de la classe Random à utiliser pour la simulation
-     * @return l'indice du voisin à visiter (un entier entre 0 et n-1)
-     */
-    private int probabilityLaw(int n, Random r)
-    {
-        int k = 1 + r.nextInt( n*(n+1)/2 );
-        for( int i=1;  i <= n; i++ )
-            if( k <= i*(i+1)/2 )
-                return i-1;
-        return 0;
-    }
 }

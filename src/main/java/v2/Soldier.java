@@ -9,28 +9,18 @@ public class Soldier extends Ant
      *
      * @param x abscisse d'apparition sur le tableau
      * @param y ordonnée d'apparition sur le tableau
-     * @param graphe grille concernée par le placement
+     * @param graphe graphe concerné par le placement
      */
     public Soldier(int x, int y, Graphe graphe, Colony colony)
     {
         super(x, y, graphe, colony);
     }
 
+
+
     /**
-     * Fait se déplacer au hasard la fourmi-soldat
+     * Redéfinition de la méthode seDeplacer() présente dans Ant
      */
-    public void deplacementHasard()
-    {
-        ArrayList<int[]> listeVoisins = getListeVoisins();
-
-        //Liste triée, tous les déplacements sont valides
-        if (listeVoisins.size() > 0)
-        {
-            int rdmIndex = GameController.rdm.nextInt(listeVoisins.size());
-            this.deplacerVers(listeVoisins.get(rdmIndex)[0], listeVoisins.get(rdmIndex)[1]);
-        }
-    }
-
     @Override
     public void seDeplacer()
     {

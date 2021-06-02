@@ -21,6 +21,7 @@ public class Occupant
     }
 
     /**
+     * Simple accesseur
      * Retourne le graphe contenant l'occupant
      *
      * @return le graphe contenant l'occupant
@@ -31,6 +32,7 @@ public class Occupant
     }
 
     /**
+     * Simple accesseur
      * Retourne l'abscisse de l'occupant dans la grille
      *
      * @return l'abscisse de l'occupant dans le tableau
@@ -41,6 +43,7 @@ public class Occupant
     }
 
     /**
+     * Simple accesseur
      * Retourne l'ordonnée de l'occupant dans la grille
      *
      * @return l'ordonnée de l'occupant dans le tableau
@@ -51,6 +54,7 @@ public class Occupant
     }
 
     /**
+     * Simple mutateur
      * Modifie l'abscisse théorique attribuée à l'occupant
      *
      * @param x nouvelle abscisse de l'occupant
@@ -61,6 +65,7 @@ public class Occupant
     }
 
     /**
+     * Simple mutateur
      * Modifie l'ordonnée théorique attribuée à l'occupant
      *
      * @param y nouvelle ordonnée de l'occupant

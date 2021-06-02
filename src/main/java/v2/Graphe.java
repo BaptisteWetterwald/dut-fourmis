@@ -46,7 +46,7 @@ public class Graphe
     }
 
     /**
-     * Retourne la colonie associée au graphe
+     * Retourne la colonie associée au graphe (en partant du principe qu'il n'y en a qu'une pour le moment)
      *
      * @return colonie associée au graphe
      */
@@ -68,7 +68,8 @@ public class Graphe
     }
 
     /**
-     * Retourne la liste des fourmis dans le graphe
+     * Simple accesseur
+     * Retourne la liste des fourmis présentes sur le graphe
      *
      * @return liste des fourmis du graphe
      */
@@ -78,7 +79,8 @@ public class Graphe
     }
 
     /**
-     * Retourne la grille sur laquette se déplacent les fourmis
+     * Simple accesseur
+     * Retourne la grille sur laquelle se déplacent les fourmis
      *
      * @return tableau de listes d'occupants, sur lequel se déplacent les fourmis
      */
@@ -135,6 +137,13 @@ public class Graphe
         return contains;
     }
 
+    /**
+     * Détermine si une position de la grille contient une instance de Pheromone
+     *
+     * @param x abscisse de la position à tester sur le tableau
+     * @param y ordonnée de la position à tester sur le tableau
+     * @return true si la position contient une instance de Pheromone, false sinon
+     */
     public boolean contientPheromone(int x, int y)
     {
         boolean contains = true;
@@ -157,6 +166,14 @@ public class Graphe
         }
     }
 
+
+    /**
+     * Retourne la pheromone présente à la position précisée
+     *
+     * @param x abscisse de la position
+     * @param y ordonnée de la position
+     * @return l'instance de Pheromone présente à la position, null s'il n'y en a pas
+     */
     public Pheromone getPheromoneAt(int x, int y)
     {
         Pheromone phero = null;
@@ -173,6 +190,13 @@ public class Graphe
         return phero;
     }
 
+    /**
+     * Retourne la nourriture présente à la position précisée
+     *
+     * @param x abscisse de la position
+     * @param y ordonnée de la position
+     * @return l'instance de Food présente à la position, null s'il n'y en a pas
+     */
     public Food getFoodAt(int x, int y)
     {
         Food food = null;
@@ -183,6 +207,13 @@ public class Graphe
         return food;
     }
 
+    /**
+     * Détermine si une position de la grille contient une fourmi-ouvrière ne portant pas de nourriture
+     *
+     * @param x abscisse de la position à tester sur le tableau
+     * @param y ordonnée de la position à tester sur le tableau
+     * @return true si elle en contient une, false sinon
+     */
     public boolean contientOuvriereVide(int x, int y)
     {
         boolean contains = false;
@@ -193,6 +224,13 @@ public class Graphe
         return contains;
     }
 
+    /**
+     * Détermine si une position de la grille contient une fourmi-ouvrière portant de la nourriture
+     *
+     * @param x abscisse de la position à tester sur le tableau
+     * @param y ordonnée de la position à tester sur le tableau
+     * @return true si elle en contient une, false sinon
+     */
     public boolean contientOuvrierePorteuse(int x, int y)
     {
         boolean contains = false;
@@ -203,11 +241,26 @@ public class Graphe
         return contains;
     }
 
+    /**
+     * Détermine si une position de la grille contient une instance de Food
+     *
+     * @param x abscisse de la position à tester sur le tableau
+     * @param y ordonnée de la position à tester sur le tableau
+     * @return true si elle en contient une, false sinon
+     */
     public boolean contientNourriture(int x, int y)
     {
         return (this.getFoodAt(x, y) != null);
     }
 
+
+    /**
+     * Ajoute la quantité précisée à la quantité de nourriture présente à la position précisée
+     *
+     * @param x abscisse de la position
+     * @param y ordonnée de la position
+     * @param quantity quantité à ajouter
+     */
     public void putFood(int x, int y, int quantity)
     {
         Food food = null;
@@ -226,6 +279,12 @@ public class Graphe
         food.setQuantity(food.getQuantity() + quantity);
     }
 
+    /**
+     * Simple accesseur
+     * Retourne la liste des phéromones présentes sur le graphe
+     *
+     * @return liste des pheromones du graphe
+     */
     public ArrayList<Pheromone> getListPheromones()
     {
         return this.listPheromones;
