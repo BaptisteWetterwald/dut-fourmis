@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="273px" preserveAspectRatio="none" style="width:606px;height:273px;background:#FFFFFF;" version="1.1" viewBox="0 0 606 273" width="606px" zoomAndPan="magnify"><defs><filter height="300%" id="f1a6q3yz28ji0y" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[ada397b649420ec721dc9cc2c99e8045]
+class Fourmi--><rect codeLine="3" fill="#FEFECE" filter="url(#f1a6q3yz28ji0y)" height="117.1797" id="Fourmi" style="stroke:#A80036;stroke-width:1.5;" width="119" x="429" y="7"/><ellipse cx="465.6" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M467.6,19.5 Q467.8031,19 468.0375,18.75 Q468.2719,18.5 468.5375,18.5 Q469.0063,18.5 469.3031,18.7813 Q469.6,19.0625 469.6,19.7188 L469.6,21.2813 Q469.6,21.9375 469.3188,22.2188 Q469.0375,22.5 468.6,22.5 Q468.2094,22.5 467.9594,22.3281 Q467.7094,22.1563 467.6,21.7031 Q467.5531,21.3906 467.3813,21.2188 Q467.0688,20.8906 466.5063,20.7031 Q465.9438,20.5 465.3813,20.5 Q464.6781,20.5 464.0844,20.7813 Q463.5063,21.0625 463.0531,21.6875 Q462.6,22.3125 462.6,23.1719 L462.6,24.0938 Q462.6,25.125 463.4438,25.8125 Q464.2875,26.5 465.7875,26.5 Q466.6781,26.5 467.3031,26.2969 Q467.6625,26.1875 468.0688,25.8281 Q468.3344,25.625 468.475,25.5625 Q468.6156,25.5 468.7875,25.5 Q469.1156,25.5 469.35,25.7656 Q469.6,26.0156 469.6,26.375 Q469.6,26.7188 469.2563,27.125 Q468.7563,27.7188 467.9594,28.0469 Q466.9125,28.5 465.6313,28.5 Q464.1313,28.5 462.9281,27.9063 Q461.9594,27.4375 461.2719,26.4219 Q460.6,25.4063 460.6,24.2031 L460.6,23.1094 Q460.6,21.8594 461.1938,20.7656 Q461.8031,19.6719 462.85,19.0938 Q463.9125,18.5 465.1,18.5 Q465.8188,18.5 466.4438,18.75 Q467.0688,19 467.6,19.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="39" x="484.4" y="27.9102">Fourmi</text><line style="stroke:#A80036;stroke-width:1.5;" x1="430" x2="547" y1="39" y2="39"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="437" y="47"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="61" x="449" y="54.4189">posX:Integer</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="437" y="60.8359"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="62" x="449" y="68.2549">posY:Integer</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="437" y="74.6719"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="72" x="449" y="82.0908">colonie:Colonie</text><line style="stroke:#A80036;stroke-width:1.5;" x1="430" x2="547" y1="88.5078" y2="88.5078"/><ellipse cx="440" cy="99.5078" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="63" x="449" y="103.9268">seDeplacer()</text><ellipse cx="440" cy="113.3438" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="93" x="449" y="117.7627">rentrerFourmiliere()</text><!--MD5=[cd8a70aa33f1eb81dbb0a178e8570315]
+class Colonie--><rect codeLine="12" fill="#FEFECE" filter="url(#f1a6q3yz28ji0y)" height="48" id="Colonie" style="stroke:#A80036;stroke-width:1.5;" width="75" x="39" y="41.5"/><ellipse cx="54" cy="57.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M56,54 Q56.2031,53.5 56.4375,53.25 Q56.6719,53 56.9375,53 Q57.4063,53 57.7031,53.2813 Q58,53.5625 58,54.2188 L58,55.7813 Q58,56.4375 57.7188,56.7188 Q57.4375,57 57,57 Q56.6094,57 56.3594,56.8281 Q56.1094,56.6563 56,56.2031 Q55.9531,55.8906 55.7813,55.7188 Q55.4688,55.3906 54.9063,55.2031 Q54.3438,55 53.7813,55 Q53.0781,55 52.4844,55.2813 Q51.9063,55.5625 51.4531,56.1875 Q51,56.8125 51,57.6719 L51,58.5938 Q51,59.625 51.8438,60.3125 Q52.6875,61 54.1875,61 Q55.0781,61 55.7031,60.7969 Q56.0625,60.6875 56.4688,60.3281 Q56.7344,60.125 56.875,60.0625 Q57.0156,60 57.1875,60 Q57.5156,60 57.75,60.2656 Q58,60.5156 58,60.875 Q58,61.2188 57.6563,61.625 Q57.1563,62.2188 56.3594,62.5469 Q55.3125,63 54.0313,63 Q52.5313,63 51.3281,62.4063 Q50.3594,61.9375 49.6719,60.9219 Q49,59.9063 49,58.7031 L49,57.6094 Q49,56.3594 49.5938,55.2656 Q50.2031,54.1719 51.25,53.5938 Q52.3125,53 53.5,53 Q54.2188,53 54.8438,53.25 Q55.4688,53.5 56,54 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="43" x="68" y="62.4102">Colonie</text><line style="stroke:#A80036;stroke-width:1.5;" x1="40" x2="113" y1="73.5" y2="73.5"/><line style="stroke:#A80036;stroke-width:1.5;" x1="40" x2="113" y1="81.5" y2="81.5"/><!--MD5=[d6c56845228da44ff8e238a5671f2722]
+class Fourmiliere--><rect codeLine="18" fill="#FEFECE" filter="url(#f1a6q3yz28ji0y)" height="89.5078" id="Fourmiliere" style="stroke:#A80036;stroke-width:1.5;" width="95" x="149" y="20.5"/><ellipse cx="164" cy="36.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M166,33 Q166.2031,32.5 166.4375,32.25 Q166.6719,32 166.9375,32 Q167.4063,32 167.7031,32.2813 Q168,32.5625 168,33.2188 L168,34.7813 Q168,35.4375 167.7188,35.7188 Q167.4375,36 167,36 Q166.6094,36 166.3594,35.8281 Q166.1094,35.6563 166,35.2031 Q165.9531,34.8906 165.7813,34.7188 Q165.4688,34.3906 164.9063,34.2031 Q164.3438,34 163.7813,34 Q163.0781,34 162.4844,34.2813 Q161.9063,34.5625 161.4531,35.1875 Q161,35.8125 161,36.6719 L161,37.5938 Q161,38.625 161.8438,39.3125 Q162.6875,40 164.1875,40 Q165.0781,40 165.7031,39.7969 Q166.0625,39.6875 166.4688,39.3281 Q166.7344,39.125 166.875,39.0625 Q167.0156,39 167.1875,39 Q167.5156,39 167.75,39.2656 Q168,39.5156 168,39.875 Q168,40.2188 167.6563,40.625 Q167.1563,41.2188 166.3594,41.5469 Q165.3125,42 164.0313,42 Q162.5313,42 161.3281,41.4063 Q160.3594,40.9375 159.6719,39.9219 Q159,38.9063 159,37.7031 L159,36.6094 Q159,35.3594 159.5938,34.2656 Q160.2031,33.1719 161.25,32.5938 Q162.3125,32 163.5,32 Q164.2188,32 164.8438,32.25 Q165.4688,32.5 166,33 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="63" x="178" y="41.4102">Fourmiliere</text><line style="stroke:#A80036;stroke-width:1.5;" x1="150" x2="243" y1="52.5" y2="52.5"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="157" y="60.5"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="61" x="169" y="67.9189">posX:Integer</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="157" y="74.3359"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="62" x="169" y="81.7549">posY:Integer</text><line style="stroke:#A80036;stroke-width:1.5;" x1="150" x2="243" y1="88.1719" y2="88.1719"/><ellipse cx="160" cy="99.1719" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="50" x="169" y="103.5908">getReine()</text><!--MD5=[eaecdb4d60f1acc22a4989f71e32ee67]
+class Soldat--><rect codeLine="25" fill="#FEFECE" filter="url(#f1a6q3yz28ji0y)" height="61.8359" id="Soldat" style="stroke:#A80036;stroke-width:1.5;" width="89" x="384" y="191"/><ellipse cx="408.9" cy="207" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M410.9,203.5 Q411.1031,203 411.3375,202.75 Q411.5719,202.5 411.8375,202.5 Q412.3063,202.5 412.6031,202.7813 Q412.9,203.0625 412.9,203.7188 L412.9,205.2813 Q412.9,205.9375 412.6188,206.2188 Q412.3375,206.5 411.9,206.5 Q411.5094,206.5 411.2594,206.3281 Q411.0094,206.1563 410.9,205.7031 Q410.8531,205.3906 410.6813,205.2188 Q410.3688,204.8906 409.8063,204.7031 Q409.2438,204.5 408.6813,204.5 Q407.9781,204.5 407.3844,204.7813 Q406.8063,205.0625 406.3531,205.6875 Q405.9,206.3125 405.9,207.1719 L405.9,208.0938 Q405.9,209.125 406.7438,209.8125 Q407.5875,210.5 409.0875,210.5 Q409.9781,210.5 410.6031,210.2969 Q410.9625,210.1875 411.3688,209.8281 Q411.6344,209.625 411.775,209.5625 Q411.9156,209.5 412.0875,209.5 Q412.4156,209.5 412.65,209.7656 Q412.9,210.0156 412.9,210.375 Q412.9,210.7188 412.5563,211.125 Q412.0563,211.7188 411.2594,212.0469 Q410.2125,212.5 408.9313,212.5 Q407.4313,212.5 406.2281,211.9063 Q405.2594,211.4375 404.5719,210.4219 Q403.9,209.4063 403.9,208.2031 L403.9,207.1094 Q403.9,205.8594 404.4938,204.7656 Q405.1031,203.6719 406.15,203.0938 Q407.2125,202.5 408.4,202.5 Q409.1188,202.5 409.7438,202.75 Q410.3688,203 410.9,203.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="35" x="425.1" y="211.9102">Soldat</text><line style="stroke:#A80036;stroke-width:1.5;" x1="385" x2="472" y1="223" y2="223"/><line style="stroke:#A80036;stroke-width:1.5;" x1="385" x2="472" y1="231" y2="231"/><ellipse cx="395" cy="242" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="63" x="404" y="246.4189">seDeplacer()</text><!--MD5=[fb42f63e3a0f62f73f4fc52c072eeb9a]
+class Reine--><rect codeLine="31" fill="#FEFECE" filter="url(#f1a6q3yz28ji0y)" height="61.8359" id="Reine" style="stroke:#A80036;stroke-width:1.5;" width="84" x="508.5" y="191"/><ellipse cx="532.05" cy="207" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M534.05,203.5 Q534.2531,203 534.4875,202.75 Q534.7219,202.5 534.9875,202.5 Q535.4563,202.5 535.7531,202.7813 Q536.05,203.0625 536.05,203.7188 L536.05,205.2813 Q536.05,205.9375 535.7688,206.2188 Q535.4875,206.5 535.05,206.5 Q534.6594,206.5 534.4094,206.3281 Q534.1594,206.1563 534.05,205.7031 Q534.0031,205.3906 533.8313,205.2188 Q533.5188,204.8906 532.9563,204.7031 Q532.3938,204.5 531.8313,204.5 Q531.1281,204.5 530.5344,204.7813 Q529.9563,205.0625 529.5031,205.6875 Q529.05,206.3125 529.05,207.1719 L529.05,208.0938 Q529.05,209.125 529.8938,209.8125 Q530.7375,210.5 532.2375,210.5 Q533.1281,210.5 533.7531,210.2969 Q534.1125,210.1875 534.5188,209.8281 Q534.7844,209.625 534.925,209.5625 Q535.0656,209.5 535.2375,209.5 Q535.5656,209.5 535.8,209.7656 Q536.05,210.0156 536.05,210.375 Q536.05,210.7188 535.7063,211.125 Q535.2063,211.7188 534.4094,212.0469 Q533.3625,212.5 532.0813,212.5 Q530.5813,212.5 529.3781,211.9063 Q528.4094,211.4375 527.7219,210.4219 Q527.05,209.4063 527.05,208.2031 L527.05,207.1094 Q527.05,205.8594 527.6438,204.7656 Q528.2531,203.6719 529.3,203.0938 Q530.3625,202.5 531.55,202.5 Q532.2688,202.5 532.8938,202.75 Q533.5188,203 534.05,203.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="33" x="547.95" y="211.9102">Reine</text><line style="stroke:#A80036;stroke-width:1.5;" x1="509.5" x2="591.5" y1="223" y2="223"/><line style="stroke:#A80036;stroke-width:1.5;" x1="509.5" x2="591.5" y1="231" y2="231"/><ellipse cx="519.5" cy="242" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="58" x="528.5" y="246.4189">donnerVie()</text><!--MD5=[a6b47dd42c1ad448e16844461e7657f4]
+class Grille--><rect codeLine="36" fill="#FEFECE" filter="url(#f1a6q3yz28ji0y)" height="89.5078" id="Grille" style="stroke:#A80036;stroke-width:1.5;" width="112" x="279.5" y="20.5"/><ellipse cx="317.45" cy="36.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M319.45,33 Q319.6531,32.5 319.8875,32.25 Q320.1219,32 320.3875,32 Q320.8563,32 321.1531,32.2813 Q321.45,32.5625 321.45,33.2188 L321.45,34.7813 Q321.45,35.4375 321.1688,35.7188 Q320.8875,36 320.45,36 Q320.0594,36 319.8094,35.8281 Q319.5594,35.6563 319.45,35.2031 Q319.4031,34.8906 319.2313,34.7188 Q318.9188,34.3906 318.3563,34.2031 Q317.7938,34 317.2313,34 Q316.5281,34 315.9344,34.2813 Q315.3563,34.5625 314.9031,35.1875 Q314.45,35.8125 314.45,36.6719 L314.45,37.5938 Q314.45,38.625 315.2938,39.3125 Q316.1375,40 317.6375,40 Q318.5281,40 319.1531,39.7969 Q319.5125,39.6875 319.9188,39.3281 Q320.1844,39.125 320.325,39.0625 Q320.4656,39 320.6375,39 Q320.9656,39 321.2,39.2656 Q321.45,39.5156 321.45,39.875 Q321.45,40.2188 321.1063,40.625 Q320.6063,41.2188 319.8094,41.5469 Q318.7625,42 317.4813,42 Q315.9813,42 314.7781,41.4063 Q313.8094,40.9375 313.1219,39.9219 Q312.45,38.9063 312.45,37.7031 L312.45,36.6094 Q312.45,35.3594 313.0438,34.2656 Q313.6531,33.1719 314.7,32.5938 Q315.7625,32 316.95,32 Q317.6688,32 318.2938,32.25 Q318.9188,32.5 319.45,33 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="29" x="336.55" y="41.4102">Grille</text><line style="stroke:#A80036;stroke-width:1.5;" x1="280.5" x2="390.5" y1="52.5" y2="52.5"/><line style="stroke:#A80036;stroke-width:1.5;" x1="280.5" x2="390.5" y1="60.5" y2="60.5"/><ellipse cx="290.5" cy="71.5" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="83" x="299.5" y="75.9189">creerObstacles()</text><ellipse cx="290.5" cy="85.3359" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="86" x="299.5" y="89.7549">creerFourmiliere()</text><ellipse cx="290.5" cy="99.1719" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="72" x="299.5" y="103.5908">creerFourmis()</text><!--MD5=[84718776d214be480e4c259efcb737fc]
+class Main--><rect codeLine="43" fill="#FEFECE" filter="url(#f1a6q3yz28ji0y)" height="75.6719" id="Main" style="stroke:#A80036;stroke-width:1.5;" width="139" x="7" y="184"/><ellipse cx="59.25" cy="200" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M61.25,196.5 Q61.4531,196 61.6875,195.75 Q61.9219,195.5 62.1875,195.5 Q62.6563,195.5 62.9531,195.7813 Q63.25,196.0625 63.25,196.7188 L63.25,198.2813 Q63.25,198.9375 62.9688,199.2188 Q62.6875,199.5 62.25,199.5 Q61.8594,199.5 61.6094,199.3281 Q61.3594,199.1563 61.25,198.7031 Q61.2031,198.3906 61.0313,198.2188 Q60.7188,197.8906 60.1563,197.7031 Q59.5938,197.5 59.0313,197.5 Q58.3281,197.5 57.7344,197.7813 Q57.1563,198.0625 56.7031,198.6875 Q56.25,199.3125 56.25,200.1719 L56.25,201.0938 Q56.25,202.125 57.0938,202.8125 Q57.9375,203.5 59.4375,203.5 Q60.3281,203.5 60.9531,203.2969 Q61.3125,203.1875 61.7188,202.8281 Q61.9844,202.625 62.125,202.5625 Q62.2656,202.5 62.4375,202.5 Q62.7656,202.5 63,202.7656 Q63.25,203.0156 63.25,203.375 Q63.25,203.7188 62.9063,204.125 Q62.4063,204.7188 61.6094,205.0469 Q60.5625,205.5 59.2813,205.5 Q57.7813,205.5 56.5781,204.9063 Q55.6094,204.4375 54.9219,203.4219 Q54.25,202.4063 54.25,201.2031 L54.25,200.1094 Q54.25,198.8594 54.8438,197.7656 Q55.4531,196.6719 56.5,196.0938 Q57.5625,195.5 58.75,195.5 Q59.4688,195.5 60.0938,195.75 Q60.7188,196 61.25,196.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="26" x="79.75" y="204.9102">Main</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="145" y1="216" y2="216"/><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="145" y1="224" y2="224"/><ellipse cx="18" cy="235" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="88" x="27" y="239.4189">lancerJeu(g:Grille)</text><ellipse cx="18" cy="248.8359" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="113" x="27" y="253.2549">avancerTemps(g:Grille)</text><!--MD5=[5a914b73609f412641820e1f6a352f08]
+class Cellule--><rect codeLine="49" fill="#FEFECE" filter="url(#f1a6q3yz28ji0y)" height="61.8359" id="Cellule" style="stroke:#A80036;stroke-width:1.5;" width="109" x="181" y="191"/><ellipse cx="213.1" cy="207" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M215.1,203.5 Q215.3031,203 215.5375,202.75 Q215.7719,202.5 216.0375,202.5 Q216.5063,202.5 216.8031,202.7813 Q217.1,203.0625 217.1,203.7188 L217.1,205.2813 Q217.1,205.9375 216.8188,206.2188 Q216.5375,206.5 216.1,206.5 Q215.7094,206.5 215.4594,206.3281 Q215.2094,206.1563 215.1,205.7031 Q215.0531,205.3906 214.8813,205.2188 Q214.5688,204.8906 214.0063,204.7031 Q213.4438,204.5 212.8813,204.5 Q212.1781,204.5 211.5844,204.7813 Q211.0063,205.0625 210.5531,205.6875 Q210.1,206.3125 210.1,207.1719 L210.1,208.0938 Q210.1,209.125 210.9438,209.8125 Q211.7875,210.5 213.2875,210.5 Q214.1781,210.5 214.8031,210.2969 Q215.1625,210.1875 215.5688,209.8281 Q215.8344,209.625 215.975,209.5625 Q216.1156,209.5 216.2875,209.5 Q216.6156,209.5 216.85,209.7656 Q217.1,210.0156 217.1,210.375 Q217.1,210.7188 216.7563,211.125 Q216.2563,211.7188 215.4594,212.0469 Q214.4125,212.5 213.1313,212.5 Q211.6313,212.5 210.4281,211.9063 Q209.4594,211.4375 208.7719,210.4219 Q208.1,209.4063 208.1,208.2031 L208.1,207.1094 Q208.1,205.8594 208.6938,204.7656 Q209.3031,203.6719 210.35,203.0938 Q211.4125,202.5 212.6,202.5 Q213.3188,202.5 213.9438,202.75 Q214.5688,203 215.1,203.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="39" x="230.9" y="211.9102">Cellule</text><line style="stroke:#A80036;stroke-width:1.5;" x1="182" x2="289" y1="223" y2="223"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="189" y="231"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="83" x="201" y="238.4189">obstacle:Boolean</text><line style="stroke:#A80036;stroke-width:1.5;" x1="182" x2="289" y1="244.8359" y2="244.8359"/><!--MD5=[b4cb33dcbe836530f458d8962bd9df06]
+reverse link Fourmi to Soldat--><path d="M458.91,142.71 C452.29,159.75 445.64,176.87 440.26,190.73 " fill="none" id="Fourmi-backto-Soldat" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="452.39,140.14,466.16,124.03,465.44,145.21,452.39,140.14" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[150ad93d41980f0109ce774ea247ec9b]
+reverse link Fourmi to Reine--><path d="M519.08,142.71 C525.92,159.75 532.79,176.87 538.35,190.73 " fill="none" id="Fourmi-backto-Reine" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="512.54,145.2,511.59,124.03,525.53,139.98,512.54,145.2" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[4a7a7197a57a092da1ed3c3f6539020f]
+link Colonie to Fourmiliere--><!--MD5=[3b07e04ea8be8ab90b2bcf3218092566]
+link Fourmiliere to Grille--><!--MD5=[3454fbe84bf4df5d71f0c3d837f3e9e5]
+link Colonie to Main--><!--MD5=[4a76993a61d26b187e338c95ad4ccad4]
+link Main to Cellule--><!--MD5=[043ef681ef8421564814a89f9faec970]
+@startuml
+'https://plantuml.com/class-diagram
+
+class Fourmi
+{
+    +seDeplacer()
+    +rentrerFourmiliere()
+    -posX:Integer
+    -posY:Integer
+    -colonie:Colonie
+}
+
+class Colonie
+{
+
+}
+
+
+class Fourmiliere
+{
+    -posX:Integer
+    -posY:Integer
+    +getReine()
+}
+
+class Soldat extends Fourmi
+{
+    +seDeplacer()
+}
+
+
+class Reine extends Fourmi
+{
+    +donnerVie()
+}
+
+class Grille
+{
+    +creerObstacles()
+    +creerFourmiliere()
+    +creerFourmis()
+}
+
+class Main
+{
+    +lancerJeu(g:Grille)
+    +avancerTemps(g:Grille)
+}
+
+class Cellule
+{
+
+    -obstacle:Boolean
+}
+
+
+@enduml
+
+@startuml
+
+class Fourmi
+{
+    +seDeplacer()
+    +rentrerFourmiliere()
+    -posX:Integer
+    -posY:Integer
+    -colonie:Colonie
+}
+
+class Colonie
+{
+
+}
+
+
+class Fourmiliere
+{
+    -posX:Integer
+    -posY:Integer
+    +getReine()
+}
+
+class Soldat extends Fourmi
+{
+    +seDeplacer()
+}
+
+
+class Reine extends Fourmi
+{
+    +donnerVie()
+}
+
+class Grille
+{
+    +creerObstacles()
+    +creerFourmiliere()
+    +creerFourmis()
+}
+
+class Main
+{
+    +lancerJeu(g:Grille)
+    +avancerTemps(g:Grille)
+}
+
+class Cellule
+{
+
+    -obstacle:Boolean
+}
+
+
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 14:40:07 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: Dynamic Code Evolution 64-Bit Server VM
+Default Encoding: Cp1252
+Language: fr
+Country: FR
+--></g></svg>
