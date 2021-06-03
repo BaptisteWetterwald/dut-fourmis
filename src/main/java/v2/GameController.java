@@ -81,7 +81,6 @@ public class GameController implements AntFacadeController
             ArrayList<Pheromone> listePheroASuppr = new ArrayList<>();
             for (Pheromone p : graphe.getListPheromones())
             {
-                //System.out.println("LISTE PHEROS : " + graphe.getListPheromones().toString());
                 if (p.getQuantity() <= this.evaporationParam)
                     listePheroASuppr.add(p);
                 else
