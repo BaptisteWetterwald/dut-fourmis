@@ -1,8 +1,8 @@
 @startuml
 
-title __DC v1__\n
+title __DC v2__\n
 
-namespace v1 {
+namespace v2 {
 
     abstract class Ant extends Occupant
     {
