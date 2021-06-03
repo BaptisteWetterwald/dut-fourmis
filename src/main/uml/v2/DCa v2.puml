@@ -1,72 +1,87 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class Fourmi
+class Ant extends Occupant
 {
-    +seDeplacer()
-    +libererPheromone()
-    +rentrerFourmiliere()
-    -posX:Integer
-    -posY:Integer
-    -colonie:Colonie
+    colony
 }
 
-class Colonie
+class Colony extends Occupant
 {
-    -quantitePrelevement:Integer
+    pheromoneDeposit
+    foodWithdrawal
 }
 
-class Pheromone
+class Display
 {
-    -vitesseEvaporation
-    +sEvaporer()
+
 }
 
-class Fourmiliere
+class Food extends Occupant
 {
-    -posX:Integer
-    -posY:Integer
-    +getReine()
+    quantity
 }
 
-class Soldat extends Fourmi
+class GameController
 {
-    +seDeplacer()
+    graphe
+    rdm
+    evaporationParam
 }
 
-class Ouvriere extends Fourmi
+class Graphe
 {
-    -quantitePortee:Integer
-    +chercher(n:Nourriture, g:Grille)
-    +prelever(n:Nourriture)
-    +deposer(n:Nourriture)
-    +determinerCaseAdj(g:Grille))
-}
-
-class Reine extends Fourmi
-{
-    +donnerVie()
-}
-
-class Grille
-{
-    +creerObstacles()
-    +creerFourmiliere()
-    +creerFourmis()
-    +placerNourriture()
+    tabGrid
+    listAnts
+    listPheromones
 }
 
 class Main
 {
-    +lancerJeu(g:Grille)
-    +avancerTemps(g:Grille)
 }
 
-class Cellule
+class Obstacle extends Occupant
 {
-    -quantiteNourriture:Integer
-    -obstacle:Boolean
 }
+
+class Occupant
+{
+    x
+    y
+}
+
+class Pheromone extends Occupant
+{
+    quantity
+}
+
+class Queen extends Ant
+{
+}
+
+class Sauvegarde
+{
+}
+
+class Soldier extends Ant
+{
+}
+
+class Worker extends Ant
+{
+    carried
+}
+
+Main - GameController : lance le jeu >
+GameController - Graphe : utilise >
+Graphe - Occupant : est sur <
+Ant -up- Colony : appartient à une >
+Queen -up- Soldier : donne vie >
+Queen - Worker : donne vie >
+Worker - Food : ramasse et dépose >
+Worker -up- Pheromone : dépose >
+GameController -- Display : affiche la grille >
+GameController -- Sauvegarde : enregistre les déplacements >
 
 
 @enduml

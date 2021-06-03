@@ -1,7 +1,5 @@
 package v2;
 
-import java.util.ArrayList;
-
 public class Soldier extends Ant
 {
     /**

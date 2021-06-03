@@ -1,0 +1,23 @@
+Rapport pour la version 1 en P21 :
+
+    Tous les tests unitaires étaient fonctionnels, le test FourmiSoldatTest également.
+
+-----------------------------------------------------------------------------------------
+
+Rapport pour la version 2 en P21 :
+
+    Suite à votre retour, nous avons passé le Random en static dans la classe GameController.
+
+    Les tests unitaires manquant à la v1 ont été rajoutés.
+
+    Tous les tests unitaires de la v1 et de la v2) fonctionnent (sauf preuve du contraire).
+
+    Les scénarios de test fonctionnent également.
+
+    Nous avons donc réussi à implémenter toutes les fonctionnalités demandées.
+
+    Nous avons utilisé les principes du cours : polymorphisme, héritage, interface, abstraction de la classe Ant et de sa méthode seDeplacer()
+
+    Nous n'avons pas eu de difficulté particulière.
+
+    Le projet a été terminé dans les temps, bien que de justesse.
