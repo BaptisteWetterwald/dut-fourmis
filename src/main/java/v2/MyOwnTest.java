@@ -17,7 +17,7 @@ public class MyOwnTest {
     {
         int width = 10;
         int height = 10;
-        controller.setParameters(1, 5, 200);
+        controller.setParameters(10, 5, 200);
 
         controller.createGrid(width, height);
         controller.createColony(6, 6);

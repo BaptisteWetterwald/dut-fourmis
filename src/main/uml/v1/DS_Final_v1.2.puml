@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+Participant MyOwnTest
+Participant GameController
+Participant Graphe
+Participant Ant
+
+MyOwnTest -> GameController++ : play
+
+
+loop i=0 i<duration i++
+GameController -> Graphe++ : getListFourmis()
+Graphe -> GameController-- : listAnts
+loop a: listAnts
+
+GameController -> Ant++ : seDeplacer()
+Ant -> GameController-- :
+
+end
+
+GameController -> MyOwnTest-- : bs
+@enduml
+
