@@ -19,6 +19,10 @@ public abstract class Ant extends Occupant
         this.colony = colony;
     }
 
+    /**
+     * Méthode abstraite à redéfinir pour chaque sous-classe.
+     * Simule un déplacement sur le graphe.
+     */
     abstract void seDeplacer();
 
     /**
@@ -35,11 +39,23 @@ public abstract class Ant extends Occupant
         this.setY(y);
     }
 
+
+    /**
+     * Simple accesseur
+     *
+     * @return la Colony à laquelle appartient la fourmi
+     */
     public Colony getColony()
     {
         return this.colony;
     }
 
+
+    /**
+     * Retourne la liste des noeuds voisins possibles (ni obstacles ni hors du graphe)
+     *
+     * @return la liste des noeuds voisins possibles (ni obstacles ni hors du graphe), stockés sous la forme {x, y}
+     */
     public ArrayList<int[]> getListeVoisins()
     {
         int x = this.getX();
@@ -53,6 +69,21 @@ public abstract class Ant extends Occupant
             if ( !this.getGraphe().deplacementValide( listeVoisins.get(i)[0], listeVoisins.get(i)[1] ) )
                 listeVoisins.remove(i);
         return listeVoisins;
+    }
+
+    /**
+     * Déplace la fourmi sur un voisin au hasard
+     */
+    public void deplacementHasard()
+    {
+        ArrayList<int[]> listeVoisins = getListeVoisins();
+
+        //Liste triée, tous les déplacements sont valides
+        if (listeVoisins.size() > 0)
+        {
+            int rdmIndex = GameController.rdm.nextInt(listeVoisins.size());
+            this.deplacerVers(listeVoisins.get(rdmIndex)[0], listeVoisins.get(rdmIndex)[1]);
+        }
     }
 
 }

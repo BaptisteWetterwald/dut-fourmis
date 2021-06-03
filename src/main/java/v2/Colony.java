@@ -27,7 +27,7 @@ public class Colony extends Occupant
     }
 
     /**
-     * Retourne la reine de la colonie
+     * Retourne la fourmi reine de la colonie
      *
      * @return reine de la colonie
      */
@@ -45,11 +45,22 @@ public class Colony extends Occupant
         return (Queen)list.get(i);
     }
 
+
+    /**
+     * Simple accesseur
+     *
+     * @return le paramètre indiquant la quantité de nourriture à retirer
+     */
     public int getFoodWithdrawal()
     {
         return this.foodWithdrawal;
     }
 
+    /**
+     * Simple accesseur
+     *
+     * @return le paramètre indiquant la quantité de phéromone à déposer
+     */
     public int getPheromoneDeposit()
     {
         return this.pheromoneDeposit;

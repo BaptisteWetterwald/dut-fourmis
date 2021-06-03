@@ -14,11 +14,17 @@ public class Queen extends Ant
         super(x, y, graphe, colony);
     }
 
+    /**
+     * Redéfinition de la méthode seDeplacer() présente dans Ant
+     * Vide car la reine ne bouge pas
+     */
     @Override
     void seDeplacer(){}
 
     /**
      * Donne vie à une nouvelle fourmi-soldat
+     *
+     * @param c classe que l'on souhaite instancier
      */
     public void donnerVie(Class c)
     {

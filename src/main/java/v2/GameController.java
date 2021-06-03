@@ -98,7 +98,7 @@ public class GameController implements AntFacadeController
     }
 
 
-    private String toString(ArrayList<int[]> listeCasesParcourues)
+    /*private String toString(ArrayList<int[]> listeCasesParcourues)
     {
         String res = "{";
         for (int i=0; i<listeCasesParcourues.size(); i++)
@@ -112,11 +112,13 @@ public class GameController implements AntFacadeController
         }
 
         return res;
-    }
+    }*/
 
 
     /**
-     * @param bs BitSet à actualiser
+     * Actualisation du tableau de BitSet selon l'état du graphe
+     *
+     * @param bs BitSet[][] à actualiser
      * @param graphe Graphe utilisé pour l'actualisation
      */
     private void refreshBitSet(BitSet[][] bs, Graphe graphe)
