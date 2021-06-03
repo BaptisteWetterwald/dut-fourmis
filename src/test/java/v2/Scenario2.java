@@ -57,8 +57,6 @@ public class Scenario2
         else if (w.getX()==2 && w.getY()==1) //Bas
             caseValide = true;
 
-        if (!caseValide)
-            System.out.println(w.getX() + " " + w.getY());
         assertTrue(caseValide);
     }
 
