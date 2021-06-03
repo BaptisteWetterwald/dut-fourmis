@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+Participant MyOwnTest
+Participant GameController
+Participant Graphe
+Participant Soldier
+
+MyOwnTest -> GameController++ : play
+
+
+loop
+GameController -> Graphe++ : getListFourmis()
+Graphe -> GameController-- : listAnts
+
+alt f instanceof Soldier
+GameController -> Soldier++ : deplacementHasard()
+Soldier -> GameController-- :
+end
+end
+
+
+
+
+
+GameController -> MyOwnTest-- : bs
+@enduml
+
+chaque fourmi ce déplace
+les fourmis sont crée

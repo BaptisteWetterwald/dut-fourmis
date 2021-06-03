@@ -1,9 +1,0 @@
-@startuml
-'https://plantuml.com/sequence-diagram
-
-autonumber
-
-chaque fourmi ce déplace
-les fourmis sont crée
-
-@enduml
