@@ -1,0 +1,57 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Fourmi
+{
+    +seDeplacer()
+    +rentrerFourmiliere()
+    -posX:Integer
+    -posY:Integer
+    -colonie:Colonie
+}
+
+class Colonie
+{
+
+}
+
+
+class Fourmiliere
+{
+    -posX:Integer
+    -posY:Integer
+    +getReine()
+}
+
+class Soldat extends Fourmi
+{
+    +seDeplacer()
+}
+
+
+class Reine extends Fourmi
+{
+    +donnerVie()
+}
+
+class Grille
+{
+    +creerObstacles()
+    +creerFourmiliere()
+    +creerFourmis()
+}
+
+class Main
+{
+    +lancerJeu(g:Grille)
+    +avancerTemps(g:Grille)
+}
+
+class Cellule
+{
+
+    -obstacle:Boolean
+}
+
+
+@enduml
