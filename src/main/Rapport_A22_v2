@@ -1,0 +1,97 @@
+Rapport de la version 2 en A22 :
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Modifications apportées suite au retour concernant la V1 :
+
+    - Ajout du DCA que l'on avait oublié de push à la v1 (mis à jour pour la v2)
+    - Dans le diagramme de séquence, utilisation des instances plutôt que des classes
+    - On a retiré les "void" de l'UML
+    - Ajout de liens dans le DCc
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Patrons SOLID :
+
+    - Responsabilité unique
+        Respecté : Graphe ne s'occupe que de la grille, GameController des étapes du jeu, et chaque sous-classe de Ant s'occupe de ses propres déplacements
+
+    - Ouvert-Fermé
+        Respecté : On peut ajouter de nouveaux types héritant de Occupant, ou encore d'autres types de fourmis héritant de Ant. On utilise le polymorphisme.
+
+    - Substitution de Lyskov
+        Respecté : Les sous-classes de Ant ne posent pas de problème lors de l'exécution des test, et ce grâce à l'héritage.
+        Exemple : la redéfinition des méthodes seDeplacer() dans chacune de ces sous-classes ne pose pas de problème aux tests unitaires de Ant.
+
+    - Ségrégation des interfaces
+        Respecté : La classe GameController réalise l'interface AntFacadeController. Cette dernière rend l'utilisation du programme aisée à un utilisateur extérieur à l'application.
+
+    - Inversion de dépendance
+        Respecté : La classe Ant est abstraite. On a essayé de réduire l'utilisation des types concrets dans notre code lorsque ce n'était pas nécessaire.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Patrons GRASP :
+
+    - Expert en information
+        Respecté : La classe GameController connaît le déroulement de la partie (itérations), et le Graphe connaît sa grille et ses occupants.
+
+    - Créateur
+        Respecté : Notre classe Queen donne naissance aux autres fourmis (et les instancie dedans).
+        Exemple :
+
+            public void donnerVie(Class c)
+            {
+                Ant ant;
+                if (c == Soldier.class)
+                    ant = new Soldier(this.getX(), this.getY(), this.getGraphe(), this.getColony());
+                else
+                {
+                    ant = new Worker(this.getX(), this.getY(), this.getGraphe(), this.getColony());
+                }
+                this.getGraphe().getTabGrid()[this.getX()][this.getY()].add(ant);
+                this.getGraphe().getListFourmis().add(ant);
+            }
+
+    - Faible couplage
+        Respecté partiellement : On a essayé de ne pas stocker d'attributs inutiles lorsqu'on peut retrouver l'élément facilement.
+        Exemple : La méthode getFourmiliere() dans Graphe évite l'attribut Colony.
+
+    - Forte cohésion
+        Respecté : Comme justifié dans le patron GRASP de responsabilité unique, les différentes classes possèdent des méthodes qui les concerne directement.
+
+    - Contrôleur
+        Respecté : Les seules interactions avec un acteur extérieur sont gérées par l'interface AntFacadeController.
+
+    - Polymorphisme
+        Respecté : Les sous-classes de Ant redéfinissent la méthode abstraite seDeplacer(), qui est utilisée dans la méthode play().
+        Exemple :
+
+            Dans la méthode play() :
+
+                for (Ant f : graphe.getListFourmis())
+                    f.seDeplacer();
+
+            Dans nos sous-classes, de la même façon que pour la classe Soldier :
+
+                public class Soldier extends Ant
+                {
+                    ...
+                    @Override
+                    seDeplacer()
+                    {
+                        ...
+                    }
+                }
+
+    - Pure fabrication/invention
+        Respecté : La sauvegarde des déplacements vers le fichier .csv se fait dans une classe Sauvegarde.
+
+    - Indirection
+        Non utilisé : La classe Ant, dont héritent nos fourmis spécialisées, ne possède pas beaucoup de méthodes. Celles-ci sont nécessaires à tous les types de fourmi.
+                      Idem pour notre classe Occupant qui ne possède que 2 mutateurs et 3 accesseurs.
+
+    - Protection des variations (Demeter)
+        Respecté : Graphe ne connaît pas directement la Colony à laquelle appartient une fourmi, mais il connaît les Occupants de sa grille.
+        Exemple :
+            Colony c = ((Ant)graphe.getTabGrid[0][0].get(0)).getColony();
