@@ -12,8 +12,8 @@ public class Worker extends Ant
     /**
      * Constructeur classe Worker
      *
-     * @param x abscisse d'apparition sur le tableau
-     * @param y ordonnée d'apparition sur le tableau
+     * @param x ligne d'apparition sur le tableau
+     * @param y colonne d'apparition sur le tableau
      * @param graphe graphe concerné par le placement
      * @param colony colony à laquelle appartient la fourmi
      */

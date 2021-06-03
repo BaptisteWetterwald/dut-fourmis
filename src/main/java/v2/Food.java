@@ -8,8 +8,8 @@ public class Food extends Occupant
     /**
      * Constructeur classe Food
      *
-     * @param x      abscisse d'apparition sur la grille
-     * @param y      ordonnée d'apparition sur la grille
+     * @param x      ligne d'apparition sur la grille
+     * @param y      colonne d'apparition sur la grille
      * @param graphe graphe concerné
      */
     public Food(int x, int y, Graphe graphe)

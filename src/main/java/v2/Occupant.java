@@ -9,8 +9,8 @@ public class Occupant
     /**
      * Constructeur classe Occupant
      *
-     * @param x abscisse d'apparition sur la grille
-     * @param y ordonnée d'apparition sur la grille
+     * @param x ligne d'apparition sur la grille
+     * @param y colonne d'apparition sur la grille
      * @param graphe graphe concerné
      */
     public Occupant(int x, int y, Graphe graphe)
@@ -33,9 +33,9 @@ public class Occupant
 
     /**
      * Simple accesseur
-     * Retourne l'abscisse de l'occupant dans la grille
+     * Retourne la ligne de l'occupant dans la grille
      *
-     * @return l'abscisse de l'occupant dans le tableau
+     * @return la ligne de l'occupant dans le tableau
      */
     public int getX()
     {
@@ -44,9 +44,9 @@ public class Occupant
 
     /**
      * Simple accesseur
-     * Retourne l'ordonnée de l'occupant dans la grille
+     * Retourne la colonne de l'occupant dans la grille
      *
-     * @return l'ordonnée de l'occupant dans le tableau
+     * @return la colonne de l'occupant dans le tableau
      */
     public int getY()
     {
@@ -55,9 +55,9 @@ public class Occupant
 
     /**
      * Simple mutateur
-     * Modifie l'abscisse théorique attribuée à l'occupant
+     * Modifie la ligne théorique attribuée à l'occupant
      *
-     * @param x nouvelle abscisse de l'occupant
+     * @param x nouvelle ligne de l'occupant
      */
     public void setX(int x)
     {
@@ -66,9 +66,9 @@ public class Occupant
 
     /**
      * Simple mutateur
-     * Modifie l'ordonnée théorique attribuée à l'occupant
+     * Modifie la colonne théorique attribuée à l'occupant
      *
-     * @param y nouvelle ordonnée de l'occupant
+     * @param y nouvelle colonne de l'occupant
      */
     public void setY(int y)
     {

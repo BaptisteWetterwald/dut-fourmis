@@ -9,8 +9,8 @@ public abstract class Ant extends Occupant
     /**
      * Constructeur classe Ant
      *
-     * @param x abscisse d'apparition sur la graphe
-     * @param y ordonnée d'apparition sur la graphe
+     * @param x ligne d'apparition sur la graphe
+     * @param y colonne d'apparition sur la graphe
      * @param graphe graphe concerné
      */
     public Ant(int x, int y, Graphe graphe, Colony colony)
@@ -28,8 +28,8 @@ public abstract class Ant extends Occupant
     /**
      * Déplace la fourmi vers la nouvelle position
      *
-     * @param x abscisse après déplacement
-     * @param y ordonnée après déplacement
+     * @param x ligne après déplacement
+     * @param y colonne après déplacement
      */
     public void deplacerVers(int x, int y)
     {

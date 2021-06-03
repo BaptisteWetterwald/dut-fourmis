@@ -25,8 +25,8 @@ public class Graphe
     /**
      * Définit la validité d'un déplacement selon son occupation par un obstacle
      *
-     * @param x abscisse de la nouvelle position à tester
-     * @param y ordonnée de la nouvelle position à tester
+     * @param x ligne de la nouvelle position à tester
+     * @param y colonne de la nouvelle position à tester
      * @return true si le déplacement est valide, false sinon
      */
     public boolean deplacementValide(int x, int y)
@@ -92,8 +92,8 @@ public class Graphe
     /**
      * Détermine si une position de la grille contient une colonie
      *
-     * @param x abscisse de la position à tester sur le tableau
-     * @param y ordonnée de la position à tester sur le tableau
+     * @param x ligne de la position à tester sur le tableau
+     * @param y colonne de la position à tester sur le tableau
      * @return true si la position contient une colonie, false sinon
      */
     public boolean contientFourmiliere(int x, int y)
@@ -108,8 +108,8 @@ public class Graphe
     /**
      * Détermine si une position de la grille contient un obstacle
      *
-     * @param x abscisse de la position à tester sur le tableau
-     * @param y ordonnée de la position à tester sur le tableau
+     * @param x ligne de la position à tester sur le tableau
+     * @param y colonne de la position à tester sur le tableau
      * @return true si la position contient un obstacle, false sinon
      */
     public boolean contientObstacle(int x, int y)
@@ -124,8 +124,8 @@ public class Graphe
     /**
      * Détermine si une position de la grille contient une fourmi-soldat
      *
-     * @param x abscisse de la position à tester sur le tableau
-     * @param y ordonnée de la position à tester sur le tableau
+     * @param x ligne de la position à tester sur le tableau
+     * @param y colonne de la position à tester sur le tableau
      * @return true si la position contient une fourmi-soldat, false sinon
      */
     public boolean contientSoldat(int x, int y)
@@ -140,8 +140,8 @@ public class Graphe
     /**
      * Détermine si une position de la grille contient une instance de Pheromone
      *
-     * @param x abscisse de la position à tester sur le tableau
-     * @param y ordonnée de la position à tester sur le tableau
+     * @param x ligne de la position à tester sur le tableau
+     * @param y colonne de la position à tester sur le tableau
      * @return true si la position contient une instance de Pheromone, false sinon
      */
     public boolean contientPheromone(int x, int y)
@@ -170,8 +170,8 @@ public class Graphe
     /**
      * Retourne la pheromone présente à la position précisée
      *
-     * @param x abscisse de la position
-     * @param y ordonnée de la position
+     * @param x ligne de la position
+     * @param y colonne de la position
      * @return l'instance de Pheromone présente à la position, null s'il n'y en a pas
      */
     public Pheromone getPheromoneAt(int x, int y)
@@ -193,8 +193,8 @@ public class Graphe
     /**
      * Retourne la nourriture présente à la position précisée
      *
-     * @param x abscisse de la position
-     * @param y ordonnée de la position
+     * @param x ligne de la position
+     * @param y colonne de la position
      * @return l'instance de Food présente à la position, null s'il n'y en a pas
      */
     public Food getFoodAt(int x, int y)
@@ -210,8 +210,8 @@ public class Graphe
     /**
      * Détermine si une position de la grille contient une fourmi-ouvrière ne portant pas de nourriture
      *
-     * @param x abscisse de la position à tester sur le tableau
-     * @param y ordonnée de la position à tester sur le tableau
+     * @param x ligne de la position à tester sur le tableau
+     * @param y colonne de la position à tester sur le tableau
      * @return true si elle en contient une, false sinon
      */
     public boolean contientOuvriereVide(int x, int y)
@@ -227,8 +227,8 @@ public class Graphe
     /**
      * Détermine si une position de la grille contient une fourmi-ouvrière portant de la nourriture
      *
-     * @param x abscisse de la position à tester sur le tableau
-     * @param y ordonnée de la position à tester sur le tableau
+     * @param x ligne de la position à tester sur le tableau
+     * @param y colonne de la position à tester sur le tableau
      * @return true si elle en contient une, false sinon
      */
     public boolean contientOuvrierePorteuse(int x, int y)
@@ -244,8 +244,8 @@ public class Graphe
     /**
      * Détermine si une position de la grille contient une instance de Food
      *
-     * @param x abscisse de la position à tester sur le tableau
-     * @param y ordonnée de la position à tester sur le tableau
+     * @param x ligne de la position à tester sur le tableau
+     * @param y colonne de la position à tester sur le tableau
      * @return true si elle en contient une, false sinon
      */
     public boolean contientNourriture(int x, int y)
@@ -257,8 +257,8 @@ public class Graphe
     /**
      * Ajoute la quantité précisée à la quantité de nourriture présente à la position précisée
      *
-     * @param x abscisse de la position
-     * @param y ordonnée de la position
+     * @param x ligne de la position
+     * @param y colonne de la position
      * @param quantity quantité à ajouter
      */
     public void putFood(int x, int y, int quantity)

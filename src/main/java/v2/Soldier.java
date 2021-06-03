@@ -7,8 +7,8 @@ public class Soldier extends Ant
     /**
      * Constructeur classe Soldier
      *
-     * @param x abscisse d'apparition sur le tableau
-     * @param y ordonnée d'apparition sur le tableau
+     * @param x ligne d'apparition sur le tableau
+     * @param y colonne d'apparition sur le tableau
      * @param graphe graphe concerné par le placement
      */
     public Soldier(int x, int y, Graphe graphe, Colony colony)

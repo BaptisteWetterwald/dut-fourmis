@@ -5,8 +5,8 @@ public class Queen extends Ant
     /**
      * Constructeur classe Queen
      *
-     * @param x abscisse d'apparition sur la grille
-     * @param y ordonnée d'apparition sur la grille
+     * @param x ligne d'apparition sur la grille
+     * @param y colonne d'apparition sur la grille
      * @param graphe graphe concerné
      */
     public Queen(int x, int y, Graphe graphe, Colony colony)
