@@ -6,27 +6,21 @@ autonumber
 Participant MyOwnTest
 Participant GameController
 Participant Graphe
-Participant Soldier
+Participant Ant
 
 MyOwnTest -> GameController++ : play
 
 
-loop
+loop i=0 i<duration i++
 GameController -> Graphe++ : getListFourmis()
 Graphe -> GameController-- : listAnts
+loop a: listAnts
 
-alt f instanceof Soldier
-GameController -> Soldier++ : deplacementHasard()
-Soldier -> GameController-- :
+GameController -> Ant++ : seDeplacer()
+Ant -> GameController-- :
+
 end
-end
-
-
-
-
 
 GameController -> MyOwnTest-- : bs
 @enduml
 
-chaque fourmi ce déplace
-les fourmis sont crée
