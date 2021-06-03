@@ -73,10 +73,12 @@ public class Worker extends Ant
     @Override
     public void seDeplacer()
     {
+        if (this.getX()==this.getColony().getX() && this.getY()==this.getColony().getY())
+            this.listeCasesParcourues.add(new int[]{this.getX(), this.getY()});
+
         if (this.carried == 0)
         {
             ArrayList<int[]> listeVoisins = this.getListeVoisins();
-            //listeVoisins.removeIf(tab -> this.getGraphe().contientNourriture(tab[0], tab[1])); //Enlève les voisins qui ne contiennent pas de nourriture
             int[] newLoc = new int[2];
             if (listeVoisins.size() > 1)
                 newLoc = this.getBestLocation(new ArrayList<int[]>(listeVoisins));
@@ -90,7 +92,6 @@ public class Worker extends Ant
             if (listeVoisins.size() > 0) //S'il y a bien une position correcte
             {
                 this.deplacerVers(newLoc[0], newLoc[1]);
-
                 //Gestion nourriture + cases parcourues
                 if ( !this.getGraphe().contientNourriture(this.getX(), this.getY()) )
                     this.listeCasesParcourues.add(new int[]{this.getX(), this.getY()});
@@ -117,7 +118,6 @@ public class Worker extends Ant
                     else
                     {
                         this.listeCasesParcourues = new ArrayList<>();
-                        this.listeCasesParcourues.add(new int[]{this.getX(), this.getY()});
                         this.depositAllFood();
                     }
                 }
@@ -127,7 +127,6 @@ public class Worker extends Ant
                     if (this.getX()==this.getColony().getX() && this.getY()==this.getColony().getY()) //Si elle a retrouvé la fourmilière par hasard
                     {
                         this.listeCasesParcourues = new ArrayList<>();
-                        this.listeCasesParcourues.add(new int[]{this.getX(), this.getY()});
                         this.depositAllFood();
                     }
                 }
@@ -215,7 +214,7 @@ public class Worker extends Ant
                     ArrayList<int[]> listeVoisinsAvecProba = new ArrayList<>();
                     for (int i=0; i<listeVoisins.size(); i++)
                     {
-                        for (int j=0; j<i+1; j++)
+                        for (int j=0; j<i+2; j++)
                         {
                             listeVoisinsAvecProba.add(listeVoisins.get(i));
                         }
@@ -224,6 +223,8 @@ public class Worker extends Ant
                     //On remet les voisins sans phéro en les insérant à l'indice 0
                     for (int[] voisin : voisinsSansPhero)
                         listeVoisinsAvecProba.add(0, voisin);
+
+                    //display(listeVoisinsAvecProba);
 
                     loc = listeVoisinsAvecProba.get(GameController.rdm.nextInt(listeVoisinsAvecProba.size()));
                 }
@@ -239,6 +240,20 @@ public class Worker extends Ant
             loc = null;
         return loc;
     }
+
+    /*private void display(ArrayList<int[]> list)
+    {
+        System.out.println("------------------------");
+        for (int i=0; i<list.size(); i++)
+        {
+            Pheromone p = this.getGraphe().getPheromoneAt(list.get(i)[0], list.get(i)[1]);
+            if (p != null)
+                System.out.println(p.toString() + " - Qty:" + p.getQuantity());
+            else
+                System.out.println("Qty: 0");
+        }
+
+    }*/
 
     /**
      * Définit si la liste des voisins possédant des phéromones est triée par ordre croissant ou non
