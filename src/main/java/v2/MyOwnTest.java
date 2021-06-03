@@ -9,8 +9,8 @@ public class MyOwnTest {
 
     void run(AntFacadeController controller)
     {
-        testZigZag(controller);
-        //testConditionsNormales(controller);
+        //testZigZag(controller);
+        testConditionsNormales(controller);
     }
 
     private void testConditionsNormales(AntFacadeController controller)

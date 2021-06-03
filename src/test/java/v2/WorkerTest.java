@@ -53,7 +53,6 @@ class WorkerTest
         g.getTabGrid()[0][0].add(c);
         w = new Worker(0, 0, g, c);
         g.getTabGrid()[0][0].add(w);
-        w.getListeCasesParcourues().add(new int[]{w.getX(), w.getY()});
 
         for (int i=0; i<8; i++)
         {
@@ -93,7 +92,6 @@ class WorkerTest
         g.getTabGrid()[0][0].add(c);
         w = new Worker(0, 0, g, c);
         g.getTabGrid()[0][0].add(w);
-        w.getListeCasesParcourues().add(new int[]{w.getX(), w.getY()});
 
         for (int i=0; i<8; i++)
         {
