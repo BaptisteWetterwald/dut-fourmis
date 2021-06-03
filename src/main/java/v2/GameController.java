@@ -29,15 +29,18 @@ public class GameController implements AntFacadeController
     @Override
     public void putObstacle(int row, int column)
     {
-        if (!graphe.contientFourmiliere(row, column))
-            graphe.getTabGrid()[row][column].add(new Obstacle(row, column, graphe));
+        if (graphe.contientFourmiliere(row, column) || graphe.contientNourriture(row, column))
+            throw new IllegalArgumentException("Impossible de placer un obstacle sur une fourmilière ou sur une case contenant de la nourriture.");
         else
-            throw new IllegalArgumentException("Impossible de placer un obstacle sur une fourmilière.");
+            graphe.getTabGrid()[row][column].add(new Obstacle(row, column, graphe));
     }
 
     @Override
     public void putFood(int row, int column, int quantity) {
-        graphe.putFood(row, column, quantity);
+        if (!graphe.contientFourmiliere(row, column))
+            graphe.putFood(row, column, quantity);
+        else
+            throw new IllegalArgumentException("Impossible de placer de la nourriture sur une fourmilière.");
     }
 
     @Override

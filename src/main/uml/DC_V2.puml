@@ -175,15 +175,8 @@ namespace v1 {
         - isSorted(list : ArrayList<int[]> ) : Boolean
         + getListeCasesParcourues() : ArrayList<int[]>
         + getCarried() : int
-        //+ withdrawPheromone()
+        + withdrawPheromone()
    }
-
-    abstract class Parameters
-    {
-        - evaporationQty : int
-        - foodParam : int
-        - pheromoneParam : int
-    }
 
     Main -> MyOwnTest : démarre une partie
     MyOwnTest -up-> Display : affiche les déplacements
@@ -191,5 +184,10 @@ namespace v1 {
     FourmiSoldatTest *-- AntFacadeController : utilise
     GameController "1" --> "n" Graphe : gère le déroulement >
     Occupant "n" -* "1" Graphe : occupe >
+    Ant "n" -> "1" Colony : appartient à
+    Worker -> Food : ramasse et dépose
+    Worker --> Pheromone : dépose
+    Queen -> Soldier : donne vie
+    Queen -> Worker : donne vie
 }
 @enduml

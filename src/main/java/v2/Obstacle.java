@@ -16,3 +16,4 @@ public class Obstacle extends Occupant
     }
 
 }
+
