@@ -64,7 +64,7 @@ public class GameController implements AntFacadeController
 
     @Override
     public void setAntFile(String antLogFile) {
-
+        Save save = new Save(antLogFile);
     }
 
     @Override

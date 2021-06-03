@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class Ant extends Occupant
+abstract class Ant extends Occupant
 {
     colony
 }
