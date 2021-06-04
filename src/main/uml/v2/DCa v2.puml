@@ -74,7 +74,7 @@ class Worker extends Ant
 }
 
 Main - GameController : lance le jeu >
-GameController - Graphe : utilise >
+GameController - Graphe : lit les positions >
 Graphe - Occupant : est sur <
 Ant -up- Colony : appartient à une >
 Queen -up- Soldier : donne vie >

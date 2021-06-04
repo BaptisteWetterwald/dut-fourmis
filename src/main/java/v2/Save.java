@@ -7,7 +7,7 @@ import java.io.IOException;
 public class Save
 {
 
-    File fileSave;
+    private File fileSave;
 
     /**
      * Constructeur classe Save

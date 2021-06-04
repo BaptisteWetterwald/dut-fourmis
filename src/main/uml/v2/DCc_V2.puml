@@ -8,121 +8,102 @@ namespace v2 {
     {
         - colony : Colony
 
-        + deplacementValide( x : int, y : int):boolean
-        + deplacerVers( x : int, y : int)
-        + seDeplacer()
-        + getColony() : Colony
-        + getListeVoisins() : ArrayList<int[]>
-
+        {abstract} + seDeplacer()
+        + deplacerVers(x:Integer, y:Integer)
+        + getColony():Colony
+        + getListeVoisins() : Integer[*]
+        + deplacementHasard()
     }
 
     interface AntFacadeController
     {
-        {abstract} + createColony()
-        {abstract} + createGrid()
-        {abstract} + createSoldiers()
-        {abstract} + createWorkers()
-        {abstract} + play() : BitSet[][]
-        {abstract} + putFood()
-        {abstract} + putObstacle()
-        {abstract} + setAntFile()
-        {abstract} + setParameters()
+        {abstract} + setParameters(evaporationParam:Integer, foodParam:Integer, pheromoneParam:Integer)
+        {abstract} + createGrid(width:Integer, height:Integer)
+        {abstract} + putObstacle(row:Integer, column:Integer)
+        {abstract} + putFood(row:Integer, column:Integer, quantity:Integer)
+        {abstract} + createColony(width:Integer, height:Integer)
+        {abstract} + createSoldiers(amount:Integer)
+        {abstract} + createWorkers(amount:Integer)
+        {abstract} + setAntFile(antLogFile:String)
+        {abstract} + play(duration:Integer, record:boolean):BitSet[*]
     }
 
     class Colony extends Occupant
     {
-        - pheromoneDeposit : int
-        - foodWithdrawal : int
+        - pheromoneDeposit:Integer
+        - foodWithdrawal:Integer
 
-        + getFoodWithdrawal() : int
-        + getPheromoneDeposit() : int
-
-        + getReine() : Reine
+        + getReine():Queen
+        + getFoodWithdrawal():Integer
+        + getPheromoneDeposit():Integer
     }
 
 
-    class Display extends javax.swing.JFrame
+    class Display
     {
-        - cellSize : int
-        - height : int
-        - width : int
+        - cellSize:Integer
+        - height:Integer
+        - width:Integer
 
-        + update(cells : BitSet[][])
+        + update(cells:BitSet[*])
     }
 
     class Food extends Occupant
     {
-        - quantity : int
+        - quantity:Integer
 
-        + getQuantity(): int
-        + setQuantity(newQty : int)
-    }
-
-    class FourmiSoldatTest
-    {
-        {static} ~ HEIGHT : int
-        {static} ~ WIDTH : int
-        ~ setUp()
-        ~ test0()
-        ~ test1()
-        ~ test2()
-        ~ test3()
-        ~ test4()
-        ~ testPutObstacle()
+        + getQuantity():Integer
+        + setQuantity(newQty:Integer)
     }
 
     class GameController implements AntFacadeController
     {
-        + rdm : Random
-        - graphe : Graphe
-        - evaporationParam : int
-        - foodParam : int
-        - pheromoneParam : int
+        {static} + rdm:Random
+        - graphe:Graphe
+        - evaporationParam:Integer
+        - foodParam:Integer
+        - pheromoneParam:Integer
+        - save:Save
 
-        + setParameters(evaporationParam : int, foodParam : int, pheromoneParam : int)
-        + createGrid(width : int, height : int)
-        + putObstacle(row : int, column : int)
-        + putFood(row : int, column : int, quantity : int)
-        + createColony(width : int, height : int)
-        + createSoldiers(amount : int)
-        + createWorkers(amount : int)
-        + setAntFile(antLogFile : String)
-        + play(duration : int, record : boolean) : BitSet[][]
-        - refreshBitSet(bs : BitSet[][], graphe : Graphe)
+        + setParameters(evaporationParam:Integer, foodParam:Integer, pheromoneParam:Integer)
+        + createGrid(width:Integer, height:Integer)
+        + putObstacle(row:Integer, column:Integer)
+        + putFood(row:Integer, column:Integer, quantity:Integer)
+        + createColony(width:Integer, height:Integer)
+        + createSoldiers(amount:Integer)
+        + createWorkers(amount:Integer)
+        + setAntFile(antLogFile:String)
+        + play(duration:Integer, record:boolean):BitSet[*]
+        - refreshBitSet(bs:BitSet[*], graphe:Graphe)
     }
 
     class Graphe
     {
-        - tabGrid final : ArrayList<Occupant>[][]
-        - listAnts final : ArrayList<Ant>
-        - listPheromone final : ArrayList<Pheromone>
+        - tabGrid:Occupant[*]
+        - listAnts:Ant[*]
+        - listPheromones:Pheromone[*]
 
-        + getFourmiliere() : Colony
-        + getListFourmis() : ArrayList<Ant>
-        + getTabGrid() : ArrayList<Occupant>[][]
-        + contientFourmiliere(x:int, y:int) : boolean
-        + contientObstacle(x:int, y:int) : boolean
-        + contientSoldat(x:int, y:int) : boolean
-        + contientPheromone( x : int, y : int) : boolean
-        + getListFourmis() : ArrayList<Ant>
+        + deplacementValide(x:Integer, y:Integer):boolean
+        + getFourmiliere():Colony
+        + getListFourmis():Ant[*]
+        + getListPheromones():Pheromone[*]
+        + getTabGrid():Occupant[*]
+        + contientFourmiliere(x:Integer, y:Integer):boolean
+        + contientObstacle(x:Integer, y:Integer):boolean
+        + contientSoldat(x:Integer, y:Integer):boolean
+        + contientPheromone(x:Integer, y:Integer):boolean
+        + contientOuvriereVide(x:Integer, y:Integer):boolean
+        + contientOuvrierePorteuse(x:Integer, y:Integer):boolean
+        + contientNourriture(x:Integer, y:Integer):boolean
         - fill()
-        + getPheromoneAt( x : int, y : int) : Pheromone
-        + getFoodAt( x : int, y : int) : Food
-        + contientOuvriereVide( x : int, y : int) : boolean
-        + contientOuvrierePorteuse( x : int, y : int) : boolean
-        + contientNourriture( x : int, y : int) : boolean
-        + putFood( x : int, y : int, quantity : int)
-        + getListPheromones() : ArrayList<Pheromone>
+        + getPheromoneAt(x:Integer, y:Integer):Pheromone
+        + getFoodAt(x:Integer, y:Integer):Food
+        + putFood(x:Integer, y:Integer, quantity:Integer)
     }
 
     class Main
     {
-        {static} + main(args : String[])
-    }
-
-    class MyOwnTest
-    {
-        ~ run(controller : AntFacadeController)
+        {static} + main(args : String[*])
     }
 
     class Obstacle extends Occupant
@@ -132,62 +113,70 @@ namespace v2 {
 
     class Occupant
     {
-        - x : int
-        - y : int
-        - final graphe : Graphe
+        - x:Integer
+        - y:Integer
+        - graphe:Graphe
 
-        + getGraphe() : Graphe
-        + getX() : int
-        + getY() : int
-        + setX()
-        + setY()
+        + getGraphe():Graphe
+        + getX():Integer
+        + getY():Integer
+        + setX(x:Integer)
+        + setY(y:Integer)
     }
 
     class Pheromone extends Occupant
     {
-        - quantity : int
+        - quantity:Integer
 
-        + getQuantity() : int
-        + setQuantity(newQty : int)
-        + evaporate(evapQty : int)
+        + getQuantity():Integer
+        + setQuantity(newQty:Integer)
+        + evaporate(evapQty:Integer)
 
     }
     class Queen extends Ant
     {
-        + donnerVie(c : Colony)
+        + donnerVie(c:Class)
+        + seDeplacer()
+    }
+
+    class Save
+    {
+        - fileSave:File
+
+        + saveMoves(g:Graphe, iteration:Integer)
     }
 
     class Soldier extends Ant
     {
-        + deplacementHasard()
         + seDeplacer()
     }
 
     class Worker extends Ant
     {
-        - carried : int
-        - listeCasesParcourues : ArrayList<int[]>
+        - carried:Integer
+        - listeCasesParcourues:Integer[*]
 
         + depositPheromone()
         + takeFood()
         + seDeplacer()
-        - getBestLocation() : int[]
-        - isSorted(list : ArrayList<int[]> ) : Boolean
-        + getListeCasesParcourues() : ArrayList<int[]>
-        + getCarried() : int
-        + withdrawPheromone()
+        - depositAllFood()
+        - getBestLocation():Integer[*]
+        - isSorted(list:Integer[*]):boolean
+        + getListeCasesParcourues():Integer[*]
+        + getCarried():Integer
+        + setCarried(newQty:Integer)
    }
 
-    Main -> MyOwnTest : démarre une partie
-    MyOwnTest -up-> Display : affiche les déplacements
-    MyOwnTest --> GameController : gère la partie
-    FourmiSoldatTest *-- AntFacadeController : utilise
-    GameController "1" --> "n" Graphe : gère le déroulement >
-    Occupant "n" -* "1" Graphe : occupe >
-    Ant "n" -> "1" Colony : appartient à
-    Worker -> Food : ramasse et dépose
-    Worker --> Pheromone : dépose
-    Queen -> Soldier : donne vie
-    Queen -> Worker : donne vie
+    Main .> GameController : <<use>>
+    GameController "1" *-> "1" Graphe : lit les positions >
+    Graphe "1" *- "n" Occupant : est sur <
+    Ant "n" -> "1" Colony : fait partie d'une >
+    Queen "1" .up.> "n" Soldier : donne vie >
+    Queen "1" .> "n" Worker : donne vie >
+    Worker -> Food : ramasse et dépose >
+    Worker -up-> Pheromone : dépose >
+    GameController "1" <. "1" Display : affiche les déplacements >
+    GameController "1" --> "1" Save : enregistre les déplacements >
+    Save "1" .> "1" Graphe : <<use>>
 }
 @enduml
