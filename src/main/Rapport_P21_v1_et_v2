@@ -8,7 +8,7 @@ Rapport pour la version 2 en P21 :
 
     Suite à votre retour, nous avons passé le Random en static dans la classe GameController.
 
-    Les tests unitaires manquant à la v1 ont été rajoutés.
+    Les tests unitaires que nous avions oubliés à la v1 ont été rajoutés.
 
     Tous les tests unitaires de la v1 et de la v2) fonctionnent (sauf preuve du contraire).
 
