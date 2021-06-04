@@ -1,0 +1,123 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+Participant Main
+Participant "controller:GameController:" as c
+Participant "g:Graphe" as g
+Participant "a:Ant" as a
+Participant "w:Worker" as w
+Participant "s:Soldier" as s
+Participant "o:Occupant" as o
+Participant "q:Queen" as q
+Participant "p:Pheromone" as p
+Participant "s:Save" as save
+
+Main -> c++ : play
+
+loop i=0 i<duration i++
+c -> g++ : getListFourmis()
+return listAnts
+
+loop Ant f : listAnts
+c -> a++ : seDeplacer()
+
+alt f instance of Soldier
+a -> s++ : seDeplacer()
+s -> s++: getListeVoisins()
+return listeVoisins
+alt listeVoisins.size()>0)
+s -> s++ : deplacementHasard()
+return
+end
+return
+
+else f instance of Worker
+a-> w++ : seDeplacer()
+w -> w++ : getCarried()
+return carried
+
+alt carried=0
+w -> w++ : getX()
+return X
+w -> w++ : getY()
+return Y
+w -> w++ : getColony
+return Colony
+w -> w++ : getCarried()
+return Carried
+w -> w++ : getListeVoisins()
+return listeVoisins
+w -> w++ : getBestLocation(listeVoisins)
+return loc
+w -> w++ : deplacerVers(loc)
+return
+
+w -> g++ : contientNourriture(x, y)
+return containsFood
+w -> g++ : contientFourmiliere(x, y)
+return containsColony
+
+alt containsFood && !containsColony
+w -> w++ : takeFood()
+return
+end
+
+
+else carried > 0
+w -> w++ : getListeCasesParcourues()
+return listeCasesParcourues
+
+w -> w++ : deplacementValide(listeCasesParcourues.size()-1)
+return valide
+
+alt valide
+w -> w++ : deplacerVers(listeCasesParcourues.size()-1)
+return
+w -> w : depositPheromone()
+
+else
+w -> w : deplacementHasard()
+
+w -> w++ : getColony()
+return colony
+w -> w++ : getX()
+return xColony
+w -> w++ : getY()
+return yColony
+
+w -> w++ : getX()
+return xFourmi
+w -> w++ : getY()
+return yFourmi
+alt xFourmi==xColony && yFourmi=yColony
+w -> w : depositAllFood()
+
+end
+return
+
+end
+
+end
+else f instance of Queen
+a -> q++ : seDeplacer()
+return
+return
+
+
+end
+end
+end
+c -> g++ : getListPheromones()
+return listPheromones
+
+loop Pheromone p : listPheromones
+c -> p++ : evaporate()
+return
+c -> save++ : saveMoves()
+return
+
+return
+
+@enduml
