@@ -59,8 +59,9 @@ class Queen extends Ant
 {
 }
 
-class Sauvegarde
+class Save
 {
+    fileSave
 }
 
 class Soldier extends Ant
@@ -81,7 +82,7 @@ Queen - Worker : donne vie >
 Worker - Food : ramasse et dépose >
 Worker -up- Pheromone : dépose >
 GameController -- Display : affiche la grille >
-GameController -- Sauvegarde : enregistre les déplacements >
-
+GameController -- Save : enregistre les déplacements >
+Save - Graphe : lit les positions >
 
 @enduml

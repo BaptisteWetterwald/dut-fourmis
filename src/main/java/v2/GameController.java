@@ -11,6 +11,7 @@ public class GameController implements AntFacadeController
     private int evaporationParam;
     private int foodParam;
     private int pheromoneParam;
+    private Save save;
 
     @Override
     public void setParameters(int evaporationParam, int foodParam, int pheromoneParam)
@@ -64,7 +65,7 @@ public class GameController implements AntFacadeController
 
     @Override
     public void setAntFile(String antLogFile) {
-        Save save = new Save(antLogFile);
+        save = new Save(antLogFile);
     }
 
     @Override
@@ -85,7 +86,6 @@ public class GameController implements AntFacadeController
                     listePheroASuppr.add(p);
                 else
                     p.evaporate(this.evaporationParam);
-
             }
             for (int j=listePheroASuppr.size()-1; j>=0; j--)
             {
@@ -93,6 +93,8 @@ public class GameController implements AntFacadeController
                 graphe.getTabGrid()[listePheroASuppr.get(j).getX()][listePheroASuppr.get(j).getY()].remove(listePheroASuppr.get(j));
             }
 
+            if (record)
+                save.saveMoves(graphe, i);
         }
         refreshBitSet(bs, graphe);
 

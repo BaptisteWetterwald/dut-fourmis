@@ -18,6 +18,7 @@ public class MyOwnTest {
         int width = 10;
         int height = 10;
         controller.setParameters(10, 5, 200);
+        controller.setAntFile("recordFile.csv");
 
         controller.createGrid(width, height);
         controller.createColony(6, 6);
@@ -29,20 +30,22 @@ public class MyOwnTest {
         controller.putFood(1, 4, 25);
 
 
-        //controller.createSoldiers(3);
-        controller.createWorkers(1);
+        controller.createSoldiers(3);
+        controller.createWorkers(3);
+
 
         Display w = new Display( width, height, 50);
 
-        while(true)
+        w.update( controller.play( 1000, true ) );
+        /*while(true)
         {
-            w.update( controller.play( 1, false ) );
+            w.update( controller.play( 1, true ) );
             try {
                 Thread.sleep(400);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
     private void testZigZag(AntFacadeController controller)
