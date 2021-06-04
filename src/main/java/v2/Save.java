@@ -9,6 +9,11 @@ public class Save
 
     File fileSave;
 
+    /**
+     * Constructeur classe Save
+     *
+     * @param name chemin d'accès (nom et extension inclus) du fichier à créer ou utiliser
+     */
     public Save(String name)
     {
         fileSave = new File(name);
@@ -34,6 +39,13 @@ public class Save
         }
     }
 
+
+    /**
+     * Permet l'enregistrement des déplacements à l'itération courante vers le fichier
+     *
+     * @param g graphe concerné
+     * @param iteration numéro d'itération
+     */
     public void saveMoves(Graphe g, int iteration)
     {
         try
